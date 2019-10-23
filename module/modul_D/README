@@ -1,0 +1,7 @@
+#################
+#    Modul D	#
+#################
+
+Hier wird die Verzögerung vom Lautsprecher und dem Mikrofon ermittelt. Dabei macht der Slvae den Ton an. Der Master wird nicht benötigt.
+Das Oszi hängt am Gate Eingang des Mosfets und am GATE Ausgang des Mikrofons
+Die Messungen werden für 1m, 2m und 3m wiederholt.
