@@ -1,0 +1,19 @@
+\newpage
+\section{Auswertung}
+
+Nachdem die Implementierung abgeschlossen ist, widmen wir uns in diesem Kaptiel der Auswertung der Daten.
+
+\subsection{Hardware}
+Die aufgetretenen Abweichungen enstanden meistens wenn die Peripherie Daten generiert hat bzw. angesprochen wurde. Da viele dieser Abweichungen konstant sind, kann ein Offset mit in das Ergebnis einfließen für ein korrektes Ergebnis. Allerdings sind einige Abweichungen nicht erklärbar, was die Bestimmung eines Offset erschwert. Weiterhin zeigt sich, dass die verwendete Hardware nicht optimal auf dieses Problem abgestimmt ist. Dazu zählt das Betriebssystem RIOT, der Tongeber und das  \microphone . RIOT sieht sich zwar als Echtzeitbetriebssystem, allerdings sind zu viele Schichten zwischen dem laufenden Programm und der Hardware, denn ein Systemaufruf für die Abfrage der Systemzeit darf nicht \SI{7,21}{\mu s} dauern. Dies verfälscht die Systemzeit die eigentlich \si{\mu}-Sekunden genau sein soll. Des weiteren zeigt sich, desto weniger Komponenten (Peripherie) verwendet wird, desto einfacher ist die Fehlersuche. Eine Laufzeitmessung könnte z.B. im Funkchip enthalten sein. Somit spart man sich aufwendige Peripherie. 
+
+\subsection{Messergebnis}
+Die Messergebnisse zeigen, dass eine Positionsbestimmung auf diese Weise nicht genau genug ist. Die Abweichung die das Messergebnis hauptsätlich verfälscht, liegt beim Tongeber und dem Mikrofon. Dadurch das kein Muster bei der Abweichung erkennbar ist, kann kein Offset bestimmt werden. Weiterhin liefert das Oszilloskop die gleichen Abweichungen für alle verwendeteten Mikrofone, sodass die Verwendung eines fehlerbehafteten Bausteins ausgeschlossen werden kann. 
+
+\subsection{Software}
+
+Die Software kann eine Positionsbestimmung durchführen, dabei ist sie allerdings auf korrekte Distanzmesswerte angewiesen. Da diese fehlen, kann die Software nur durch Unit-Tests validiert werden.
+
+
+
+
+

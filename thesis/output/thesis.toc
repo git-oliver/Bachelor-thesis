@@ -1,0 +1,57 @@
+\select@language {ngerman}
+\contentsline {section}{\numberline {1}Einleitung}{1}
+\contentsline {subsection}{\numberline {1.1}Aufbau der Arbeit}{1}
+\contentsline {section}{\numberline {2}Grundlagen}{2}
+\contentsline {subsection}{\numberline {2.1}Verwendete Hardware}{2}
+\contentsline {subsubsection}{\nonumberline Controller}{2}
+\contentsline {subsubsection}{\nonumberline Sensoren}{2}
+\contentsline {paragraph}{\nonumberline Ultraschallsensor}{3}
+\contentsline {paragraph}{\nonumberline Sound Detector}{3}
+\contentsline {paragraph}{\nonumberline 433 Mhz Funk Transmitter-Receiver}{5}
+\contentsline {paragraph}{\nonumberline Lautsprecher}{7}
+\contentsline {subsection}{\numberline {2.2}Verwendete Software}{8}
+\contentsline {subsubsection}{\nonumberline RIOT OS}{8}
+\contentsline {subsection}{\numberline {2.3}Time Difference of Arrival - TDOA}{9}
+\contentsline {subsection}{\numberline {2.4}User Datagram Protocol - UDP}{9}
+\contentsline {subsection}{\numberline {2.5}Netzwerk-Socket}{10}
+\contentsline {subsection}{\numberline {2.6}Indoor/Outdoor Positionsbestimmung}{10}
+\contentsline {subsection}{\numberline {2.7}Zeitsynchronisation}{10}
+\contentsline {subsection}{\numberline {2.8}Mathematischer Hintergrund - Positionsbestimmung}{11}
+\contentsline {section}{\numberline {3}Entwurf}{15}
+\contentsline {subsection}{\numberline {3.1}Hardware}{15}
+\contentsline {subsection}{\numberline {3.2}Struktur}{15}
+\contentsline {section}{\numberline {4}Implementierung}{17}
+\contentsline {subsection}{\numberline {4.1}SparkFun Sound Detector}{17}
+\contentsline {subsection}{\numberline {4.2}Modul A}{20}
+\contentsline {subsection}{\numberline {4.3}Modul B}{21}
+\contentsline {subsection}{\numberline {4.4}Modul C}{22}
+\contentsline {subsection}{\numberline {4.5}Modul D}{22}
+\contentsline {subsection}{\numberline {4.6}Systemzeit}{24}
+\contentsline {subsection}{\numberline {4.7}Zeitsynchronisation}{25}
+\contentsline {subsection}{\numberline {4.8}433 Mhz Funk Transmitter-Receiver}{27}
+\contentsline {subsection}{\numberline {4.9}Software}{28}
+\contentsline {section}{\numberline {5}Auswertung}{31}
+\contentsline {subsection}{\numberline {5.1}Hardware}{31}
+\contentsline {subsection}{\numberline {5.2}Messergebnis}{31}
+\contentsline {subsection}{\numberline {5.3}Software}{31}
+\contentsline {section}{\numberline {6}Unit Test}{32}
+\contentsline {subsection}{\numberline {6.1}Quadratische Gleichung}{32}
+\contentsline {subsection}{\numberline {6.2}Abstand zweier Punkte}{32}
+\contentsline {subsection}{\numberline {6.3}Positionsbestimmung}{33}
+\contentsline {section}{\numberline {7}Gel\IeC {\"o}ste Probleme}{35}
+\contentsline {subsection}{\numberline {7.1}Kommunikation Master -- Slave}{35}
+\contentsline {subsection}{\numberline {7.2}Genauigkeit Zeitsynchronisation}{35}
+\contentsline {subsection}{\numberline {7.3}Messgenauigkeit}{35}
+\contentsline {section}{\numberline {8}Ausblick}{36}
+\contentsline {paragraph}{\nonumberline Kommunikation}{36}
+\contentsline {paragraph}{\nonumberline Zeitsynchronisation}{36}
+\contentsline {paragraph}{\nonumberline \IeC {\"U}bertragungsmedium}{36}
+\contentsline {paragraph}{\nonumberline Messung}{36}
+\contentsline {paragraph}{\nonumberline Hardware}{36}
+\contentsline {paragraph}{\nonumberline Signalanalyse}{37}
+\contentsline {paragraph}{\nonumberline Betriebssystem}{37}
+\contentsline {section}{Eidesstattliche Erkl\IeC {\"a}rung}{38}
+\contentsline {section}{Literaturverzeichnis}{39}
+\contentsline {section}{\numberline {9}Anhang}{41}
+\contentsline {section}{\numberline {1}Mathematische Herleitung}{41}
+\contentsline {section}{\numberline {2}Steuercodes}{43}

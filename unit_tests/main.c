@@ -1,32 +1,30 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "math_stuff.h"
+#include <assert.h>
+#include <stdbool.h>
 
+#define EPSILON (0.001)
+#define COMPARE(a,b) ((abs(a-b) <= EPSILON) ? true : false)
 
-#define SUCCESS	(0)
-#define FAILED 	(-1)
-
-int test_calc_position(void);
-int test_pq_equation(void);
-int test_determine_point_radius(void);
+void test_calc_position(void);
+void test_pq_equation(void);
+void test_determine_point_radius(void);
 
 
 int main(void){
 
-	printf("Wir testn\n");
-//	printf("Func calc_position: %d\n",test_calc_position());
-//	printf("Func pq_equation: %d\n",test_pq_equation());
-	printf("Func determine_point_radius: %d\n",test_determine_point_radius());
-
-
-
+	printf("Unit test starts ...\n");
+	test_pq_equation();
+	test_determine_point_radius();
+	test_calc_position();
 	return 0;
 }
 
 
 
 
-int test_determine_point_radius(void){
+void test_determine_point_radius(void){
 
 	point m = {0, 0};
 	circle c = {m, 10};
@@ -35,56 +33,70 @@ int test_determine_point_radius(void){
 	point a = {1, 7};
 	point b = {100, 0};
 	
-	if(determine_point_radius(&c,a,b).x == a.x){
-		return SUCCESS;
-	}
-	return FAILED;
+	point erg = determine_point_radius(&c,a,b);
+	assert(COMPARE(erg.x, 1) && COMPARE(erg.y, 7));
 }
 
-int test_calc_position(void){
+void test_calc_position(void){
+
+        //Ein gemeinsamer Schnittpunkt	
+	point p_A = {0, 0};
+        point p_B = {4, 0};
+        point p_C = {2, 2};
+
+        circle c_A, c_B, c_C;
+
+	c_A.point = p_A;
+	c_A.radius = 2;
+
+      	c_B.point = p_B;
+	c_B.radius = 2;
 	
-	point p_A = {1, 8};
-        point p_B = {0, 0};
-        point p_C = {1, 3};
+        c_C.point = p_C;
+	c_C.radius = 2;
 
-        circle c_A = {p_A, 5, 2, 4};
-        circle c_B = {p_B, 9, 3, 4};
-        circle c_C = {p_C, 1, 3, 4};
+        position erg = calc_position(&c_A, &c_B, &c_C);//Muss noch getrickst werden
+	assert(COMPARE(erg.pos_A.x, 2.0) && COMPARE(erg.pos_A.y, 0.0));
 
-        position erg = calc_position(&c_A, &c_B, &c_C);
-        printf("Ergebnis\n");
-        printf("Punkt A: %f | %f\n",erg.pos_A.x, erg.pos_A.y);
-        printf("Punkt B: %f | %f\n",erg.pos_B.x, erg.pos_B.y);
-        printf("Punkt C: %f | %f\n",erg.pos_C.x, erg.pos_C.y);
 
-        if(erg.pos_A.x == 123){
-                if(erg.pos_A.y == 456){
+	//Kein gemeinsamer Schnittpunkt
+	p_A.x = 3; p_A.y = 3;
+        p_B.x = 6; p_B.y = 2;
+        p_C.x = 4; p_C.y = 5;
 
-                        if(erg.pos_B.x == 789){
-                                if(erg.pos_B.y == 789){
+        c_A.point = p_A; c_A.radius = 2;
+        c_B.point = p_B; c_B.radius = 2;
+	c_C.point = p_C; c_C.radius = 2;
 
-                                        if(erg.pos_C.x == 789){
-                                                if(erg.pos_C.y == 789){
-							return SUCCESS;
-                                                }
-                                        }
-                                }
-                        }
-                }
-        }
-	return FAILED;
+	erg = calc_position(&c_A, &c_B, &c_C);
+	assert(COMPARE(erg.pos_A.x, 4.887298) && COMPARE(erg.pos_A.y, 3.661895));
+        assert(COMPARE(erg.pos_B.x, 4.983239) && COMPARE(erg.pos_B.y, 3.258380));
+        assert(COMPARE(erg.pos_C.x, 4.279423) && COMPARE(erg.pos_C.y, 3.019615));
 }
 
-int test_pq_equation(void){
+void test_pq_equation(void){
 
-        point erg = pq_equation(3,2);
-        if(erg.x == -1){
-                if(erg.y == -2){
-                	return SUCCESS;
-		}
-        }
-	return FAILED;
+	int p,q;
+	double x1,x2;
+
+	p = 3;
+	q = 2;
+	x1 = -1;
+	x2 = -2;
+	point erg = pq_equation(p,q);
+        assert(COMPARE(erg.x,x1) && COMPARE(erg.y,x2));
+
+	p = 4;
+	q = 1;
+	x1 = -0.267949;
+	x2 = -3.732051;
+	erg = pq_equation(p,q);
+	assert(COMPARE(erg.x,x1) && COMPARE(erg.y,x2));
+
+	p = -3;
+        q = -9;
+        x1 = 4.8541;
+	x2 = -1.8541;
+	erg = pq_equation(p,q);
+	assert(COMPARE(erg.x,x1) && COMPARE(erg.y,x2));
 }
-
-
-

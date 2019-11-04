@@ -1,0 +1,31 @@
+\newpage
+
+\section{Ausblick}
+Die Software kann man in verschiedenen Module einteilen. Dadurch ist es möglich, die Software zu erweitern ohne die anderen Module zu verändern. Folgend werden Verbesserungsvorschläge für die einzelnen Module vorgestellt.
+
+\paragraph{Kommunikation}\mbox{}\\
+Für die Kommunikation zwischen Master und Slave, könnte anstatt des UDP-Protokoll das TCP-Protokoll verwendet werden. Dadurch wird eine fehlerbehaftete Kommunikation verbessert, weil TCP mit ACKs arbeitet und zuerst ein Verbindungsaufbau erfolt. Darüber hinaus könnte die Identifikation der Knoten im Netzwerk auf IPv4 oder IPv6 umgestellt werden.
+
+\paragraph{Zeitsynchronisation}\mbox{}\\
+Damit eine Uhrensynchronisation im Nanosekundenbereich erreicht wird, muss die aktuelle Uhrzeit kurz vor dem Aussenden in das Datenpaket eingefügt werden. Dies sollte unabhängig vom System geschehen. Dafür muss die Systemzeit von der Firmware des Funkmoduls verwaltet werden. Wird die Systemzeit allerdings vom Betriebssystem verwaltet, gibt es immer eine Verzögerung von dem Funktionsaufruf $getSystemTime()$ und dem Aussenden des Pakets. Genau um diese Verzögerungszeit zu elemenieren, sollte bei jedem Aussenden des Paketes die aktuelle Systemzeit angehängt werden.
+
+\paragraph{Übertragungsmedium}\mbox{}\\
+Anstatt von Schall, können auch Radiosignale verwendet werden. Diese haben den Vorteil das das menschliche Gehör diese Frequenzen nicht wahrnimmt. Des weiteren breiten sich Radiosignale mit Lichtgeschwindigkeit aus. Zusammen mit einer Frequenzmodulationen können mehrere Accesspoints gleichzeitig abgefragt werden. Dies ermöglicht eine schnellere Positionsbestimmung.
+
+\paragraph{Messung}\mbox{}\\
+Für die Positionsbestimmung müssen drei Gleichungen gelöst. Da MCUs nicht immer über eine FPU verfügen, können die gemessenen Daten über UART ausgegeben werden und dann mit Octave oder Matlab weiterverarbeitet werden. Das hat den Vorteil, dass die MCU entlastet wird und sich ganz auf die Messung konzentrieren kann. Darüber hinaus ermöglicht Octave, Statistiken oder graphische Aufbereitung der Daten.
+
+\paragraph{Hardware}\mbox{}\\
+Aktuell ist der Lautsprecher und das Mikrofon über ein Steckbrett mit dem \board \platz verbunden. Es könnte eine Leiterplatte angefertigt werden, die auf das \board \platz aufgesteckt wird. Das würde eventuelle Fehler beim Steckbrett vermeiden.  
+
+\paragraph{Signalanalyse}\mbox{}\\
+Um genauer herrauszufinden, wann das Signal beim Mikrofon ankommt, kann eine Signalanalsye durchgeführt werden. Dadurch ist es dann möglich, den exakten Zeitpunkt zu bestimmen, wann das Lautsprechersignal das Rauschen am $AUDIO$- Ausgang überlagert. Damit wird weiterhin die Genauigkeit erhöht.
+
+\paragraph{Betriebssystem}\mbox{}\\
+Anstatt das Betriebssystem RIOT zu verwenden, kann auch ein eigenes Betriebssystem geschrieben und verwendet werden. Dies ermöglicht eine bessere Programmanalyse über das laufende Programm. Darüber hinaus können eventuelle Softwareroutinen die nicht unbedingt essentiell sind, abgeschaltet werden, bzw. gar nicht erst implementiert werden.
+
+
+
+
+
+

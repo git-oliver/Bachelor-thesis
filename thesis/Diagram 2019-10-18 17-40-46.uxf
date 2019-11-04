@@ -1,0 +1,9 @@
+<diagram program="umletino" version="14.3.0"><zoom_level>10</zoom_level><element><id>UMLGeneric</id><coordinates><x>240</x><y>340</y><w>100</w><h>100</h></coordinates><panel_attributes>Master Knoten
+halign=left</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>740</x><y>340</y><w>100</w><h>100</h></coordinates><panel_attributes>Slave Knoten
+halign=left</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>720</x><y>530</y><w>150</w><h>40</h></coordinates><panel_attributes>Mosfet + Lautsprecher
+valign=center</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>210</x><y>530</y><w>170</w><h>40</h></coordinates><panel_attributes>Sparkfun Sound Detector
+valign=center</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>370</x><y>530</y><w>370</w><h>40</h></coordinates><panel_attributes>lt=.&gt;
+Schall</panel_attributes><additional_attributes>350;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>330</x><y>370</y><w>430</w><h>40</h></coordinates><panel_attributes>lt=.&gt;
+Kommunikation zwischen Master - Slave</panel_attributes><additional_attributes>10;20;410;20</additional_attributes></element><element><id>Relation</id><coordinates><x>780</x><y>430</y><w>220</w><h>120</h></coordinates><panel_attributes>lt=.&gt;
+Ansteuerung des Lautsprecher</panel_attributes><additional_attributes>10;10;10;100</additional_attributes></element><element><id>Relation</id><coordinates><x>280</x><y>430</y><w>120</w><h>120</h></coordinates><panel_attributes>lt=.&gt;
+Schalldetektion</panel_attributes><additional_attributes>10;100;10;10</additional_attributes></element></diagram>

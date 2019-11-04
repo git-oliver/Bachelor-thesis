@@ -1,0 +1,148 @@
+
+\begin{table}[H]
+\begin{tabular}{|c|c|c|}
+\caption{Messwerte bei \SI{2}{m} Entfernung}
+\label{tab:plausibilitaetscheck_2m}
+\hline
+\multicolumn{3}{|c|}{\textbf{\SI{2}{m} Entfernung}} \\ \hline
+\textbf{Messwert von Mikrofon \si{1} [\si{\mu s}]} & \textbf{Messwert von Mikrofon \si{2} [\si{\mu s}]} & \textbf{Differenz [\mu s]} \\ \hline
+476,00              & 20150,00            & 19674,00           \\ \hline
+458,00              & 37900,00            & 37442,00           \\ \hline
+471,00              & 36150,00            & 35679,00           \\ \hline
+681,00              & 38750,00            & 38079,00           \\ \hline
+452,00              & 38150,00            & 37698,00           \\ \hline
+466,00              & 34150,00            & 33684,00           \\ \hline
+675,00              & 38750,00            & 38075,00           \\ \hline
+450,00              & 33550,00            & 33100,00           \\ \hline
+447,00              & 32600,00            & 32153,00           \\ \hline
+460,00              & 35800,00            & 35340,00           \\ \hline
+\multicolumn{3}{|c|}{\textbf{Durchschnitt}}                    \\ \hline
+503,60              & 34595,00            & 34072,40           \\ \hline
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\begin{tabular}{|c|c|c|}
+\caption{Messwerte bei \SI{3}{m} Entfernung}
+\label{tab:plausibilitaetscheck_3m}
+\hline
+\multicolumn{3}{|c|}{\textbf{\SI{3}{m} Entfernung}} \\ \hline
+\textbf{Messwert von Mikrofon \si{1} [\si{\mu s}]} & \textbf{Messwert von Mikrofon \si{2} [\si{\mu s}]} & \textbf{Differenz [\mu s]} \\ \hline
+454,00              & 33450,00            & 32996,00           \\ \hline
+428,50              & 35800,00            & 35371,50           \\ \hline
+474,00              & 37650,00            & 37176,00           \\ \hline
+429,00              & 33500,00            & 33071,00           \\ \hline
+437,50              & 37700,00            & 37262,50           \\ \hline
+439,50              & 35550,00            & 35110,50           \\ \hline
+435,50              & 25200,00            & 24764,50           \\ \hline
+437,50              & 23800,00            & 23362,50           \\ \hline
+430,00              & 24950,00            & 24520,00           \\ \hline
+427,50              & 25800,00            & 25372,50           \\ \hline
+\multicolumn{3}{|c|}{\textbf{Durchschnitt}}                    \\ \hline
+439,30              & 31340,00            & 30900,70           \\ \hline
+\end{tabular}
+\end{table}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1m Entfernung
+
+\begin{table}[]
+\begin{tabular}{|c|c|c|}
+\hline
+\multicolumn{3}{|c|}{\textbf{1 m Entfernung}}                  \\ \hline
+\textbf{Mikrofon 1} & \textbf{Mikrofon 2} & \textbf{Differenz} \\ \hline
+595,00              & 4345,00             & 3750,00            \\ \hline
+603,00              & 4340,00             & 3737,00            \\ \hline
+461,00              & 4440,00             & 3979,00            \\ \hline
+608,00              & 4560,00             & 3952,00            \\ \hline
+641,00              & 4670,00             & 4029,00            \\ \hline
+443,00              & 4400,00             & 3957,00            \\ \hline
+450,00              & 4415,00             & 3965,00            \\ \hline
+634,00              & 4335,00             & 3701,00            \\ \hline
+638,00              & 4425,00             & 3787,00            \\ \hline
+640,00              & 4850,00             & 4210,00            \\ \hline
+\multicolumn{3}{|c|}{\textbf{Durchschnitt}}                    \\ \hline
+571,30              & 4036,50             & 3511,00            \\ \hline
+\end{tabular}
+\end{table}
+
+
+
+2m Entfernung
+
+\begin{table}[]
+\begin{tabular}{|c|c|c|}
+\hline
+\multicolumn{3}{|c|}{\textbf{2 m Entfernung}}                  \\ \hline
+\textbf{Mikrofon 1} & \textbf{Mikrofon 2} & \textbf{Differenz} \\ \hline
+476,00              & 20150,00            & 19674,00           \\ \hline
+458,00              & 37900,00            & 37442,00           \\ \hline
+471,00              & 36150,00            & 35679,00           \\ \hline
+681,00              & 38750,00            & 38079,00           \\ \hline
+452,00              & 38150,00            & 37698,00           \\ \hline
+466,00              & 34150,00            & 33684,00           \\ \hline
+675,00              & 38750,00            & 38075,00           \\ \hline
+450,00              & 33550,00            & 33100,00           \\ \hline
+447,00              & 32600,00            & 32153,00           \\ \hline
+460,00              & 35800,00            & 35340,00           \\ \hline
+\multicolumn{3}{|c|}{\textbf{Durchschnitt}}                    \\ \hline
+503,60              & 34595,00            & 34072,40           \\ \hline
+\end{tabular}
+\end{table}
+
+
+3m Entfernung
+
+\begin{table}[]
+\begin{tabular}{|c|c|c|}
+\hline
+\multicolumn{3}{|c|}{\textbf{3 m Entfernung}}                  \\ \hline
+\textbf{Mikrofon 1} & \textbf{Mikrofon 2} & \textbf{Differenz} \\ \hline
+454,00              & 33450,00            & 32996,00           \\ \hline
+428,50              & 35800,00            & 35371,50           \\ \hline
+474,00              & 37650,00            & 37176,00           \\ \hline
+429,00              & 33500,00            & 33071,00           \\ \hline
+437,50              & 37700,00            & 37262,50           \\ \hline
+439,50              & 35550,00            & 35110,50           \\ \hline
+435,50              & 25200,00            & 24764,50           \\ \hline
+437,50              & 23800,00            & 23362,50           \\ \hline
+430,00              & 24950,00            & 24520,00           \\ \hline
+427,50              & 25800,00            & 25372,50           \\ \hline
+\multicolumn{3}{|c|}{\textbf{Durchschnitt}}                    \\ \hline
+439,30              & 31340,00            & 30900,70           \\ \hline
+\end{tabular}
+\end{table}
+
+
+
+
