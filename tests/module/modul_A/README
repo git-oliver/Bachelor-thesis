@@ -1,0 +1,9 @@
+#################
+#    Modul A	#
+#################
+
+Hier wird die Verzögerung der ISR vom Mikrofon und Master ermittelt. 
+Dabei wird der Ton angemacht und die Verzögerung von LOW -> HIGH ermittelt. 
+Das wird für die Distanzen (Tongeber/ Mikrofon) 1,2,3 [m] wiederholt.
+
+Es muss im Makefile der PATH to RIOT noch geändert werden --> Ist bei jedem unterschiedlich

@@ -1,0 +1,440 @@
+#include "../include.h"
+#include <stdbool.h>
+#include "net/af.h"
+#include "net/protnum.h"
+#include "net/ipv6/addr.h"
+#include "net/sock/udp.h"
+#include "xtimer.h"
+#include "periph/gpio.h"
+#include <stdio.h>
+#include "net/sock/udp.h"
+#include "thread.h"
+#include "msg.h"
+
+#define ACCESSPOINT_PORT 	1001
+
+uint32_t data_incoming[MAX_LEN_BUFFER];
+uint32_t data_outgoing[MAX_LEN_BUFFER];
+int X_coordinate, Y_coordinate;
+uint32_t time_server, time_client, time_buzzer;
+bool bool_zeit_diff = false;
+
+//sind nur global weil sonst würde die function client_server hängen
+sock_udp_ep_t local = SOCK_IPV6_EP_ANY;
+sock_udp_t sock;
+
+void init(void);
+void printmsg(int len);
+void command_handler(uint32_t data);
+void client(uint32_t data);
+uint32_t server(void);
+void client_send_time(void);
+void answer_pong(void);
+int wait_for_pong(void);
+uint32_t server_timeout(void);
+
+void cmd_set_X_coordinate(void);
+void cmd_set_Y_coordinate(void);
+void cmd_get_X_coordinate(void);
+void cmd_get_Y_coordinate(void);
+void cmd_messung(void);
+void cmd_zeit_diff(void);
+void cmd_unknown(void);
+void cmd_nop(void);
+void cmd_zeit_sync(void);
+void cmd_get_zeit(void);
+void cmd_ping(void);
+
+
+int main(void)
+{
+  init();
+  
+//DEBUG
+/*
+  gpio_init(GPIO_PIN(0,6),GPIO_OUT);
+  gpio_clear(GPIO_PIN(0,6));
+*/
+  while(1){  
+  	command_handler(server()); 
+  }
+  printf("Beenden\n");
+  return 0;
+}
+
+void init(void){
+
+	int returnval = gpio_init(GPIO_PIN(0,5),GPIO_OUT);
+	gpio_clear(GPIO_PIN(0,5));
+
+	//printf("einrichten des GPIOs = %d\n",returnval);
+	(void)returnval;
+
+        local.port = ACCESSPOINT_PORT;
+	if(sock_udp_create(&sock, &local, NULL, 0) < 0) {
+		//printf("Error creating UDP sock\n");
+	}
+	//printf("init fertig\n");
+}
+
+void client(uint32_t data){
+
+	int returnval;
+
+	sock_udp_ep_t remote = { .family = AF_INET6 };
+	remote.port = AUTO_PORT;
+ 	ipv6_addr_set_all_nodes_multicast((ipv6_addr_t *)&remote.addr.ipv6,IPV6_ADDR_MCAST_SCP_LINK_LOCAL);
+	
+	time_client = xtimer_now_usec();
+
+	if ((returnval = sock_udp_send(&sock, &data, sizeof(data), &remote)) < 0) {
+
+		printf("func. client: Error sending message  %d\n",returnval);
+        }
+	//printf("client: haben die nachricht gesendet\n");
+}
+void client_send_time(void){
+
+	int returnval;
+	uint32_t data;
+
+        sock_udp_ep_t remote = { .family = AF_INET6 };
+        remote.port = AUTO_PORT;
+        ipv6_addr_set_all_nodes_multicast((ipv6_addr_t *)&remote.addr.ipv6,IPV6_ADDR_MCAST_SCP_LINK_LOCAL);
+
+	data = xtimer_now_usec();
+
+        if ((returnval = sock_udp_send(&sock, &data, sizeof(data), &remote)) < 0) {
+
+                printf("func. client: Error sending message  %d\n",returnval);
+        }
+	time_client = data;
+}
+uint32_t server(void){
+
+	sock_udp_ep_t remote;
+	ssize_t res;
+	
+	if ((res = sock_udp_recv(&sock, data_incoming, sizeof(data_incoming[0]), SOCK_NO_TIMEOUT,&remote)) >= 0) {
+
+		time_server = xtimer_now_usec();
+		//printf("server: Haben eine nachricht bekommen\n");
+		//printmsg(res);
+	}
+	return data_incoming[0];
+}
+uint32_t server_timeout(void){
+
+        sock_udp_ep_t remote;
+        ssize_t res;
+
+        if ((res = sock_udp_recv(&sock, data_incoming, sizeof(data_incoming[0]), 1 * US_PER_SEC,&remote)) >= 0) {
+
+                time_server = xtimer_now_usec();
+                //printf("server: Haben eine nachricht bekommen\n");
+        }else{
+                return -1;
+        }
+        return data_incoming[0];
+}
+
+void command_handler(uint32_t data){
+
+	switch(data){
+		case CODE_MESSUNG:
+                        {
+                              	cmd_messung();
+                                break;
+                        }
+                case CODE_ZEIT_DIFF:
+                        {
+                                cmd_zeit_diff();
+                                break;
+                        }
+                case CODE_NOP:
+                        {
+                                cmd_nop();
+                                break;
+                        }
+		case CODE_ZEIT_SYNC:
+			{
+				cmd_zeit_sync();
+				break;
+			}
+		case CODE_GET_ZEIT:
+			{
+				cmd_get_zeit();
+				break;
+			}
+		case CODE_PING:
+			{
+				cmd_ping();
+				break;
+			}
+		case CODE_SET_X_COOR:
+			{
+				cmd_set_X_coordinate();
+				break;
+			}
+                case CODE_SET_Y_COOR:
+                        {
+                                cmd_set_Y_coordinate();
+           			break;
+			}
+                case CODE_GET_X_COOR:
+                        {
+                                cmd_get_X_coordinate();
+                                break;
+                        }
+                case CODE_GET_Y_COOR:
+                        {
+                                cmd_get_Y_coordinate();
+                                break;
+                        }
+                default:
+                        {
+                                cmd_unknown();
+                                break;
+                        }
+	}
+	printf("Warte wieder auf eine nachricht\n");
+}
+void printmsg(int len)
+{
+	//printf("sind in printmsg func\n");
+	//printf("len = %d\n",len);
+	if(len < 0){
+		//printf("Error: printmsg: Die länge der daten sind negativ\n");
+		return;
+	}
+	for(int i=0; i<len; i++){
+		//printf("%ld ",data_incoming[i]);
+	}
+	//printf("\n");
+	//printf("als char %c\n",(char)data_incoming[0]);
+	
+}
+int wait_for_pong(void){
+
+        int a=0;
+        while(a<10){
+                if( server_timeout() == ((uint8_t)('G')) ){
+//			printf("Es kam ein pong zurück von %d\n",AUTO_PORT);
+                        return 0;
+                }
+                printf("Kein pong a= %d\n",a);
+                a++;
+        }
+        return -1;
+}
+
+void answer_pong(void){
+
+	printf("Senden Pong\n");
+	xtimer_usleep(10000);
+	client(CODE_PONG);
+	printf("Pong gesendet\n");
+}
+
+void cmd_get_X_coordinate(void){
+
+        printf("CMD get X Coordinate \n");
+        answer_pong();
+
+        if(X_coordinate < 0){
+                X_coordinate = -X_coordinate;
+                client(X_coordinate); 
+                if(wait_for_pong() == 0){
+                        client(1);//weil die zahl negativ ist ein zweites mal senden
+                        if(wait_for_pong() == 0){
+//                                printf("Fertig mit zurückgeben der negativen X Koordinate\n");
+                        }else{
+                                printf("ERROR bei wait_for_pong\n");
+                        }
+                }else{
+                        printf("ERROR bei wait_for_pong\n");
+                }
+        }else{
+                client(X_coordinate); 
+                if(wait_for_pong() == 0){
+                        client(0);//weil die zahl positiv ist ein zweites mal senden
+                        if(wait_for_pong() == 0){
+//                                printf("Fertig mit zurückgeben der positiven X Koordinate\n");
+                        }else{
+                                printf("ERROR bei wait_for_pong\n");
+                        }
+                }else{
+                        printf("ERROR bei wait_for_pong\n");
+                }
+        }
+}
+
+void cmd_get_Y_coordinate(void){
+
+        printf("CMD get Y Coordinate \n");
+        answer_pong();
+	
+	if(Y_coordinate < 0){
+		Y_coordinate = -Y_coordinate;
+	        client(Y_coordinate);
+		if(wait_for_pong() == 0){
+			client(1);//weil die zahl negativ ist ein zweites mal senden
+			if(wait_for_pong() == 0){
+//				printf("Fertig mit zurückgeben der negativen Y Koordinate\n");
+			}else{
+		                printf("ERROR bei wait_for_pong\n");
+        		}
+		}else{
+			printf("ERROR bei wait_for_pong\n");
+		}
+	}else{
+                client(Y_coordinate);
+                if(wait_for_pong() == 0){
+                        client(0);//weil die zahl positiv ist ein zweites mal senden
+                        if(wait_for_pong() == 0){
+//                                printf("Fertig mit zurückgeben der positiven Y Koordinate\n");
+                        }else{
+                                printf("ERROR bei wait_for_pong\n");
+                        }
+                }else{
+                        printf("ERROR bei wait_for_pong\n");
+                }
+	}
+}
+
+void cmd_set_X_coordinate(void){
+
+	printf("CMD set X Coordinate \n");
+	answer_pong();
+
+	X_coordinate  = server();
+	answer_pong();
+	
+	int tmp = server();//0 für positiv  größer 0 für negativ
+	answer_pong();
+
+	if(tmp > 0){
+		X_coordinate = - X_coordinate;
+		printf("X-Koordinate ist negativ");
+	}
+//	printf("Fertig mit setzen der X Koordinate\n");	
+}
+void cmd_set_Y_coordinate(void){
+
+        printf("CMD set Y Coordinate \n");
+        answer_pong();
+
+        Y_coordinate  = server();
+        answer_pong();
+
+	int tmp = server();//0 für positiv  größer 0 für negativ
+        answer_pong();
+
+	if(tmp > 0){
+                Y_coordinate = - Y_coordinate;
+                printf("Y-Koordinate ist negativ");
+        }
+//        printf("Fertig mit setzen der Y Koordinate\n");
+}
+
+void cmd_ping(void){
+//	printf("CMD Ping \n");
+	answer_pong();
+}
+void cmd_messung(void){
+
+	printf("CMD messung\n");
+	xtimer_sleep(1);
+	printf("Auf cmd messung mit pong antworten\n");
+	answer_pong();
+	printf("warte auf nachricht 2 welches die Zeit behinhaltet\n");
+	uint32_t data = server();
+	answer_pong();
+	printf("So haben CMD Messung und den Wert erhalten\n");
+	
+	if(data < xtimer_now_usec()){
+		printf("ERROR Zeit zum feuern liegt schon in der vergangenheit\n");
+	}
+	printf("warten aufs feuern\n");
+	while(1){
+		if(xtimer_now_usec() >= data){
+//			gpio_set(GPIO_PIN(0,6)); //DEBUG Zwecke
+
+			gpio_set(GPIO_PIN(0, 5));
+                        xtimer_usleep(40000);
+			gpio_clear(GPIO_PIN(0,5));
+			data = xtimer_now_usec();
+                        printf("Habe gefeuert\n");
+			printf("Die uhrzeit nach dem feuern: %ld\n",data);
+			
+			break;
+		}
+	}
+}
+void cmd_zeit_diff(void){
+
+        printf("CMD zeit_diff\n");
+	bool_zeit_diff = true;
+        data_outgoing[0] = 3;
+}
+void cmd_unknown(void){
+
+        printf("CMD unknown\n");
+}
+void cmd_get_zeit(void){
+
+	printf("CMD get time\n");
+	xtimer_sleep(1);	
+	client_send_time();
+}
+void cmd_nop(void){
+
+	printf("CMD NOP\n");
+	client(0);
+}
+void cmd_zeit_sync(void){
+
+	uint32_t t1,t2,t4;
+	int returnval = 0;
+	(void)returnval;
+
+	printf("Okay es soll jetzt mit der synchronisation losgehen\n");
+	answer_pong();
+
+//	printf("Wir warten darauf das jetzt SYNC t0 kommt\n");
+	server();//SYNC MSG
+	t1 = time_server;
+	printf("Haben die SYNC MSG erhalten und antworten mit ACK (PONG)\n");
+	answer_pong();
+
+	printf("Warten jetzt auf die FOLLOW_UP MSG\n");
+	server();//FOLLOW UP MSG
+	printf("FOLLOW UP MSG angekommen\n");
+	answer_pong();	
+
+	printf("Sende delay req\n");
+	client(0);//DELAY REQ
+        t2 = time_client;
+	returnval = wait_for_pong();
+	printf("returnval DELAY REQ = %d\n",returnval);
+
+	printf("Warte auf DELAY_RESP\n");
+	server();
+	t4 = time_server;
+	answer_pong();
+
+	printf("sende jetzt t1, 2, t4 zurück\n");
+	client(t1);
+	returnval = wait_for_pong();
+	printf("returnval t1 senden = %d\n", returnval);
+
+	client(t2);
+        returnval = wait_for_pong();
+	printf("returnval t2 senden = %d\n", returnval);
+
+	client(t4);
+        returnval = wait_for_pong();
+	printf("returnval t4 senden = %d\n", returnval);
+	
+	printf("\nSind komplett fertig mit senden\n");
+}

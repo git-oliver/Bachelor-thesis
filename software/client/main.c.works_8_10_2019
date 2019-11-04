@@ -1,0 +1,610 @@
+#include "../include.h"
+#include <stdio.h>
+#include "net/af.h"
+#include "net/protnum.h"
+#include "net/ipv6/addr.h"
+#include "net/sock/udp.h"
+#include "xtimer.h"
+#include "periph/gpio.h"
+#include <inttypes.h>
+#include <math.h>
+#include "math_stuff.h"
+
+#define DIFFERENCE_TON_ON	(5000000)
+
+sock_udp_ep_t local = SOCK_IPV6_EP_ANY;
+sock_udp_t sock;
+
+uint32_t time_client = 0, time_server = 0;//Wann der server eine nachricht bekommen hat
+volatile uint32_t time_ISR_microphone = 0;
+//volatile uint32_t time_ISR_microphone_2[100] = {0};
+//volatile uint32_t time_ISR_microphone_1[100] = {0};
+volatile int i = 0;
+volatile int j = 0;
+volatile bool flag_microphone = false;
+//volatile bool flag_microphone_2 = false;
+
+extern double calc_average(double data[],int len);//wenn ich die funktion nicht brauch weglöschen <- ist in include.c drin
+msgw_t* client_server_timeout(msgw_t *msg);
+double measure_distance(msgw_t *msg, double omega);
+void ready_ISR(void);
+msgw_t* time_sync(msgw_t *msg);
+msgw_t* read_values_time_sync(msgw_t *msg);
+circle* calc_verzoegerung(msgw_t *msg, circle *C);
+circle* time_sync_for_AP(msgw_t* ptr_msg, circle* C);
+void ISR_microphone_pin(void *arg);
+//void ISR_microphone_pin_2(void *arg);
+
+
+
+double calc_distance(uint32_t server_ton_on, uint32_t time_microphone, double omega);
+void init(void);
+void handler(void);
+void AP1(msgw_t *ptr_msg, circle *ptr_circle);
+void AP2(msgw_t *ptr_msg, circle *ptr_circle);
+void AP3(msgw_t *ptr_msg, circle *ptr_circle);
+
+int main(void)
+{
+	xtimer_sleep(1);
+        init();
+//DEBUG
+	int i=0;
+	double avg=0;
+	int port = AP1_PORT;
+        msgw_t msg;
+        msgw_t *ptr_msg = &msg;
+        msg.port = port;
+        circle c_A;
+        circle *ptr_circle = &c_A;
+	
+	while(i<10){
+		
+		printf("Zeit sync AP1 machen\n");
+	/*        int port = AP1_PORT;
+		msgw_t msg;
+		msgw_t *ptr_msg = &msg;
+		msg.port = port;
+		circle c_A;
+		circle *ptr_circle = &c_A;
+	*/
+		port = AP1_PORT;
+		msg.port = port;
+		
+		printf("Zeit sync für %d\n",port);
+		ptr_msg->port = port;
+		ptr_circle = time_sync_for_AP(ptr_msg, ptr_circle);
+
+		if(ptr_circle != NULL){
+			printf("SUCCESS zeit_sync: %d\n",port);
+		}else{
+			printf("FUCK Bei der zeitsync ist was schief gegangen\n");
+		}
+		printf("t_prop = %f\n", ptr_circle->t_prop);
+		printf("omega = %f\n", ptr_circle->omega);
+		avg += ptr_circle->omega;
+		i++;
+	
+	avg /=i;
+	printf("avg = %f\n",avg);
+/*========Messung=========================*/
+        printf("Machen jetzt eine Messung\n");
+        ptr_msg->port = port;
+}
+//	double a = ptr_circle->t_prop;
+//	measure_distance(ptr_msg,(ptr_circle->omega));
+	measure_distance(ptr_msg, avg);
+        printf("Komplett fertig Gehen in while(1)\n");
+
+	while(1);
+//DEBUG
+
+/*
+//DEBUG
+
+        gpio_init(GPIO_PIN(1,22),GPIO_IN);
+        int returnval = gpio_init_int(GPIO_PIN(1,22),GPIO_IN,GPIO_RISING,&ISR_microphone_pin_2,NULL);
+        printf("PB22 einrichten return: %d\n",returnval);
+        gpio_irq_disable(GPIO_PIN(1,22));
+
+	double res=0;
+	printf("Es geht los\n");
+	gpio_irq_enable(GPIO_PIN(1,22));
+	gpio_irq_enable(GPIO_PIN(1,23));
+	while(1){
+		
+		if(time_ISR_microphone_1[0] != 0 && time_ISR_microphone_2[0] != 0){
+			printf("Beide haben getriggert\n");
+			printf("ISR_1 = %ld\n",time_ISR_microphone_1[0]);
+			printf("ISR_2 = %ld\n",time_ISR_microphone_2[0]);
+			printf("diff: %ld us\n",(time_ISR_microphone_2[0] - time_ISR_microphone_1[0]));
+			res = (time_ISR_microphone_2[0] - time_ISR_microphone_1[0]) * 0.034;
+			printf("=======================\n");
+			printf("res: %f cm\n",res);
+			break;
+
+		}
+	}
+	while(1);
+*/
+
+
+
+	
+
+/*========Zeit Sync=========================*/
+//DEBUG
+//Die sachen die unten auskommentiert sind am ende wieder reinnehmen -> nur zu DEBUG zwecken auskommentiert
+//DEBUG
+	printf("Zeit sync AP1 machen\n");
+//	int port = AP1_PORT;
+//	msgw_t msg;
+//	msgw_t *ptr_msg = &msg;
+	msg.port = port;
+//	circle c_A;
+//	circle *ptr_circle = &c_A;
+
+        printf("Zeit sync für %d\n",port);
+        ptr_msg->port = port;
+        ptr_circle = time_sync_for_AP(ptr_msg, ptr_circle);
+
+        if(ptr_circle != NULL){
+                printf("SUCCESS zeit_sync: %d\n",port);
+	}else{
+		printf("FUCK Bei der zeitsync ist was schief gegangen\n");
+	}
+
+/*========Messung=========================*/
+	printf("Machen jetzt eine Messung\n");
+	ptr_msg->port = port;
+	measure_distance(ptr_msg, ptr_circle->omega);
+	printf("Komplett fertig Gehen in while(1)\n");
+	
+	while(1);
+//DEBUG
+
+
+/*
+	while(1){
+		handler();
+	}
+*/
+	return 0;
+}
+
+/*
+void ISR_microphone_pin_2(void *arg){
+
+//      printf("ISR microphone called\n");
+	time_ISR_microphone_2[i++] = xtimer_now_usec();
+//	flag_microphone_2 = true;
+//	gpio_irq_disable(GPIO_PIN(1,22));
+	(void)arg;
+}
+*/
+
+
+void handler(void){
+	
+	circle c;
+	circle *ptr_circle = &c;
+
+	msgw_t msg;
+	msgw_t* ptr_msg = &msg;
+
+	AP1(ptr_msg, ptr_circle);
+	AP2(ptr_msg, ptr_circle);
+	AP3(ptr_msg, ptr_circle);
+}
+
+void AP1(msgw_t *ptr_msg, circle *ptr_circle){
+
+	/*==============================*
+	 *	    AP1_PORT		*
+	 *==============================*/
+
+		int port = AP1_PORT;
+		//Koordinaten festlegen
+		point p_A;
+		p_A.x = 0;
+		p_A.y = 0;
+	
+		circle c_A;
+		c_A.point = p_A;
+		ptr_circle = &c_A;
+	/*======================================================================
+				Zeit Sync					*/
+
+		printf("Zeit sync für %d\n",port);
+		ptr_msg->port = port;
+		ptr_circle = time_sync_for_AP(ptr_msg, ptr_circle);
+
+		if(ptr_circle != NULL){
+			printf("SUCCESS zeit_sync: %d\n",port);
+
+	/*			Ende Zeit Sync
+	======================================================================*/
+
+	/*======================================================================
+				Messung machen					*/
+
+			printf("Machen jetzt eine messung für %d\n",port);
+			ptr_circle->radius = measure_distance(ptr_msg, ptr_circle->omega);
+
+			printf("So wir geben alles aus\n");
+			printf("point.x = %f\n",ptr_circle->point.x);
+			printf("point.y = %f\n",ptr_circle->point.y);
+			printf("t_prop = %f\n",ptr_circle->t_prop);
+			printf("omega = %f\n",ptr_circle->omega);
+		}
+	/*			Ende Messung machen
+	======================================================================*/
+}
+
+void AP2(msgw_t *ptr_msg, circle *ptr_circle){
+
+	/*==============================*
+	 *	    AP2_PORT		*
+	 *==============================*/
+
+		int port = AP2_PORT;
+		//Koordinaten festlegen
+		point p_B;
+		p_B.x = 0;
+		p_B.y = 0;
+	
+		circle c_B;
+		c_B.point = p_B;
+		ptr_circle = &c_B;
+	/*======================================================================
+				Zeit Sync					*/
+
+		printf("Zeit sync für %d\n",port);
+		ptr_msg->port = port;
+		ptr_circle = time_sync_for_AP(ptr_msg, ptr_circle);
+
+		if(ptr_circle != NULL){
+			printf("SUCCESS zeit_sync: %d\n",port);
+
+	/*			Ende Zeit Sync
+	======================================================================*/
+
+	/*======================================================================
+				Messung machen					*/
+
+			printf("Machen jetzt eine messung für %d\n",port);
+			ptr_circle->radius = measure_distance(ptr_msg, ptr_circle->omega);
+
+			printf("So wir geben alles aus\n");
+			printf("point.x = %f\n",ptr_circle->point.x);
+			printf("point.y = %f\n",ptr_circle->point.y);
+			printf("t_prop = %f\n",ptr_circle->t_prop);
+			printf("omega = %f\n",ptr_circle->omega);
+		}
+	/*			Ende Messung machen
+	======================================================================*/
+}
+
+void AP3(msgw_t *ptr_msg, circle *ptr_circle){
+
+	/*==============================*
+	 *	    AP3_PORT		*
+	 *==============================*/
+
+		int port = AP3_PORT;
+		//Koordinaten festlegen
+		point p_C;
+		p_C.x = 0;
+		p_C.y = 0;
+	
+		circle c_C;
+		c_C.point = p_C;
+		ptr_circle = &c_C;
+	/*======================================================================
+				Zeit Sync					*/
+
+		printf("Zeit sync für %d\n",port);
+		ptr_msg->port = port;
+		ptr_circle = time_sync_for_AP(ptr_msg, ptr_circle);
+
+		if(ptr_circle != NULL){
+			printf("SUCCESS zeit_sync: %d\n",port);
+
+	/*			Ende Zeit Sync
+	======================================================================*/
+
+	/*======================================================================
+				Messung machen					*/
+
+			printf("Machen jetzt eine messung für %d\n",port);
+			ptr_circle->radius = measure_distance(ptr_msg, ptr_circle->omega);
+
+			printf("So wir geben alles aus\n");
+			printf("point.x = %f\n",ptr_circle->point.x);
+			printf("point.y = %f\n",ptr_circle->point.y);
+			printf("t_prop = %f\n",ptr_circle->t_prop);
+			printf("omega = %f\n",ptr_circle->omega);
+		}
+	/*			Ende Messung machen
+	======================================================================*/
+}
+
+circle* time_sync_for_AP(msgw_t* ptr_msg, circle* C){
+	
+	int port = ptr_msg->port;
+	
+	ptr_msg = time_sync(ptr_msg);
+	if(ptr_msg != NULL){
+		uint32_t t0,t1, t2, t3, t4;
+		t0 = ptr_msg->array[0];
+		t3 = ptr_msg->array[1];
+		
+		ptr_msg->port = port;
+		ptr_msg = read_values_time_sync(ptr_msg);
+		if(ptr_msg != NULL){
+		
+			t1 = ptr_msg->array[0];
+			t2 = ptr_msg->array[1];
+			t4 = ptr_msg->array[2];
+
+			//Einmal alles ordnen für calc_verzögerung
+			ptr_msg->array[0] = t0;
+			ptr_msg->array[1] = t1;
+			ptr_msg->array[2] = t2;
+			ptr_msg->array[3] = t3;
+			ptr_msg->array[4] = t4;
+
+			//DEBUG
+				printf("t0 = %ld\n",ptr_msg->array[0]);
+				printf("t1 = %ld\n",ptr_msg->array[1]);
+				printf("t2 = %ld\n",ptr_msg->array[2]);
+				printf("t3 = %ld\n",ptr_msg->array[3]);
+				printf("t4 = %ld\n",ptr_msg->array[4]);
+			//DEBUG
+
+			printf("Wir haben jetzt alle werte von der zeit sync...\n");
+			printf("Berechnen jetzt omega und t_prop\n");
+			return calc_verzoegerung(ptr_msg, C);
+		}
+	}
+	return NULL;
+} 
+double measure_distance(msgw_t *msg, double omega){
+
+	uint32_t server_ton_on = 0;
+
+	msg->cmd = CODE_MESSUNG;
+
+	//Das micro scharf schalten
+        gpio_irq_enable(GPIO_PIN(1,23));
+
+	printf("Omega: %f\n", omega);
+	
+	msg->data= xtimer_now_usec() + DIFFERENCE_TON_ON + omega;
+        server_ton_on = msg->data;
+
+	msg = client_server_timeout(msg);
+	if(msg == NULL){
+		printf("Messung machen: Haben von client_server ein NULL zurückbekommen\n");
+		return -1;
+	}else{
+		if(msg->data < 0){
+			printf("ERROR:  Slave kann nicht triggern, weil die Zeit in der Vergangenheit liegt\n");
+			return -2;
+		}
+		//DEBUG
+			server_ton_on = server_ton_on - omega - 23440;//- DIFFERENCE_TON_ON;
+			printf("Ich mache den Ton an bei: %ld\n",server_ton_on);
+			printf("Akutelle Zeit           : %ld\n",xtimer_now_usec()); 
+			while(1){
+				if(xtimer_now_usec() >= server_ton_on){
+
+					gpio_toggle(GPIO_PIN(0,5));
+					printf("Sind fertig und gehen in while(1)\n");
+					while(1);
+				}
+			}
+
+		//DEBUG
+
+		printf("warten jetzt   server_ton_on_zeit: %ld\n",server_ton_on);
+		while(1){
+			if(flag_microphone == true){
+				break;
+			}
+			/*
+			else{
+				printf("Wir warten darauf das das microphone getriggert hat\n");
+				xtimer_usleep(500000);
+			}
+			*/
+		}
+		return calc_distance(server_ton_on, time_ISR_microphone, omega);
+	}
+}
+double calc_distance(uint32_t server_ton_on, uint32_t time_microphone, double omega){
+
+	double client_ton_on = server_ton_on - omega - DIFFERENCE_TON_ON;
+	double result = time_microphone - client_ton_on;
+	result *= 0.034;
+
+	printf("===================================\n");
+	printf("Ton an server : %ld\n", server_ton_on);
+	printf("Ton an client : %f\n", client_ton_on);
+	printf("Micro received: %ld\n",time_microphone);
+
+	if(client_ton_on > time_microphone){
+
+		printf("!!!!!!! An sich nicht möglich: client_time > time_microphone <---darf nicht sein\n");
+		result = (client_ton_on - time_microphone);
+		result *= 0.034;
+	}
+
+	printf("zeit_diff: %f ms\n",(time_microphone - client_ton_on)/1000.);
+	printf("\nBerechnete Länge: %f [cm]\n", result);
+	printf("Andere Länge: %f cm\n",(time_microphone - client_ton_on)/2000.);
+        printf("===================================\n");
+	ready_ISR();
+	return result;//[cm]
+}
+void ready_ISR(void){
+	flag_microphone = false;
+	time_ISR_microphone = 0;
+}
+
+msgw_t* read_values_time_sync(msgw_t *msg){
+	
+//	printf("Wir lesen die werte t1, t2 und t4\n");
+	msg->cmd = CODE_READ_T1_T2_T4;
+	return client_server_timeout(msg);
+} 
+
+msgw_t* time_sync(msgw_t *msg){
+	
+	uint32_t t0,t1,t2,t3,t4;
+	//kommt nachher noch raus
+	(void)t4;
+	(void)t2;
+	(void)t1;
+
+	int port = msg->port;
+ 
+//	printf("Es wird ein time_sync gemacht für %d\n", msg->port);
+
+	//Send SYNC_MSG <- wait for ACK
+//	printf("SYNC MSG\n");
+	msg->port = port;
+	msg->cmd = CODE_ZEIT_SYNC;
+	msg = client_server_timeout(msg);
+
+	if(msg != NULL){
+
+		t0 = time_client;
+
+		//FOLLOW_UP senden
+
+//		printf("FOLLOW_UP\n");
+		msg->port = port;
+		msg->cmd = CODE_ZEIT_FOLLOW_UP;
+                msg->data = t0;
+		msg = client_server_timeout(msg);
+	
+		if(msg != NULL){
+
+			//Anfrage für DELAY_REQ
+//			printf("Sende anfrage damit der slave ein DELAY_REQ sendet\n");
+//			printf("DELAY_REQ\n");
+			msg->port = port;
+			msg->cmd = CODE_ZEIT_DELAY_REQ;
+			msg->data = 0;
+			msg = client_server_timeout(msg);
+			
+			if(msg != NULL){
+				
+//				printf("Antwort für DELAY_REQ ist angekommen\n");
+				t3 = time_server;
+				
+				//DELAY_RESP senden
+//				printf("DELAY_RESP\n");
+				msg->port = port;
+				msg->cmd = CODE_ZEIT_DELAY_RESP;
+				msg->data = t3;
+				msg = client_server_timeout(msg);
+
+				if(msg != NULL){
+//					printf("Zeitsync SUCCESS\n");
+//					printf("Array füllen mit t0,t3\n");
+					msg->array[0] = t0;
+					msg->array[1] = t3;
+					return msg;
+				}
+
+			}
+		}
+	}
+	return NULL;
+}
+
+void init(void){
+        
+        int returnval = 0;
+	(void)returnval;
+
+        local.port = AUTO_PORT;
+
+	if(sock_udp_create(&sock, &local, NULL, 0) < 0) {
+		printf("Error creating UDP sock\n");
+	}
+        gpio_init(GPIO_PIN(1,23),GPIO_IN);
+        returnval = gpio_init_int(GPIO_PIN(1,23),GPIO_IN,GPIO_RISING,&ISR_microphone_pin,NULL);
+//	printf("interrupt einrichten return: %d\n",returnval);
+	gpio_irq_disable(GPIO_PIN(1,23));
+	
+	//DEBUG
+	gpio_init(GPIO_PIN(0,5),GPIO_OUT);
+	gpio_clear(GPIO_PIN(0,5));
+	//DEBUG
+}
+
+void ISR_microphone_pin(void *arg){
+
+//	printf("ISR microphone called\n");
+        time_ISR_microphone = xtimer_now_usec();
+	flag_microphone = true;
+	gpio_irq_disable(GPIO_PIN(1,23));
+	(void)arg;
+}
+
+circle* calc_verzoegerung(msgw_t *msg, circle *C){
+
+	int32_t t0,t1,t2,t3,t4;
+	(void)t4;
+
+	t0 = msg->array[0];
+	t1 = msg->array[1];
+	t2 = msg->array[2];
+	t3 = msg->array[3];
+	t4 = msg->array[4];
+
+	C->t_prop = ((t1 - t0) + (t3 - t2)) / 2.;
+	C->omega = t1 - t0 - C->t_prop;
+	return C;
+}
+msgw_t* client_server_timeout(msgw_t *msg){
+
+        int returnval;
+        ssize_t res;
+
+        sock_udp_ep_t remote = { .family = AF_INET6 };
+        remote.port = msg->port;
+        ipv6_addr_set_all_nodes_multicast((ipv6_addr_t *)&remote.addr.ipv6,IPV6_ADDR_MCAST_SCP_LINK_LOCAL);
+
+	msg->systime = xtimer_now_usec(); 
+
+        if ((returnval = sock_udp_send(&sock, msg, sizeof(msgw_t), &remote)) < 0) {
+
+                printf("client_server_timeout: Error sending message  %d\n",returnval);
+                return NULL;
+        }
+
+	time_client = msg->systime;
+
+	if ((res = sock_udp_recv(&sock, msg, sizeof(msgw_t), 3 * US_PER_SEC, &remote)) >= 0) {
+		time_server = xtimer_now_usec();
+/*		printf("client_server_timeout: Got msg\n");
+		printf("port: %d\n", msg->port);
+		printf("cmd: %d\n", msg->cmd);
+		printf("systime: %ld\n", msg->systime);
+		printf("data: %d\n", msg->data);
+		printf("len: %d\n", msg->len_array);
+		printf("array[0]: %ld\n", msg->array[0]);
+                printf("array[1]: %ld\n", msg->array[1]);
+                printf("array[2]: %ld\n", msg->array[2]);
+                printf("array[3]: %ld\n", msg->array[3]);
+                printf("array[4]: %ld\n", msg->array[4]);
+*/
+		return msg;
+        }
+	return NULL;
+}
+
