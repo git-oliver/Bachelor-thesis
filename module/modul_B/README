@@ -1,8 +1,0 @@
-#################
-#    Modul B 	#
-#################
-
-Hier wird die Verzögerung vom Master bis zum durchschalten des Slaves ermittelt.
-Dabei sendet der Master ein LOW->HIGH Signal zu dem Slave.
-Im Slave wird dann in der ISR Routine der Mosfet durchgeschaltet.
-Das Oszi liegt am Ausgang des Pins welches zum Slave gesendet wird und am Gate Eingang des Mosfets
