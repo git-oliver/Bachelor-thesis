@@ -3,7 +3,7 @@
 
 \subsection{Verwendete Hardware}
 \subsubsection{Controller}
-Diese Arbeit verwendet das von Atmel entwickelte Board "\board" \cite{src_SAMR}. Das Board besitzt neben einem ARM Cortex-M0+ Prozesser noch ein Energiesparenden ISM-Bandsender-Empfänger auf einem Chip. Dieser Sender nutzt die Frequenz 2.4GHz zur Datenübertragung. Mit den vorhandenen GPIOs kann das Board verschiedene Sensoren und Aktoren angesteuert werden. Das alles zusammen macht das \board \platz zu einem universell einsetzbaren Board für die drahtlose Kommunikation, speziell geeignet für den Embedded Bereich. Die folgende Abbildung \ref{img:samr21} zeigt das \board Board von der Vorderseite.
+Diese Arbeit verwendet das von Atmel entwickelte Board "\board" \cite{src_SAMR}. Das Board besitzt neben einem ARM Cortex-M0+ Prozesser noch ein Energiesparenden ISM-Bandsender-Empfänger auf einem Chip. Dieser Sender nutzt die Frequenz \SI{2,4}{\giga \hertz} zur Datenübertragung. Mit den vorhandenen GPIOs kann das Board verschiedene Sensoren und Aktoren angesteuert werden. Dies alles zusammen macht das \board \platz zu einem universell einsetzbaren Board für die drahtlose Kommunikation, speziell geeignet für den Embedded Bereich. Die folgende Abbildung \ref{img:samr21} zeigt das \board Board von der Vorderseite.
 \begin{figure}[!ht]
 	\centering
 	\includegraphics[width=0.6\textwidth]{images/samr21.png}
@@ -12,26 +12,35 @@ Diese Arbeit verwendet das von Atmel entwickelte Board "\board" \cite{src_SAMR}.
 \end{figure}
 
 \subsubsection{Sensoren}
-Für die Lauftzeitmessung können verschiedene Sensoren verwendet werden. Folgend ein Vergleich zwischen dem Ultraschallsensor \ultraschall \platz und dem \microphone \platz Sensor. Dieser Vergleich wird durchgeführt, weil beide Sensoren in der Entwicklung zum Einsatz kamen, aber nur einer die nötigen Performance für die Positionsbestimmung leistet.
+Für die Lauftzeitmessung können verschiedene Sensoren verwendet werden. Im folgenden ein Vergleich zwischen dem Ultraschallsensor \ultraschall \platz und dem \microphone \platz Sensor. Dieser Vergleich wird durchgeführt, weil beide Sensoren in der Entwicklung zum Einsatz kamen, aber nur einer die nötige Performance für die Positionsbestimmung leistet.
 
 %als alternative subsubsubsection
 \paragraph{Ultraschallsensor}\mbox{}\\
-Für die Positionsbestimmung ist der Ultraschallsensor \ultraschall \platz (Abbildung \ref{img:ultraschallsensor}) zum Einsatz gekommen \cite{src_HC_SR04}. Ich habe mich für den \ultraschall \platz Sensor aufgrund seiner weiten Verbreitung im Arduino/ Raspberry Pi Bereich, seiner kompakten Bauweise, der geringen Kosten und der einfachen Ansteuerung entschieden. Ultraschallsensoren werden verwendet, um Distanzen zu einem Gegenstand zu ermittlen. Dabei wird ein Ultraschallsignal ausgesendet und von dem Gegenstand zurück reflektiert und wieder empfangen. Über die Zeitdifferenz zwischen Aussenden und Empfangen des Ultraschallsignals kann die Distanz berechnet werden. Aus der Abbildung \ref{img:ultraschall_prinzip} wird das Prinzip deutlich. Der \ultraschall \platz  hat eine Reichweite von $3\; cm$ bis $4\;m$. Der Vorteil von diesem Ultraschallsensor ist, dass es ohne weitere Sensoren auskommt. Allerdings weißt der Ultraschallsensor einige Nachteile auf, weswegen er von einem leistungsfähigeren Schallmikrofon (\microphone) abgelöst worden ist. Ultraschallsensoren funktionieren nur, wenn sie direkten Sichtkontakt zum Objekt haben. Dies ist nicht immer gegeben. Des weiteren könnnen nur Objekte, die in dem Sendekegel des Ultraschallsensors liegen, detektiert werden. Der Sendekegel für den \ultraschall \platz liegt bei $15^\circ$. Aufgrund dieser Nachteile habe ich mich in der Endanwendung gegen diesen Sensor entschiedenen, denn die Positionsbestimmung wird dadurch stark beeinträchtigt.
+Für die Positionsbestimmung ist der Ultraschallsensor \ultraschall \platz (Abbildung \ref{img:ultraschallsensor}) zum Einsatz gekommen \cite{src_HC_SR04}. 
+
 \begin{figure}[!ht]
         \centering
         \includegraphics[width=0.6\textwidth]{images/ultraschallsensor.png}
         \caption{Vorderseite des \ultraschall \platz Sensor}
         \label{img:ultraschallsensor}
 \end{figure}
-\begin{figure}[!ht]
+
+Ich habe mich aus folgenden Gründen für den \ultraschall \platz Sensor entschieden: weite Verbreitung im Arduino/ Raspberry-Pi-Bereich, kompakte Bauweise, geringe Anschaffungskosten und einfache Ansteuerung.
+\\
+Ultraschallsensoren werden verwendet, um Distanzen zu einem Gegenstand zu ermittlen. Dabei wird ein Ultraschallsignal ausgesendet, welches von dem Gegenstand zurückreflektiert und wieder empfangen wird. Über die Zeitdifferenz zwischen Aussenden und Empfangen des Ultraschallsignals kann die Distanz berechnet werden. Aus der Abbildung \ref{img:ultraschall_prinzip} wird das Prinzip deutlich. 
+
+\begin{figure}[H]
         \centering
         \includegraphics[width=0.6\textwidth]{images/ultraschall_prinzip.png}
         \caption{Funktionsweise von Ultraschallsensoren}
+        \source{http://ceg.annauniv.edu/internship/2018/intern\_one/ECE/ECE5.pdf}
         \label{img:ultraschall_prinzip}
 \end{figure}
 
+Der \ultraschall \platz  hat eine Reichweite von \SI{3}{\centi \metre} bis \SI{400}{\centi \metre}. Der Vorteil von diesem Ultraschallsensor ist, dass es ohne weitere Sensoren auskommt. Allerdings weißt der Ultraschallsensor einige Nachteile auf, weswegen er von einem leistungsfähigeren Schallmikrofon (\microphone) abgelöst worden ist. Ultraschallsensoren funktionieren nur, wenn sie direkten Sichtkontakt zum Objekt haben. Dies ist nicht immer gegeben. Des weiteren könnnen nur Objekte, die in dem Sendekegel des Ultraschallsensors liegen, detektiert werden. Der Sendekegel für den \ultraschall \platz liegt bei \SI{15}{\degreeCelsius}. Aufgrund dieser Nachteile habe ich mich in der Endanwendung gegen diesen Sensor entschiedenen, denn die Positionsbestimmung wird dadurch stark beeinträchtigt.
+
 \paragraph{Sound Detector}\mbox{}\\
-Im Verlauf der Umsetzung für die Positionsbestimmung hat sich gezeigt, dass sich der Ultraschallsensor \ultraschall \platz nicht eignet. Abhilfe schafft der \microphone. Abbildung \ref{img:sound} zeigt den \microphone. Der Sensor kann hörbaren Schall detektieren. Darüber hinaus kann die Empfindlichkeit durch das Einlöten eines Widerstandes erhöht oder verringert werden. Der Vorteil gegenüber dem Ultraschallsensor ist, dass der Schall sich kugelförmig ausbreitet. Somit muss der Sensor nicht auf eine Richtung ausgerichtet werden. Allerdings stellen Hindernisse für einen hörbaren Schall ein Problem da. Deswegen sollten keine oder nur wenige Hindernisse auf der Ebene vorhanden sein. Die Reichweite kann über eine Amplitudenveränderung des Tongebers verändert werden. Für die Ansteuerung des \microphone \platz kann der digitale Ausgang \si{GATE} verwendet werden. Sobald ein Signal die eingestellte Schallschwelle überschreitet, wird der \si{GATE} Ausgang des Sound Detectors auf \si{HIGH} gesetzt. Wird die Schallschwelle unterschritten, fällt der \si{GATE} Ausgang zurück auf \si{LOW}. Es gibt noch weitere Ausgänge, allerdings werden diese nicht verwendet \cite{src_SOUND_DETECTOR}. Die Abbildung \ref{img:gate_ausgang} zeigt ein Überschreiten des Schallpegels.
+Abbildung \ref{img:sound} zeigt den \microphone .
 
 \begin{figure}[H]
         \centering
@@ -39,15 +48,18 @@ Im Verlauf der Umsetzung für die Positionsbestimmung hat sich gezeigt, dass sic
         \caption{Sparkfun Sound Detector}
         \label{img:sound}
 \end{figure}
+
+Der Sensor kann hörbaren Schall detektieren. Darüber hinaus kann die Empfindlichkeit durch das Einlöten eines Widerstandes erhöht oder verringert werden. Der Vorteil gegenüber dem Ultraschallsensor ist, dass der Schall sich kugelförmig ausbreitet. Somit muss der Sensor nicht auf eine Richtung ausgerichtet werden. Allerdings stellen Hindernisse für einen hörbaren Schall ein Problem da. Deswegen sollten keine oder nur wenige Hindernisse auf der Ebene vorhanden sein. Die Reichweite kann über eine Amplitudenveränderung des Tongebers verändert werden. Für die Ansteuerung des \microphone \platz kann der digitale Ausgang \si{GATE} verwendet werden. Es gibt noch weitere Ausgänge, allerdings werden diese nicht verwendet \cite{src_SOUND_DETECTOR}. Sobald ein Signal die eingestellte Schallschwelle überschreitet, wird der \si{GATE}-Ausgang des Sound Detectors auf \si{HIGH} gesetzt. Wird die Schallschwelle unterschritten, fällt der \si{GATE}-Ausgang zurück auf \si{LOW}. Abbildung \ref{img:gate_ausgang} zeigt ein Überschreiten des Schallpegels (Pegelwechsel).
+ 
 \begin{figure}[H]
         \centering
         \includegraphics[width=1\textwidth]{images/gate_ausgang.png}
-        \caption{Pegelwechsel des \si{GATE}-Ausgang}
+        \caption{Pegelwechsel des \si{GATE}--Ausgang}
         \label{img:gate_ausgang}
 \end{figure}
 
 \paragraph{\funkempfaenger}\mbox{}\\
-Dieser Funksender sendet auf der \SI{433}{MHz} Frequenz \cite{src_433_FUNKSENDER}. Er ist im Arduino Umfeld weit verbreitet und aufgrund seiner schlichten Ansteuerung einfach zu bedienen. Der Funksender besitzt keine Fehlerkorrektur für verlorene Nachrichten, sowie keine Signalkodierung. Deswegen eignet er sich gut für geringe Bandbreiten. Meine Arbeit verwendet diesen Sensor, um ein Startsignal zu senden. Im laufe der Arbeit hat sich allerdings gezeigt, dass diese Variante nicht fehlerfrei funktioniert. Es folgt ein Foto \ref{img:433_sender_empf} des Sensors.
+Dieser Funksender sendet auf der \SI{433}{\mega \hertz} Frequenz \cite{src_433_FUNKSENDER}. Er ist im Arduino, Umfeld weit verbreitet und aufgrund seiner schlichten Ansteuerung einfach zu bedienen. Der Funksender besitzt keine Fehlerkorrektur für verlorene Nachrichten, sowie keine Signalkodierung. Deswegen eignet er sich gut für geringe Bandbreiten. Meine Arbeit verwendet diesen Sensor, um ein Startsignal zu senden. Im Laufe der Anwendung hat sich allerdings gezeigt, dass diese Variante nicht fehlerfrei funktioniert. Abbildung \ref{img:433_sender_empf} zeigt ein Foto des \funkempfaenger.
 
 \begin{figure}[H]
 	\hspace*{-2cm}
@@ -63,14 +75,16 @@ Dieser Funksender sendet auf der \SI{433}{MHz} Frequenz \cite{src_433_FUNKSENDER
 	\label{img:433_sender_empf}
 \end{figure}
 
-Es folgt eine Auflistung der Anschlüsse des Funksender von links.
+Es folgt eine Auflistung der Anschlüsse des Funksender (a) von links:
+
 \begin{description}[style=multiline,leftmargin=3cm]
 \item [GND] 	Masse
 \item [DATA]	Payload
 \item [VCC]		Versorgungsspannung
 \end{description}
-\newpage
-Der Empfänger besitzt vier Anschlüsse. Diese sind wie folgt:
+
+Der Empfänger (b) besitzt vier Anschlüsse. Diese sind wie folgt von links:
+
 \begin{description}[style=multiline,leftmargin=3cm]
 \item [GND] 	Masse
 \item [DATA]	Payload
@@ -78,13 +92,14 @@ Der Empfänger besitzt vier Anschlüsse. Diese sind wie folgt:
 \item [VCC]		Versorgungsspannung
 \end{description}
 
-Mit einem Pegelwechsel des Funksender bei dem Anschluss \si{DATA} kann eine Nachricht übertragen werden. Der Empfänger gibt die empfangenen Daten über die \si{DATA} Anschlüsse wieder aus. Mithilfe eines Schmitt-Triggers kann dieses Signal geglättet werden.
+Mit einem Pegelwechsel des Funksender bei dem Anschluss \si{DATA} kann eine Nachricht übertragen werden. Der Empfänger gibt die empfangenen Daten über die \si{DATA}-Anschlüsse wieder aus. Mithilfe eines Schmitt-Triggers kann dieses Signal geglättet werden.
 
 \paragraph{Lautsprecher}\mbox{}\\
-Als Tongeber wird ein handelsüberlicher aktiver Lautsprecher verwendet \cite{src_LAUTSPRECHER}. Im Vergleich zu passiven Lautsprechern, muss die Frequenz nicht selbst erzeugt werden. Mit dem Anlegen der Betriebsspannung wird die Membram in Schwingung versetzt. Die Lautstärke wird über die Betriebsspannung reguliert. Da der Lautsprecher mit \SI{24}{\volt} betrieben wird, benötigt man eine externe Schaltung. Diese besteht aus einem n-dotiertem Mosfet und dem Lautsprecher. Abbildung \ref{img:schaltung} zeigt die Schaltung. Wenn an dem \si{GATE} Eingang des Mosfet eine Spannung von \si{2} - \SI{4}{\volt} anliegt, schaltet der Mosfet durch, und der Lautsprecher wird mit Strom versorgt. 
+Als Tongeber wird ein handelsüberlicher aktiver Lautsprecher verwendet \cite{src_LAUTSPRECHER}. Im Vergleich zu passiven Lautsprechern muss die Frequenz nicht selbst erzeugt werden. Mit dem Anlegen der Betriebsspannung wird die Membran in Schwingung versetzt. Die Lautstärke wird über die Betriebsspannung reguliert. Da der Lautsprecher mit \SI{24}{\volt} betrieben wird, benötigt man eine externe Schaltung. Diese besteht aus einem n-dotiertem Mosfet und dem Lautsprecher. Abbildung \ref{img:schaltung} zeigt die Schaltung. Wenn an dem \si{GATE}-Eingang des Mosfet eine Spannung von \si{2} bis \SI{4}{\volt} anliegt, schaltet der Mosfet durch, und der Lautsprecher wird mit Strom versorgt.
+
 \begin{figure}[H]
         \centering
-	\hspace*{-1.5cm}
+		\hspace*{-1.5cm}
         \includegraphics[width=0.65\textwidth]{images/schaltung.png}
         \caption{Ansteuerung des Lautsprechers}
         \label{img:schaltung}
@@ -93,7 +108,7 @@ Als Tongeber wird ein handelsüberlicher aktiver Lautsprecher verwendet \cite{sr
 
 \subsection{Verwendete Software}
 \subsubsection{RIOT OS}
-Um das \board \platz in Betrieb zu nehmen, kommt das echtzeitfähige Betriebssystem RIOT zum Einsatz. RIOT steht für: "The friendly Operating System for the Internet of Things" und wurde von der Freien Universität Berlin, der INRIA (Institut national de recherche en informatique et en automatique, Le Chesnay, Frankreich) und der Hochschule für Angewandte Wissenschaften, Hamburg entwickelt. Es entstand aus dem "FeuerWhere" Projekt, bei dem Feuerwehrleute im Einsatz überwacht werden sollten. 2010 kam es zu einer Abspaltung des Projekts - das war die Geburtsstunde von RIOT. RIOT ist ein Betriebssystem für Internet of Things Anwendungen. RIOT hat den Fokus auf drahtlose Sensornetzwerke gelegt. Protokolle wie 6LoWPAN, RPL, UDP und TCP wurden mit der Zeit implementiert. Des weiteren unterstützt RIOT echtes Multithreading. Vergleicht man RIOT mit anderen Embedded Betriebssystemen, erkennt man, dass RIOT, die steigenden Anforderungen an Embedded Betriebssystemen unterstützt. Weiterhin ist RIOT mit dem verwendeten Board \board \platz kompatibel, weswegen es sich perfekt als Betriebssystem für diese Arbeit eignet \cite{src_RIOT}. Die folgende Abbildung \ref{img:vergleich} vergleicht RIOT mit drei anderen Betriebssystemen.
+Um das \board \platz in Betrieb zu nehmen, kommt das echtzeitfähige Betriebssystem RIOT zum Einsatz. RIOT steht für: "The friendly Operating System for the Internet of Things" und wurde von der Freien Universität Berlin, der INRIA (Institut National de Recherche en Informatique et en Automatique), Le Chesnay, Frankreich und der Hochschule für Angewandte Wissenschaften, Hamburg, entwickelt. Es entstand aus dem "FeuerWhere" Projekt, bei dem Feuerwehrleute im Einsatz überwacht werden sollten. 2010 kam es zu einer Abspaltung des Projekts - dies war die Geburtsstunde von RIOT. RIOT ist ein Betriebssystem für Internet of Things Anwendungen. RIOT hat den Fokus auf drahtlose Sensornetzwerke gelegt. Protokolle wie 6LoWPAN, RPL, UDP und TCP wurden mit der Zeit implementiert. Des weiteren unterstützt RIOT echtes Multithreading. Vergleicht man RIOT mit anderen Embedded-Betriebssystemen, erkennt man, dass RIOT die steigenden Anforderungen an Embedded-Betriebssystemen unterstützt. Weiterhin ist RIOT mit dem verwendeten Board \board \platz kompatibel, weswegen es sich perfekt als Betriebssystem für diese Arbeit eignet \cite{src_RIOT}. Abbildung \ref{img:vergleich} vergleicht RIOT mit drei anderen Betriebssystemen:
 
 \begin{figure}[H]
         \centering
@@ -104,16 +119,16 @@ Um das \board \platz in Betrieb zu nehmen, kommt das echtzeitfähige Betriebssys
         \label{img:vergleich}
 \end{figure}
 
-\subsection{Time Difference of Arrival - TDOA}
+\subsection{Time Difference of Arrival -- TDOA}
 Das TDOA ist ein Verfahren zur Laufzeitmessung, welches den Laufzeitunterschied eines Zeitstempels misst. Damit können Endgeräte über mindestens drei Basisstationen geortet werden. Für die Lauftzeitmessung kann jede Art von Signal verwendet werden \cite{src_TDOA}.
 
-\subsection{User Datagram Protocol - UDP}
-UDP ist ein Netzwerkprotokoll, welches im OSI-Modell in Schicht vier zu finden ist. UDP ist 1977 für die Sprachübertragung in Rechnernetzwerken entwickelt worden. Es ist einfach aufgebaut. Es arbeitet verbindungslos, d.h. der Sender bekommt keine automatische Meldung ob das gesendete Paket angekommen ist. Im Gegensatz dazu arbeitet TCP verbindungsorientiert. TCP steht für: Transmission Control Protocol. Es ist wie UDP ein Netzwerkprotokoll zur Datenübertragung.
+\subsection{User Datagram Protocol -- UDP}
+UDP ist ein Netzwerkprotokoll, welches im OSI-Modell in Schicht vier zu finden ist. UDP ist 1977 für die Sprachübertragung in Rechnernetzwerken entwickelt worden. Es ist einfach aufgebaut. Es arbeitet verbindungslos, d.h. der Sender bekommt keine automatische Meldung, ob das gesendete Paket angekommen ist. Im Gegensatz dazu, arbeitet TCP verbindungsorientiert. TCP steht für: Transmission Control Protocol. Es ist wie UDP ein Netzwerkprotokoll zur Datenübertragung.
 \\
-Des weiteren hat UDP den Vorteil, dass vorher keine Verbindung mit dem Empfänger aufgebaut werden muss. Das ist besonders im IoT- Bereich wichtig, denn dort sind die Systeme meistens batteriebetrieben. Allerdings kann nicht ausgeschlossen werden, dass die Daten unverfälscht beim Empfänger ankommen.
+Des weiteren hat UDP den Vorteil, dass vorher keine Verbindung mit dem Empfänger aufgebaut werden muss. Das ist besonders im IoT-Bereich wichtig, denn dort sind die Systeme meistens batteriebetrieben. Allerdings kann nicht ausgeschlossen werden, dass die Daten unverfälscht beim Empfänger ankommen.
 \\
-Ein UDP Paket wird unterteilt in ein Headerfeld und ein Datenfeld. Die Größe des Headers sind immer 8 Byte. Es folgt eine Auflistung der Komponenten aus denen das UDP Paket besteht \cite{src_UDP}:
-
+Ein UDP-Paket wird unterteilt in ein Headerfeld und ein Datenfeld. Die Größe des Headers sind immer 8 Byte. Es folgt eine Auflistung der Komponenten aus denen das UDP-Paket besteht \cite{src_UDP}:
+\\
 \begin{description}[style=multiline,leftmargin=3cm]
 \item [Quellport] 	Port des Quellrechners
 \item [Zielport]  	Port des Zielrechners
@@ -123,17 +138,20 @@ Ein UDP Paket wird unterteilt in ein Headerfeld und ein Datenfeld. Die Größe d
 \end{description}
 
 \subsection{Netzwerk-Socket}
-Ein Socket ist eine Schnittstelle, die vom Betriebssystem bereitgestellt wird. Ein Socket verbindet einen Kommunikationsendpunkt mit dem Betriebssystem. Über ein Socket kann ein Programm, welches eine Datei ist, auf den Kommunikationsendpunkt zugreifen. Wenn Netzwerkdaten empfangen werden, liegen diese zur Abholung im Socket bereit. Sockets können bidirektional\footnote{Datenübertragung in beide Richtungen} betrieben werden. Sockets sind immer an einen Port gebunden. Dadurch weiß das Betriebssystem, welche Pakete zu welchem Socket gehören. Im Gegenzug gibt es noch die RAW-Sockets. Diese erlauben den Zugriff auf das ganze Paket. Dort werden keine Daten vorher aus dem Paket gefiltert \cite{src_SOCKET}.
+Ein Socket ist eine Schnittstelle, die vom Betriebssystem bereitgestellt wird. Ein Socket verbindet einen Kommunikationsendpunkt mit dem Betriebssystem. Über ein Socket kann ein Programm, welches eine Datei ist, auf den Kommunikationsendpunkt zugreifen. Wenn Netzwerkdaten empfangen werden, liegen diese zur Abholung im Socket bereit. 
+%Das vielleicht raus -> Nochmal nachhacken
+%Sockets können bidirektional\footnote{Datenübertragung in beide Richtungen} betrieben werden. Sockets sind immer an einen Port gebunden. 
+Durch die Portzuweisung von Sockets weiß das Betriebssystem, welche Pakete zu welchem Socket gehören. Im Gegenzug gibt es noch die RAW-Sockets. Diese erlauben den Zugriff auf das ganze Paket. Dort werden keine Daten vorher aus dem Paket gefiltert \cite{src_SOCKET}.
 
 \subsection{Indoor/Outdoor Positionsbestimmung}
-Indoor-Positionsbestimmungssysteme sind nicht so weit verbreitet wie Outdoor-Systeme. Für Outdoor-positionsbestimmungen wird häufig das globale Navigationssatellitensystem GPS (Global Positioning System) verwendet. Es kann aber auch der Mobilfunk verwendet werden. Für die Positionsbestimmung im Indoorbereich existieren mehrere Verfahren. Dazu zählen Messungen des Einfallswinkels, Signalstärkemessungen oder Laufzeitmessungen. Da wir bereits entschieden haben, dass wir Schall für die Positionsbestimmung nehmen, verwenden wir das Verfahren der Laufzeitmessung. Dabei wird die Zeitdifferenz zwischen Sende- und Empfangszeit ermittelt, sodass man die Signallaufzeit erhält \cite{src_INDOOR_OUTDOOR_SYSTEME}. Zusammen mit der Ausbreitungsgeschwindigkeit von Schall ($343,2 \frac{m}{s}$ bei \SI{20}{\degreeCelsius}) kann die Distanz über die folgende Formel \ref{eq:formel_laufzeitmessung} berechnet werden:
+Indoor-Positionsbestimmungssysteme sind nicht so weit verbreitet wie Outdoor-Systeme. Für Outdoor-Positionsbestimmungen wird häufig das globale Navigationssatellitensystem GPS (Global Positioning System) verwendet. Es kann aber auch der Mobilfunk verwendet werden. Für die Positionsbestimmung im Indoorbereich existieren mehrere Verfahren. Dazu zählen Messungen des Einfallswinkels, Signalstärkemessungen oder Laufzeitmessungen. Da wir bereits entschieden haben, dass wir Schall für die Positionsbestimmung nehmen, verwenden wir das Verfahren der Laufzeitmessung. Dabei wird die Zeitdifferenz zwischen Sende- und Empfangszeit ermittelt, sodass man die Signallaufzeit erhält \cite{src_INDOOR_OUTDOOR_SYSTEME}. Zusammen mit der Ausbreitungsgeschwindigkeit von Schall (\SI{343,2}{\metre\per\second} bei \SI{20}{\degreeCelsius}) kann die Distanz über die folgende Formel \ref{eq:formel_laufzeitmessung} berechnet werden:
 \begin{equation}
-   Distanz \;[m] = (Empfangszeit - Sendezeit)\;[sec]\quad \cdot Ausbreitungsgeschwindigkeit \;[m/sec]
+	Distanz \;[\si{\metre}] = (Empfangszeit - Sendezeit)\;[\si{\second}]\quad \cdot \quad Ausbreitungsgeschwindigkeit \;[\si{\metre\per\second}]
    \label{eq:formel_laufzeitmessung}
 \end{equation}
 
 \subsection{Zeitsynchronisation}
-Für eine Laufzeitmessung ist es wichtig, dass Sender und Empfänger die gleiche Uhrzeit haben. Damit eine hohe Genauigkeit bei der Laufzeitmessung erreicht wird kann, muss der Zielknoten (Master) wissen, zu welchem Zeitpunkt der Accesspoint (Slave) den Schall, aussendet. Ist dies nicht gewährleistet, muss der Master raten. Damit nicht geraten werden muss, ist es notwendig, dass beide Knoten die gleiche Zeitbasis haben. Für dieses Problem wird eine Zeitsynchronisation für drahtlose Netzwerke verwendet, das Precision Time Protocol (PTP). PTP ist für drahlose Sensornetzwerke entwickelt worden - es gibt hierbei keine Hierachien wie beim Network Time Protocol. Der Vorteil liegt darin, dass PTP nicht mit jeder Hierachie Genauigkeit verliert wie NTP. Es spezialisiert sich auf kleine Netzwerke ohne Hiearchien. Eine Genauigkeit im Nanosekundenbereich kann erreicht werden, wenn die aktuelle Systemzeit kurz vor dem Absenden des Pakets hinzugefügt wird. Desto geringer die Verzögerung zwischen dem Funktionsaufruf $getSystemTime()$ und dem Absenden des Pakets, desto genauer wird die Zeitsynchronisation. Die folgende Abbildung \ref{img:ptp} zeigt, welchen Nachrichtenaustauch für die Zeitsynchronisation nötig ist \cite{src_PTP}. Der Master ist der Sender und der Slave ist der Empfänger.
+Für eine Laufzeitmessung ist es wichtig, dass Sender und Empfänger die gleiche Uhrzeit haben. Damit eine hohe Genauigkeit bei der Laufzeitmessung erreicht wird kann, muss der Zielknoten (Master) wissen, zu welchem Zeitpunkt der Accesspoint (Slave) den Schall, aussendet. Ist dies nicht gewährleistet, müsste der Master raten. Damit nicht geschehen muss, ist es notwendig, dass beide Knoten die gleiche Zeitbasis haben. Für dieses Problem wird eine Zeitsynchronisation für drahtlose Netzwerke verwendet: das Precision Time Protocol (PTP). PTP ist für kleine hierarchielose Netzwerke entwickelt worden -- es gibt hierbei keine Hierachien wie beim Network Time Protocol (NTP). Der Vorteil liegt darin, dass PTP nicht wie NTP mit jeder Hierachie Genauigkeit verliert. Es spezialisiert sich auf kleine Netzwerke ohne Hierarchien. Eine Genauigkeit im Nanosekundenbereich kann erreicht werden, wenn die aktuelle Systemzeit kurz vor dem Absenden des Pakets hinzugefügt wird. Desto geringer die Verzögerung zwischen dem Funktionsaufruf $getSystemTime()$ und dem Absenden des Pakets ist, desto genauer wird die Zeitsynchronisation. Abbildung \ref{img:ptp} zeigt, welchen Nachrichtenaustausch für die Zeitsynchronisation nötig ist \cite{src_PTP}. Der Master ist der Sender und der Slave ist der Empfänger beim PTP.
 
 \begin{figure}[H]
         \centering
@@ -144,7 +162,7 @@ Für eine Laufzeitmessung ist es wichtig, dass Sender und Empfänger die gleiche
         \label{img:ptp}
 \end{figure}
 
-Zuerst sendet der Master eine \si{SYNC} Nachricht mit seinem Zeitstempel $t_{0}$ an den Slave. Aufgrund der Verarbeitungszeit, der Laufzeitverzögerung und der Zugriffszeit, ist der Zeitstempel $t_{0}$ für den Slave nicht präzise. Mit einer \si{FOLLOW\_UP} Nachricht werden diese Probleme gemildert. Dabei enthält die \si{FOLLOW\_UP} Nachricht den Zeitstempel $t_{0}$. Nachdem beide Nachrichten beim Slave angekommen sind, antwortet der Slave mit einer \si{DELAY\_REQ} Nachricht - ohne Inhalt. Der Master sendet darauf hin ein \si{DELAY\_RESP} mit dem Zeitstempel $t_{3}$. Nun kann mit den folgenden zwei Formeln \ref{eq:formel_ptp} die Zeitdifferenz berechnet werden. Dabei entspricht $\tau_{prop}$ den Zeitunterschied zwischen beiden Systemen und Omega ($\Omega$) ist der Offset zwischen Master und Slave.
+Zuerst sendet der Master eine \si{SYNC} Nachricht mit seinem Zeitstempel $t_{0}$ an den Slave. Aufgrund der Verarbeitungszeit, der Laufzeitverzögerung und der Zugriffszeit, ist der Zeitstempel $t_{0}$ für den Slave nicht präzise. Mit einer \si{FOLLOW\_UP} Nachricht werden diese Probleme gemildert. Dabei enthält die \si{FOLLOW\_UP} Nachricht den Zeitstempel $t_{0}$. Die \si{FOLLOW\_UP}-Nachricht wird benötigt damit der Zeitunterschied nur noch von der Laufzeitverzögerung abhängig ist. Um nun den Laufzeitverzögerung zu bestimmen, antwortet der Slave mit einer \si{DELAY\_REQ} Nachricht - ohne Inhalt. Der Master sendet darauf hin ein \si{DELAY\_RESP} mit dem Zeitstempel $t_{3}$. Nun kann mit den folgenden zwei Formeln (\ref{eq:formel_ptp}) die Zeitdifferenz berechnet werden. Dabei entspricht $\tau_{prop}$ die Laufzeitverzögerung und Omega (\si{\ohm}) ist der Zeitunterschied zwischen Master und Slave.
 
 \begin{equation}\label{eq:formel_ptp}
 \begin{split}
@@ -155,7 +173,7 @@ Zuerst sendet der Master eine \si{SYNC} Nachricht mit seinem Zeitstempel $t_{0}$
 \end{equation}
 
 
-\subsection{Mathematischer Hintergrund - Positionsbestimmung}
+\subsection{Mathematischer Hintergrund -- Positionsbestimmung}
 
 Damit auf einer Ebene die Position bestimmt werden kann, muss der Master von mindestens drei Slaves die Distanz messen. Da sich der Schall auf einer Ebene kreisförmig ausbreitet, vereinfacht sich das Problem auf den Schnittpunkt von drei Kreisen (Abbildung \ref{img:positionsbestimmung}). Des weiteren müssen die Koordinaten der Slaves bekannt sein.
 \begin{figure}[H]
@@ -200,5 +218,5 @@ Mit Hilfe der drei Kreise (A, B, C) (Abbildung \ref{img:positionsbestimmung}) ka
 \end{split}
 \end{equation}
 
-Um den Schnittpunkt zwischen allen drei Kreisen zu erhalten, muss das Gleichungssystem \ref{eq:gleichungssystem} nach $x$ und $y$ aufgelöst werden. Aufgrund von Schwankungen ist dies nicht immer möglich. Punkt $1$ berechnet sich durch das Auflösen nach $x$ von $\RM{1}$ und $\RM{2}$ . Für Punkt $2$ werden die Gleichungen $\RM{1}$ und $\RM{3}$ verwendet, für den dritten Punkt $\RM{2}$ und $\RM{3}$. Die Herleitung ist im Anhang aufgeführt. 
+Um den Schnittpunkt zwischen allen drei Kreisen zu erhalten, muss das Gleichungssystem \ref{eq:gleichungssystem} nach $x$ und $y$ aufgelöst werden. Aufgrund von Schwankungen ist dies nicht immer möglich. Punkt $1$ berechnet sich durch das Auflösen nach $x$ von $\RM{1}$ und $\RM{2}$ . Für Punkt $2$ werden die Gleichungen $\RM{1}$ und $\RM{3}$ verwendet, für den dritten Punkt $\RM{2}$ und $\RM{3}$. Die Herleitung ist im Anhang (Seite \pageref{sec:abcdef}) aufgeführt.
 

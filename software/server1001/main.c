@@ -42,7 +42,17 @@ void ISR_trigger(void *arg);
 
 int main(void)
 {
+	xtimer_sleep(1);
 	init();
+	printf("Los gehts\n");
+	xtimer_sleep(5);
+	gpio_set(GPIO_PIN(0,5));
+        xtimer_usleep(40000);
+        gpio_clear(GPIO_PIN(0,5));
+	printf("Fertig\n");
+	while(1){}
+
+
 /*	gpio_init(GPIO_PIN(1,23),GPIO_IN);
         gpio_init_int(GPIO_PIN(1,23),GPIO_IN,GPIO_RISING,&ISR_trigger,NULL);
 	gpio_irq_enable(GPIO_PIN(1,23));

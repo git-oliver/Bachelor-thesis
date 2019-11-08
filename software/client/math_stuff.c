@@ -1,7 +1,52 @@
 #include "math_stuff.h"
 
+#define EPSILON (0.001)
+#define COMPARE(a,b) ((abs(a-b) <= EPSILON) ? true : false)
+
 position calc_position(circle *A, circle *B, circle *C){
 
+	CircleIntersection intersection;
+	point p;
+        position prime_position;
+        prime_position.success = false;
+
+	//Schnittpunkt von A und B
+	intersection = getIntersection(A,B);
+	if(intersection.success){
+		p = determine_point_radius(C, intersection.a, intersection.b);
+		prime_position.pos_C = p;
+	}else{
+		return prime_position;
+	}
+        
+	//Schnittpunkt von A und C
+        intersection = getIntersection(A,C);
+        if(intersection.success){
+
+		printf("Kreis B: x: %f   y: %f\n",B->point.x, B->point.y);
+	        printf("Punkt A: x: %f  y: %f\n",intersection.a.x,intersection.a.y);
+        	printf("Punkt B: x: %f  y: %f\n",intersection.b.x,intersection.b.y);
+
+                p = determine_point_radius(B, intersection.a, intersection.b);
+                prime_position.pos_B = p;
+        }else{
+                return prime_position;
+        }
+        
+	//Schnittpunkt von B und C
+        intersection = getIntersection(B,C);
+        if(intersection.success){
+                p = determine_point_radius(A, intersection.a, intersection.b);
+                prime_position.pos_A = p;
+        }else{
+                return prime_position;
+        }
+
+	prime_position.success = true;
+	return prime_position;
+
+	//////////////////////////////////////////////////
+/*
         point p_AB = point_AB(A,B,C);
         printf("=============================\n");
         point p_AC = point_AC(A,B,C);
@@ -20,7 +65,88 @@ position calc_position(circle *A, circle *B, circle *C){
         printf("%f | %f\n",p_BC.x,p_BC.y);
 
 	return p;
+*/
 }
+
+CircleIntersection getIntersection(circle *A, circle *B){
+
+	CircleIntersection returnobj;
+	double a, dx, dy, d, h, rx, ry, x0, y0, x1, y1, r0, r1;
+	double x2, y2;
+
+	x0 = A->point.x;
+	y0 = A->point.y;
+	r0 = A->radius;
+
+	x1 = B->point.x;
+	y1 = B->point.y;
+	r1 = B->radius;
+
+	// dx and dy are the vertical and horizontal distances between
+	// the circle centers.
+	dx = x1 - x0;
+	dy = y1 - y0;
+
+	// Determine the straight-line distance between the centers.
+	d = sqrt((dy * dy) + (dx * dx));
+
+	// Check for solvability.
+	if (d > (r0 + r1)) {
+		// no solution. circles do not intersect.
+
+		returnobj.success = false;
+		printf("Die Kreise haben keinen Schnittpunkt\n");
+		return returnobj;
+	}
+	if (d < fabs(r0 - r1)) {
+		// no solution. one circle is contained in the other
+		returnobj.success = false;
+		printf("Ein Kreis ist in dem anderen Enthalten -> kein schnittpunkt\n");
+		return returnobj;
+	}
+
+	// 'point 2' is the point where the line through the circle
+	// intersection points crosses the line between the circle
+	// centers.
+
+
+	// Determine the distance from point 0 to point 2.
+	a = ((r0*r0) - (r1*r1) + (d*d)) / (2.0 * d) ;
+
+	// Determine the coordinates of point 2.
+	x2 = x0 + (dx * a/d);
+	y2 = y0 + (dy * a/d);
+
+	// Determine the distance from point 2 to either of the
+	// intersection points.
+	h = sqrt((r0*r0) - (a*a));
+
+	// Now determine the offsets of the intersection points from
+	// point 2.
+	rx = -dy * (h/d);
+	ry = dx * (h/d);
+
+	// Determine the absolute intersection points.
+	double xi 	= x2 + rx;
+	double xi_prime = x2 - rx;
+	double yi 	= y2 + ry;
+	double yi_prime = y2 - ry;
+
+
+	returnobj.a.x = xi;
+	returnobj.a.y = yi;
+	returnobj.b.x = xi_prime;
+	returnobj.b.y = yi_prime;
+	returnobj.success = true;
+	return returnobj;
+}
+
+
+
+
+
+
+
 
 point point_AB(circle *A, circle *B, circle *C){
 
@@ -142,22 +268,34 @@ point point_BC(circle *A, circle *B, circle *C){
 point determine_point_radius(circle* circle, point x0, point x1){
 
 	//Den Punkt bestimmen der in dem Kreis liegt
-        double tmp = sqrt( pow((circle->point.x - x0.x),2) + pow((circle->point.y - x0.y),2) );
+	double d1,d2;
+        d1 = sqrt( pow((circle->point.x - x0.x),2) + pow((circle->point.y - x0.y),2) );//Abstand von Kreismittelpunkt zu x0
+	printf("Punkt %f %f abstand d1: %f\n",x0.x,x0.y,d1);
 
-        if(tmp < circle->radius){
+	printf("Vergleich: %f == %f\n",d1,circle->radius);
+        if( (d1 < circle->radius) || (COMPARE(d1,circle->radius))){
                 printf("Punkt (%f|%f) liegt in dem Kreis\n",x0.x,x0.y);
 		return x0;
         }else{
-                tmp = sqrt( pow((circle->point.x - x1.x),2) + pow((circle->point.y - x1.y),2) );
-               	if(tmp < circle->radius){
+                d2 = sqrt( pow((circle->point.x - x1.x),2) + pow((circle->point.y - x1.y),2) );//Abstand von Kreismittelpunkt zu x1
+		printf("Punkt %f %f abstandd d2: %f\n",x1.x,x1.y,d2);
+        
+       		if((d2 < circle->radius) || (COMPARE(d2,circle->radius))){
 			printf("Punkt (%f|%f) liegt in dem Kreis C\n",x1.x,x1.y);
+       			printf("Punkt %f %f abstand: %f\n",x1.x,x1.y,d2);
+
 			return x1;
 		}else{
-			printf("ERROR: keine der beiden Punkte liegt in dem Kreis. -> Ist nicht möglich\n");
+			if(COMPARE(d1,d2)){
+				printf("Beide Punkte liegen im Kreis -> Beide Punkte sind gleich\n");
+				return x1;
+			}else{
+				printf("ERROR: keine der beiden Punkte liegt in dem Kreis. -> Ist nicht möglich !!!\n");
+			}
 		}
         }
-	x0.x = -123456;
-	x0.y = -123456;
+	x0.x = NAN;
+	x0.y = NAN;
 	return x0;
 }
 
@@ -186,8 +324,8 @@ point pq_equation(double p, double q){
 	}else{
 		//komplexe Lösung
 		printf("Es gibt keine Lösung\n");
-		erg.x = -123456;
-		erg.y = -123456;
+		erg.x = NAN;
+		erg.y = NAN;
 	}
 	return erg;
 }

@@ -30,82 +30,23 @@ msgw_t* read_values_time_sync(msgw_t *msg);
 circle* calc_verzoegerung(msgw_t *msg, circle *C);
 circle* time_sync_for_AP(msgw_t* ptr_msg, circle* C);
 void ISR_microphone_pin(void *arg);
-
-
-
 double calc_distance(uint32_t server_ton_on, uint32_t time_microphone, double omega);
 void init(void);
 void handler(void);
 
 int main(void)
 {
-	xtimer_sleep(1);
-        init();
-
-//DEBUG
-	uint32_t go = 0;
-	uint32_t diff = 0;
-while(1){
-
-	printf("====================================\n");
-	xtimer_sleep(10);
-	gpio_irq_enable(GPIO_PIN(1,23));
-	printf("Los gehts\n");
-	go = xtimer_now_usec();
-	gpio_set(GPIO_PIN(0,18));
+	init();
 	while(1){
-		if(flag_microphone == true){
-			
-			printf("time ISR: %ld\n",time_ISR_microphone);
-			printf("go      : %ld\n",go);
-			diff = time_ISR_microphone - go;
-
-			printf("diff    : %ld\n",diff);
-			printf("distance: %f [cm]\n", 0.034*(diff));
-			printf("====================================\n");
-			ready_ISR();
-			break;
-		}
+		handler();
 	}
-}
-
-
-
-
-	int port = AP1_PORT;
-        msgw_t msg;
-        msgw_t *ptr_msg = &msg;
-        msg.port = port;
-        circle c_A;
-        circle *ptr_circle = &c_A;
-		
-		port = AP1_PORT;
-		msg.port = port;
-		ptr_msg->port = port;
-		ptr_circle = time_sync_for_AP(ptr_msg, ptr_circle);
-
-		if(ptr_circle != NULL){
-	//		printf("SUCCESS zeit_sync: %d\n",port);
-		}else{
-			printf("FUCK Bei der zeitsync ist was schief gegangen\n");
-		}
-	//	printf("t_prop = %f\n", ptr_circle->t_prop);
-	//	printf("omega = %f\n", ptr_circle->omega);
-//	printf("avg = %f\n",avg);
-	xtimer_sleep(1);
-	ptr_msg->port = port;
-//	printf("port = %d\n",port);
-	measure_distance(ptr_msg, 0);
-//	printf("Komplett fertig Gehen in while(1)\n");
-	while(1);
-	
 	return 0;
 }
 
 
 void handler(void){
 	
-/*	circle c;
+	circle c;
 	circle *ptr_circle = &c;
 
 	msgw_t msg;
@@ -114,7 +55,6 @@ void handler(void){
 	AP1(ptr_msg, ptr_circle);
 	AP2(ptr_msg, ptr_circle);
 	AP3(ptr_msg, ptr_circle);
-*/
 }
 
 circle* time_sync_for_AP(msgw_t* ptr_msg, circle* C){

@@ -24,7 +24,7 @@
 \usepackage[scaled]{helvet}
 
 
-\sisetup{locale = DE}  
+\sisetup{locale = DE, per-mode=fraction,parse-numbers=false}  
 
 \renewcommand\familydefault{\sfdefault} 
 \newcommand{\source}[1]{\caption*{Source: {#1}} }
@@ -34,7 +34,7 @@
 \newcommand{\ultraschall}{HC-SR04}
 \newcommand{\microphone}{SparkFun Sound Detector}
 \newcommand{\platz}{ }
-\newcommand{\funkempfaenger}{433 Mhz Funk Transmitter-Receiver}
+\newcommand{\funkempfaenger}{\SI{433}{\mega \hertz} Funk Transmitter-Receiver}
 \usepackage[figurename=Abbildung]{caption}
 
 \def\theequation{\thesection.\arabic{equation}} %nummerierung der Formeln
@@ -111,7 +111,7 @@
 	\acro{ARM}{Advanced RISC Machine}
 	\acro{$I^2C$}{Inter-Integrated Circuit}
 	\acro{SPI}{Serial Peripheral Interface}
-	\acro{GPIO}{General-purpose input/output}
+	\acro{GPIO}{General-Purpose Input/Output}
 	\acro{MAC}{Media-Access-Control}
 	\acro{IPv4}{Internet Protocol Version 4}
 	\acro{UART}{Universal Asynchronous Receiver Transmitter}
@@ -148,7 +148,8 @@
 \input{text/auswertung}
 \input{text/unittests}
 \input{text/probleme}
-\input{text/fazit}%Ausblick
+\input{text/ausblick}%Ausblick
+\input{text/zusammenfassung}
 \input{text/eidesstattliche_erklaerung}
 \input{text/quellen}
 \input{text/anhang}

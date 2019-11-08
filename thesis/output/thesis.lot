@@ -1,13 +1,13 @@
 \select@language {ngerman}
-\contentsline {table}{\numberline {1}{\ignorespaces Messwerte bei \SI {1}{m} Entfernung\relax }}{19}
-\contentsline {table}{\numberline {2}{\ignorespaces Messwerte bei \SI {2}{m} Entfernung\relax }}{19}
-\contentsline {table}{\numberline {3}{\ignorespaces Messwerte bei \SI {3}{m} Entfernung\relax }}{20}
-\contentsline {table}{\numberline {4}{\ignorespaces ISR-Verz\IeC {\"o}gerung Mikrofon-SAM R21 Xplained Pro Evaluation Kit bei unterschiedlicher Kabell\IeC {\"a}nge\relax }}{21}
-\contentsline {table}{\numberline {5}{\ignorespaces Verz\IeC {\"o}gerung der Slave ISR bei unterschiedlicher Kabell\IeC {\"a}nge\relax }}{22}
-\contentsline {table}{\numberline {6}{\ignorespaces Abweichung zwischen Mikrofon und Lautsprecher bei \SI {1}{m}\relax }}{23}
-\contentsline {table}{\numberline {7}{\ignorespaces Abweichung zwischen Mikrofon und Lautsprecher bei \SI {2}{m}\relax }}{23}
-\contentsline {table}{\numberline {8}{\ignorespaces Abweichung zwischen Mikrofon und Lautsprecher bei \SI {3}{m}\relax }}{24}
-\contentsline {table}{\numberline {9}{\ignorespaces Messwerte f\IeC {\"u}r die Funktion $getSystemTime()$\relax }}{25}
-\contentsline {table}{\numberline {10}{\ignorespaces Messwerte f\IeC {\"u}r das Setzen und L\IeC {\"o}schen eines GPIO\relax }}{25}
-\contentsline {table}{\numberline {11}{\ignorespaces Eingaben und Ausgaben der pq-Funktion\relax }}{32}
+\contentsline {table}{\numberline {1}{\ignorespaces Messwerte bei \SI {1}{m} Entfernung\relax }}{18}
+\contentsline {table}{\numberline {2}{\ignorespaces Messwerte bei \SI {2}{m} Entfernung\relax }}{18}
+\contentsline {table}{\numberline {3}{\ignorespaces Messwerte bei \SI {3}{m} Entfernung\relax }}{19}
+\contentsline {table}{\numberline {4}{\ignorespaces ISR-Verz\IeC {\"o}gerung Mikrofon-SAM R21 Xplained Pro Evaluation Kit bei unterschiedlicher Kabell\IeC {\"a}nge\relax }}{20}
+\contentsline {table}{\numberline {5}{\ignorespaces Verz\IeC {\"o}gerung der Slave-ISR bei unterschiedlicher Kabell\IeC {\"a}nge\relax }}{21}
+\contentsline {table}{\numberline {6}{\ignorespaces Abweichung zwischen Mikrofon und Lautsprecher bei \SI {1}{m}\relax }}{22}
+\contentsline {table}{\numberline {7}{\ignorespaces Abweichung zwischen Mikrofon und Lautsprecher bei \SI {2}{m}\relax }}{22}
+\contentsline {table}{\numberline {8}{\ignorespaces Abweichung zwischen Mikrofon und Lautsprecher bei \SI {3}{m}\relax }}{23}
+\contentsline {table}{\numberline {9}{\ignorespaces Messwerte f\IeC {\"u}r die Funktion $getSystemTime()$\relax }}{24}
+\contentsline {table}{\numberline {10}{\ignorespaces Messwerte f\IeC {\"u}r das Setzen und L\IeC {\"o}schen eines GPIO\relax }}{24}
+\contentsline {table}{\numberline {11}{\ignorespaces Eingaben und Ausgaben der pq-Funktion\relax }}{31}
 \contentsline {table}{\numberline {12}{\ignorespaces Alle Steuercodes\relax }}{43}
