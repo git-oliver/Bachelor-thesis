@@ -165,6 +165,7 @@ Auch hier zeigt sich, das die Interruptzeit nicht von der Kabellänge abhängig 
 Hierbei soll die Anstiegszeit des N-Mosfet ermittelt werden. Die Anstoiegszeit liegt laut dem Datenblatt bei \SI{40}{\nano\s}. Das verwendete Oszilloskop schafft es nicht, die Angabe zu überprüfen, da die Zeitauflösung nicht genau genug ist. Die Anstiegszeit verursacht eine Abweichung von $\si{0,000034}[\si{\centi\m\per\nano\s}] \cdot \si{40} [\si{\nano\s}] = \si{0,00136} [\si{\centi\m}]$. Diese Abweichung ist zu gering, um Einfluss auf das Endergebnis auszuüben, da sie erst ab der dritten Nachkommastelle Einfluss ausübt. Aufgrund dessen wird diese Abweichung vernachlässigt.
 
 \subsection{Modul D}
+\label{sec:modul_D}
 Dieses Modul untersucht die Abweichungen vom Lautsprecher und dem Mikrofon. Dabei wird die Zeit zwischen dem Lautsprecher und dem \si{GATE}-Signal des \microphone s \platz gemessen. Der Masterknoten wird nicht benötigt. Der Slaveknoten besitzt den Lautsprecher und den dazugehörigen Mosfet. Er schaltet den Lautsprecher für \SI{40000}{\mu\s} an. Theoretisch muss der errechnete Wert aus der Distanz und der Schallgeschwindigkeit den gemessenen Werten auf dem Oszilloskop entsprechen. Messungen werden mit den Distanzen \SI{1}{m}, \SI{2}{m} und \SI{3}{m} vorgenommen. Es folgen drei Tabellen (\ref{tab:modul_D_1} - \ref{tab:modul_D_3}) mit den Messwerten. 
 
 \begin{table}[H]
