@@ -4,16 +4,11 @@
 Nachdem die Implementierung abgeschlossen ist, widmen wir uns in diesem Kaptiel der Auswertung der Daten.
 
 \subsection{Hardware}
-Die aufgetretenen Abweichungen entstanden meistens, wenn die Peripherie Daten generiert hat bzw. angesprochen wurde. Da viele dieser Abweichungen konstant sind, kann ein Offset für ein korrektes Ergebnis mit in das Ergebnis einfließen. Allerdings sind einige Abweichungen nicht erklärbar, was die Bestimmung eines Offset erschwert. Weiterhin zeigt sich, dass die verwendete Hardware nicht optimal auf dieses Problem abgestimmt ist. Dazu zählt der Tongeber und das  \microphone . RIOT sieht sich zwar als Echtzeitbetriebssystem, allerdings sind zu viele Schichten zwischen dem laufenden Programm und der Hardware, denn ein Systemaufruf für die Abfrage der Systemzeit darf nicht \SI{7,21}{\mu s} dauern. Dies verfälscht die Systemzeit die eigentlich \si{\mu}-Sekunden genau sein soll. Des weiteren zeigt sich, desto weniger Komponenten (Peripherie) verwendet wird, desto einfacher ist die Fehlersuche. Eine Laufzeitmessung könnte z.B. im Funkchip enthalten sein. Somit spart man sich aufwendige Peripherie. 
+Die aufgetretenen Abweichungen entstanden meistens, wenn die Peripherie Daten generiert hatte bzw. angesprochen wurde. Da viele dieser Abweichungen konstant sind, kann ein Offset für ein korrektes Ergebnis mit in das Ergebnis einfließen. Allerdings sind einige Abweichungen nicht erklärbar, was die Bestimmung eines Offset erschwert. Weiterhin zeigt sich, dass die verwendete Hardware nicht optimal auf dieses Problem abgestimmt ist. Dazu zählt der Tongeber und der \microphone . RIOT sieht sich zwar als Echtzeitbetriebssystem, allerdings sind zu viele Schichten zwischen dem laufenden Programm und der Hardware vorhanden, da ein Systemaufruf für die Abfrage der Systemzeit nicht über \SI{7,21}{\mu s} dauern. Dies verfälscht die Systemzeit, die eigentlich \si{\mu}-Sekunden genau sein soll. Des weiteren zeigt sich, je weniger Komponenten (Peripherie) verwendet werden, umso einfacher ist die Fehlersuche.
 
 \subsection{Messergebnis}
-Die Messergebnisse zeigen, dass eine Positionsbestimmung auf diese Weise nicht genau genug ist. Die Abweichung, die das Messergebnis hauptsätlich verfälscht, liegt beim Tongeber und dem Mikrofon. Weil kein Muster bei der Abweichung erkennbar ist, kann kein Offset bestimmt werden. Weiterhin liefert das Oszilloskop die gleichen Abweichungen für alle verwendeteten Mikrofone, sodass die Verwendung eines fehlerbehafteten Bausteins ausgeschlossen werden kann. 
+Die Messergebnisse zeigen, dass eine Positionsbestimmung auf wie sich durchgeführt wurde nicht genau genug ist. Die Abweichung, die das Messergebnis hauptsächlich verfälscht, liegt beim Tongeber und dem Mikrofon. Weil kein Muster bei der Abweichung erkennbar ist, kann kein Offset bestimmt werden. Die Verwendung von fehlerbehafteten Bausteinen kann ausgeschlossen werden, da das Oszilloskop für alle verwendeteten Mikrofone die gleichen Abweichungen aufzeichnet.
 
 \subsection{Software}
 
-Die Software kann eine Positionsbestimmung durchführen, dabei ist sie allerdings auf korrekte Distanzmesswerte angewiesen. Da diese fehlen, kann die Software nur durch Unit-Tests validiert werden.
-
-
-
-
-
+Die Software kann eine Positionsbestimmung durchführen; dabei ist sie allerdings auf korrekte Distanzmesswerte angewiesen. Da diese fehlen, kann die Software nur durch Unit-Tests validiert werden.

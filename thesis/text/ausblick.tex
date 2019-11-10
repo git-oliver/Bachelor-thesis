@@ -1,31 +1,25 @@
 \newpage
 
 \section{Ausblick}
-Die Software kann man in verschiedenen Module einteilen. Dadurch ist es möglich, die Software zu erweitern ohne die anderen Module zu verändern. Folgend werden Verbesserungsvorschläge für die einzelnen Module vorgestellt.
+Die Software kann man in verschiedenen Module einteilen. Dadurch ist es möglich, die Software zu erweitern ohne die anderen Module zu verändern. Im folgenden werden Verbesserungsvorschläge für die einzelnen Module vorgestellt.
 
 \paragraph{Kommunikation}\mbox{}\\
-Für die Kommunikation zwischen Master und Slave, könnte anstatt des UDP-Protokoll das TCP-Protokoll verwendet werden. Dadurch wird eine fehlerbehaftete Kommunikation verbessert, weil TCP mit ACKs arbeitet und zuerst ein Verbindungsaufbau erfolt. Darüber hinaus könnte die Identifikation der Knoten im Netzwerk mit einer IP-Adresse erfolgen, anstatt auf Portnummern wie es aktuell ist.
+Für die Kommunikation zwischen Master und Slave könnte anstatt des UDP-Protokoll das TCP-Protokoll verwendet werden. Dadurch wird eine fehlerbehaftete Kommunikation verbessert, weil TCP mit ACKs arbeitet und zuerst ein Verbindungsaufbau erfolgt. Darüber hinaus könnte die Identifikation der Knoten im Netzwerk mit einer IP-Adresse erfolgen, anstatt auf Portnummern, wie es aktuell der Fall ist.
 
 \paragraph{Zeitsynchronisation}\mbox{}\\
 Damit eine Uhrensynchronisation im Nanosekundenbereich erreicht wird, muss die aktuelle Uhrzeit kurz vor dem Aussenden in das Datenpaket eingefügt werden. Dies sollte unabhängig vom System geschehen. Dafür muss die Systemzeit von der Firmware des Funkmoduls verwaltet werden. Wird die Systemzeit allerdings vom Betriebssystem verwaltet, gibt es immer eine Verzögerung von dem Funktionsaufruf $getSystemTime()$ und dem Aussenden des Pakets. Genau um diese Verzögerungszeit zu elemenieren, sollte bei jedem Aussenden des Paketes die aktuelle Systemzeit angehängt werden.
 
 \paragraph{Übertragungsmedium}\mbox{}\\
-Anstatt von Schall, können auch Radiosignale verwendet werden. Diese haben den Vorteil das das menschliche Gehör diese Frequenzen nicht wahrnimmt. Des weiteren breiten sich Radiosignale mit Lichtgeschwindigkeit aus. Zusammen mit einer Frequenzmodulationen können mehrere Accesspoints gleichzeitig abgefragt werden. Dies ermöglicht eine schnellere Positionsbestimmung. Radiosignale haben den Nachteil, dass eine Dämpfung bei Wänden stattfindet. Weitherhin muss bedacht werden, dass es zu Reflexionen, Streuung und Absorbation kommen kann \cite{src_RADIOSIGNALE}.
+Anstatt von Schall, können auch Radiosignale verwendet werden. Diese haben den Vorteil, dass das menschliche Gehör diese Frequenzen nicht wahrnimmt. Des weiteren breiten sich Radiosignale mit Lichtgeschwindigkeit aus. Zusammen mit einer Frequenzmodulationen können mehrere Accesspoints gleichzeitig abgefragt werden. Dies ermöglicht eine schnellere Positionsbestimmung. Radiosignale haben aber auch den Nachteil, dass eine Dämpfung bei Wänden stattfindet. Weitherhin muss bedacht werden, dass es zu Reflexionen, Streuung und Absorbation kommen kann \cite{src_RADIOSIGNALE}.
 
 \paragraph{Messung}\mbox{}\\
-Für die Positionsbestimmung müssen drei Gleichungen gelöst. Da MCUs nicht immer über eine FPU verfügen, kann eine MCU mit FPU verwendet werden. Oder ein Raspberry-Pi, denn dieser ermöglicht die gemessenen Daten mit Octave oder Matlab weiter zu verarbeiten. Das hat den Vorteil, dass die Berechnung durch die FPU beschleunigt wird. Darüber hinaus ermöglicht Octave, Statistiken oder graphische Aufbereitung der Daten.
+Für die Positionsbestimmung müssen drei Gleichungen gelöst werden. Da MCUs nicht immer über eine FPU verfügen, kann eine MCU mit FPU verwendet werden. Als Alternative kann auch ein Raspberry-Pi verwendet werden, denn dieser ermöglicht die gemessenen Daten mit Octave oder Matlab weiter zu verarbeiten. Es hat den Vorteil, dass die Berechnung durch die FPU beschleunigt wird. Darüber hinaus ermöglicht Octave, Statistiken oder graphische Aufbereitung von Daten.
 
 \paragraph{Hardware}\mbox{}\\
-Aktuell ist der Lautsprecher und das Mikrofon über ein Steckbrett mit dem \board \platz verbunden. Es könnte eine Leiterplatte angefertigt werden, die auf das \board \platz aufgesteckt wird. Das würde eventuelle Fehler beim Steckbrett vermeiden.  
+Aktuell ist der Lautsprecher und das Mikrofon über ein Steckbrett mit dem \board \platz verbunden. Es könnte eine Leiterplatte angefertigt werden, die auf das \board \platz aufgesteckt wird. Dies würde eventuelle Fehler beim Steckbrett vermeiden.  
 
 \paragraph{Signalanalyse}\mbox{}\\
-Um genauer herrauszufinden, wann das Signal beim Mikrofon ankommt, kann eine Signalanalsye durchgeführt werden. Es könnte immer die Zeit gestoppt werden, wenn die Amplitude erste Halbwelle der Sinusschwinkung erkannt wird, oder eine Periode vorbei ist. Dadurch ist es dann möglich, einen definierten Zeitpunkt zu bestimmen, wann das Lautsprechersignal das Rauschen am \si{AUDIO}-Ausgang überlagert. Der Lautsprecher muss dafür aber ein Signal zurückgeben, wann die erste Halbwelle erreicht wurde.
+Um genauer herrauszufinden, wann das Signal beim Mikrofon ankommt, kann eine Signalanalsye durchgeführt werden. Es könnte immer die Zeit gestoppt werden, sofort nachdem die erste Halbwelle der Sinusschwingung erkannt wird, oder eine Periode vorbei ist. Dadurch ist es dann möglich, einen definierten Zeitpunkt zu bestimmen, wann das Lautsprechersignal das Rauschen am \si{AUDIO}-Ausgang überlagert. Der Lautsprecher muss dafür aber ein Signal zurückgeben, wann die erste Halbwelle erreicht wurde.
 
 \paragraph{Betriebssystem}\mbox{}\\
-Anstatt das Betriebssystem RIOT zu verwenden, kann auch ein eigenes Betriebssystem geschrieben und verwendet werden. Dies ermöglicht eine bessere Programmanalyse über das laufende Programm. Darüber hinaus können eventuelle Softwareroutinen, die nicht unbedingt essentiell sind, abgeschaltet werden, bzw. gar nicht erst implementiert werden. Weiterhin könnte RIOT OS angepasst/ erweitert werden.
-
-
-
-
-
-
+Anstatt das Betriebssystem RIOT zu verwenden, kann auch ein eigenes Betriebssystem geschrieben und verwendet werden. Dies ermöglicht eine bessere Programmanalyse über das laufende Programm. Darüber hinaus können eventuelle Softwareroutinen, die nicht unbedingt essentiell sind, abgeschaltet werden bzw. gar nicht erst implementiert werden. Weiterhin könnte RIOT OS angepasst/ erweitert werden.

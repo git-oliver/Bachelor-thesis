@@ -1,10 +1,9 @@
 \newpage
 \section{Unit Test}
-
-Unittests werden benötigt, um die Software auf ihre Korrektheit zu überprüfen. Für diese Software werden nur Teilbereiche getestet, da viele Funktionen von der Peripherie abhängig ist.
+Unittests werden benötigt, um die Software auf ihre Korrektheit zu überprüfen. Für diese Software werden nur Teilbereiche getestet, da viele Funktionen von der Peripherie abhängig sind.
 
 \subsection{Quadratische Gleichung}
-Für die Positionsbestimmung muss eine quadratisch Gleichung gelöst werden. Die Parameter für diese Funktion sind \si{p} und \si{q}. Diese entsprechen der Variablen aus der folgenden Gleichung:
+Für die Positionsbestimmung muss eine quadratische Gleichung gelöst werden. Die Parameter für diese Funktion sind \si{p} und \si{q}. Diese entsprechen der Variablen aus der folgenden Gleichung:
 
 \begin{equation}
 \label{eq:unit_test_pq_formel}
@@ -27,11 +26,11 @@ Es folgt eine Tabelle mit den Eingaben der Funktion und den dazugehörigen Ausga
 \end{tabular}
 \end{table}
 
-Aus der Tabelle \ref{table:pq_funktion} wird deutlich das die Funktion korrekte Rückgabewerte liefert. Bei einer fehlerhaften Eingabe gibt die Funktion ein \si{NaN} (Not a Number) zurück.
+Aus der Tabelle \ref{table:pq_funktion} lässt sich erkennen, dass die Funktion korrekte Rückgabewerte liefert. Bei einer fehlerhaften Eingabe gibt die Funktion ein \si{NaN} (Not a Number) zurück.
 
 
 \subsection{Abstand zweier Punkte}
-Bei der Positionsbestimmung kann es dazu kommen, dass die drei Kreise sich nicht treffen. Dann haben wir zwei Bereiche indem sich der Knoten befindet. Um den korrekten Bereich zu bestimmen, wird die Funktion $determine\_point\_radius()$ benötigt. Liefert diese Funktion ein falsches Ergebnis, führt das dazu, dass die Positionsbestimmung nicht mehr korrekt ist. Der korrekte Bereich kann bestimmt werden, indem von zwei Punkten die Distanz zu einem Kreismittelpunkt bestimmt wird. Ein Punkt liegt innerhalb des Radius und der andere außerhalb. Der Punkt mit der geringsten Distanz ist der korrekte Punkt und makiert einen Eckpunkt des Bereichs indem sich der Knoten befindet. Abbildung \ref{img:figure_abstand_zweier_punkte} verdeutlicht das Problem.
+Bei der Positionsbestimmung kann es dazu kommen, dass die drei Kreise sich nicht treffen. Dann haben wir zwei Bereiche indem sich der Knoten befindet. Um den korrekten Bereich zu bestimmen, wird die Funktion $determine\_point\_radius()$ benötigt. Liefert diese Funktion ein falsches Ergebnis, führt das dazu, dass die Positionsbestimmung nicht mehr korrekt ist. Der korrekte Bereich kann jedoch dann bestimmt werden, wenn von zwei Punkten die Distanz zu einem Kreismittelpunkt ermittelt wird. Ein Punkt liegt innerhalb des Radius und der andere außerhalb. Der Punkt mit der geringsten Distanz ist der korrekte Punkt und markiert einen Eckpunkt des Bereichs, indem sich der Knoten befindet. Abbildung \ref{img:figure_abstand_zweier_punkte} verdeutlicht das Problem.
 
 \begin{figure}[H]
 	\hspace*{-2.0cm}
@@ -47,21 +46,21 @@ Bei der Positionsbestimmung kann es dazu kommen, dass die drei Kreise sich nicht
 	\label{img:figure_abstand_zweier_punkte}
 \end{figure}
 
-In der Abbildung \ref{img:figure_abstand_zweier_punkte} ist erkennbar, dass es durch die Schwankung zwei Bereiche geben kann. Ein Bereich durch die Eckpunkte \si{A}, \si{Z} und \si{D} und ein zweiter durch \si{B}, \si{Z} und \si{D} abgesteckt. Um nun zu bestimmen ob Punkt \si{A} oder \si{B} den Bereich ausgegangen von dem grünen Kreis kennzeichnet wird der Abstand zum Kreismittelpunkt vom grünen Kreis berechnet. Die Funktion wird mit den folgenden zwei Punkten und der Kreisgleichung getestet.
+In der Abbildung \ref{img:figure_abstand_zweier_punkte} ist erkennbar, dass es durch die Schwankung zwei Bereiche gibt. Ein Bereich ist durch die Eckpunkte \si{A}, \si{Z} und \si{D} und ein zweiter durch \si{B}, \si{Z} und \si{D} abgesteckt. Um nun zu bestimmen, ob Punkt \si{A} oder \si{B} den Bereich, ausgegangen von dem grünen Kreis, kennzeichnet, wird der Abstand zum Kreismittelpunkt vom grünen Kreis aus berechnet. Die Funktion wird mit den folgenden zwei Punkten und der Kreisgleichung getestet.
 
 \begin{equation*}
 \label{eq:unit_test_abstand_zweier_punkte}
 \begin{split}
+(x - 3)^{2} + (y - 3)^{2} = 2^{2}\\
 P_{A}: \; (3,9528 \;|\; 2,8069)\\
-P_{B}: \; (7,0504 \;|\; 2,1899)\\
-(x - 3)^{2} + (y - 3)^{2} = 2^{2}
+P_{B}: \; (7,0504 \;|\; 2,1899)
 \end{split}
 \end{equation*}
 
-Punkt \si{A} ist der korrekte Punkt, weil sein Abstand zum Kreismittelpunkt kleiner ist als von Punkt \si{B} ($0.9721 < 4.1306$) und daher sollte er von der Funktion zurückgegeben werden. Die Funktion funktioniert wie erwartet fehlerfrei.
+Punkt \si{A} ist der korrekte Punkt, weil sein Abstand zum Kreismittelpunkt kleiner ist als von Punkt \si{B} ($0.9721 < 4.1306$). Daher sollte er von der Funktion zurückgegeben werden. Die Funktion funktioniert wie erwartet fehlerfrei.
 
 \subsection{Positionsbestimmung}
-Zur Bestimmung der Position braucht die Funktion $calc_position()$ drei Parameter. Diese sind die drei Kreise die sich im einem Schnittpunkt schneiden oder ein Bereich aufspannen. Für den Fall das alle drei Kreise einen gemeinsamen Schnittpunkt haben gibt die Funktion dreimal die X/Y-Koordinaten zurück. Bei einem Bereich werden die X/Y-Koordinaten der Eckpunkte zurückgegeben. Die Funktion wird mit den folgenden Kreisgleichungen getestet.  Zuerst ein test wobei es ein gemeinsamen Schnittpunkt gibt.
+Zur Bestimmung der Position benötigt die Funktion $calc_position()$ drei Parameter. Diese sind die drei Kreise, die sich in einem Schnittpunkt schneiden oder einen Bereich aufspannen. Für den Fall, dass alle drei Kreise einen gemeinsamen Schnittpunkt haben, gibt die Funktion dreimal die X/Y-Koordinaten zurück. Bei einem Bereich werden die X/Y-Koordinaten der Eckpunkte zurückgegeben. Die Funktion test man mit den folgenden Kreisgleichungen: zuerst wird ein Test unternommen, wobei es ein gemeinsamen Schnittpunkt gibt.
 
 \begin{equation*}
 \label{eq:unit_test_positionsbestimmung}
@@ -71,7 +70,7 @@ Zur Bestimmung der Position braucht die Funktion $calc_position()$ drei Paramete
 (x - 4)^{2} + (y - 1,8693)^{2} = 2^{2}
 \end{split}
 \end{equation*}
-Der Schnittpunkt der drei Kreise ist $( 4,8872 \;|\; 3,6618)$. Dies gibt auch die Funktion zurück. Als nächtes wird der Rückgabewert bei keinem gemeinsamen Schittpunkt untersucht.
+Der Schnittpunkt der drei Kreise ist $( 4,8872 \;|\; 3,6618)$. Dies gibt auch die Funktion zurück. Als nächstes wird der Rückgabewert bei keinem gemeinsamen Schittpunkt untersucht.
 
 \begin{equation*}
 \label{eq:unit_test_positionsbestimmung}

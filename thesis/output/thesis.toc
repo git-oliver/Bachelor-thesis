@@ -40,14 +40,14 @@
 \contentsline {subsection}{\numberline {6.3}Positionsbestimmung}{32}
 \contentsline {section}{\numberline {7}Probleme}{34}
 \contentsline {subsection}{\numberline {7.1}Kommunikation Master -- Slave}{34}
-\contentsline {subsection}{\numberline {7.2}Genauigkeit Zeitsynchronisation}{34}
+\contentsline {subsection}{\numberline {7.2}Genauigkeit -- Zeitsynchronisation}{34}
 \contentsline {subsection}{\numberline {7.3}Messgenauigkeit}{34}
 \contentsline {section}{\numberline {8}Ausblick}{35}
 \contentsline {paragraph}{\nonumberline Kommunikation}{35}
 \contentsline {paragraph}{\nonumberline Zeitsynchronisation}{35}
 \contentsline {paragraph}{\nonumberline \IeC {\"U}bertragungsmedium}{35}
 \contentsline {paragraph}{\nonumberline Messung}{35}
-\contentsline {paragraph}{\nonumberline Hardware}{35}
+\contentsline {paragraph}{\nonumberline Hardware}{36}
 \contentsline {paragraph}{\nonumberline Signalanalyse}{36}
 \contentsline {paragraph}{\nonumberline Betriebssystem}{36}
 \contentsline {section}{\numberline {9}Zusammenfassung}{37}

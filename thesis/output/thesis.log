@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2019.10.15)  9 NOV 2019 17:22
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2019.10.15)  10 NOV 2019 17:48
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1599,7 +1599,7 @@ File: images/picture_unit_test_calc_position_1.png Graphic file (type png)
 
 <use images/picture_unit_test_calc_position_1.png>
 Package pdftex.def Info: images/picture_unit_test_calc_position_1.png used on i
-nput line 41.
+nput line 40.
 (pdftex.def)             Requested size: 264.61333pt x 178.74348pt.
 
 <images/picture_unit_test_calc_position_2.png, id=161, 960.58875pt x 593.21625p
@@ -1607,16 +1607,22 @@ t>
 File: images/picture_unit_test_calc_position_2.png Graphic file (type png)
  <use images/picture_unit_test_calc_position_2.png>
 Package pdftex.def Info: images/picture_unit_test_calc_position_2.png used on i
-nput line 45.
+nput line 44.
 (pdftex.def)             Requested size: 264.61333pt x 163.41104pt.
 
-Overfull \hbox (47.28111pt too wide) in paragraph at lines 37--46
+Overfull \hbox (47.28111pt too wide) in paragraph at lines 36--45
 []|  [] [] 
  []
 
 [31] [32 <./images/picture_unit_test_calc_position_1.png> <./images/picture_uni
-t_test_calc_position_2.png>]) (./text/probleme.tex [33]) (./text/ausblick.tex
-[34] [35]) (./text/zusammenfassung.tex [36])
+t_test_calc_position_2.png>]) (./text/probleme.tex [33]
+Overfull \hbox (22.91116pt too wide) in paragraph at lines 9--10
+\T1/phv/m/n/10.95 ge-fügt und nicht von der Firm-wa-re des Funk-sen-ders. Weit-
+her-hin baut die Funk-ti-on $\OML/lmm/m/it/10.95 udp[]send[]packet\OT1/lmr/m/n/
+10.95 ()$
+ []
+
+) (./text/ausblick.tex [34] [35]) (./text/zusammenfassung.tex [36])
 (./text/eidesstattliche_erklaerung.tex [37]
 Underfull \hbox (badness 10000) in paragraph at lines 6--16
 
@@ -1767,7 +1773,7 @@ s/type1/public/lm/lmss12.pfb></usr/share/texmf/fonts/type1/public/lm/lmss8.pfb>
 share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texliv
 e/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist
 /fonts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on output//thesis.pdf (49 pages, 9992536 bytes).
+Output written on output//thesis.pdf (49 pages, 9992690 bytes).
 PDF statistics:
  260 PDF objects out of 1000 (max. 8388607)
  160 compressed objects within 2 object streams
