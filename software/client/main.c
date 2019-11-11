@@ -46,16 +46,65 @@ int main(void)
 
 void handler(void){
 	
-	circle c;
-	circle *ptr_circle = &c;
+	circle c_A,cB,c_C;
+	
+	point p_A = {0,0};
+	point p_B = {4,0};
+	point p_C = {2,2};
 
 	msgw_t msg;
-	msgw_t* ptr_msg = &msg;
 
-	AP1(ptr_msg, ptr_circle);
-	AP2(ptr_msg, ptr_circle);
-	AP3(ptr_msg, ptr_circle);
+	msgw_t* ptr_msg = &msg;
+	ptr_circle = AP1(ptr_msg);
+	if(ptr_circle == NULL){
+		printf("AP1 ist fehlgeschlagen\n");
+	}else{
+		c_A = *ptr_circle;
+	}
+
+	ptr_msg = &msg;
+	ptr_circle = AP2(ptr_msg);
+        if(ptr_circle == NULL){
+                printf("AP2 ist fehlgeschlagen\n");
+        }else{
+                c_B = *ptr_circle;
+        }
+
+        ptr_msg = &msg;
+        ptr_circle = AP3(ptr_msg);
+        if(ptr_circle == NULL){
+                printf("AP3 ist fehlgeschlagen\n");
+        }else{
+                c_C = *ptr_circle;
+        }
+	c_A.point = p_A;
+        c_B.point = p_B;
+        c_C.point = p_C;
+	calc_position(&c_A,&c_B,&c_C);
 }
+
+circle* AP1(msg_t *ptr_msg){
+
+	ptr_msg->port = AP1_PORT;
+	circle *C = time_sync_for_AP(ptr_msg,ptr_circle);
+	if(C ==NULL){
+		return NULL;
+	}
+        ptr_msg->port = AP1_PORT;
+	double result_cm = measure_distance(ptr_msg, ptr_msg->omega);
+
+	if(result_cm == -1){
+		printf("ERROR Server antwortet nicht\n");
+		return NULL;
+	}else if(resutl_cm == -2){
+		printf("ERROR Falsche Zeit wurde übermittelt\n");
+		return NULL;
+	}else{
+		C->radius = result_cm;
+		return C;
+	}
+}
+
 
 circle* time_sync_for_AP(msgw_t* ptr_msg, circle* C){
 	
@@ -112,15 +161,11 @@ double measure_distance(msgw_t *msg, double omega){
 			printf("ERROR:  Slave kann nicht triggern, weil die Zeit in der Vergangenheit liegt\n");
 			return -2;
 		}
-		server_ton_on = server_ton_on - omega + 14000;//hab einfach den offset hinzugefügt
-//		printf("Ich mache den Ton an bei: %ld\n",server_ton_on);
-//		printf("Akutelle Zeit           : %ld\n",xtimer_now_usec()); 
 		while(1){
-			if(xtimer_now_usec() >= server_ton_on){
-				gpio_toggle(GPIO_PIN(0,5));
-				xtimer_sleep(1);
-				printf("Erg = %ld\n", ( server_ton_on));
-				return 0.0;
+			if(flag_microphone == true){
+
+				printf("Das Mikrofon hat etwas empfangen\n");
+				return calc_distance(server_ton_on,time_ISR_microphone,omega);//[cm]
 			}
 		}
 	}
@@ -145,7 +190,6 @@ double calc_distance(uint32_t server_ton_on, uint32_t time_microphone, double om
 
 	printf("zeit_diff: %f ms\n",(time_microphone - client_ton_on)/1000.);
 	printf("\nBerechnete Länge: %f [cm]\n", result);
-	printf("Andere Länge: %f cm\n",(time_microphone - client_ton_on)/2000.);
         printf("===================================\n");
 	ready_ISR();
 	return result;//[cm]
