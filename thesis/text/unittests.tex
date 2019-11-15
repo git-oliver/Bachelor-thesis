@@ -19,12 +19,13 @@ Es folgt eine Tabelle mit den Eingaben der Funktion und den dazugehörigen Ausga
 \begin{tabular}{|c|c|c|c|}
 \hline
 \multicolumn{2}{|c|}{\textbf{Eingaben}} & \multicolumn{2}{c|}{\textbf{Ergebnis}} \\ \hline
-\textbf{p}         & \textbf{q}         & \textbf{x1}        & \textbf{x2}       \\ \hline
-3                  & 2                  & -1                 & -2                \\ \hline
-4                  & 1                  & -0,26                   & -3,73                  \\ \hline
--3                 & -9                 & 4,85                   & -1,85                  \\ \hline
+\textbf{$p$}         & \textbf{$q$}         & \textbf{$x1$}        & \textbf{$x2$}       \\ \hline
+\si{3}	 & 	\si{2}	 & 	\si{-1}	 & 	\si{-2}	 \\ \hline
+\si{4}	 & 	\si{1}	 & 	\si{-0,26}	 & 	\si{-3,73}	 \\ \hline
+\si{-3}	 & 	\si{-9}	 & 	\si{4,85}	 & 	\si{-1,85}	 \\ \hline
 \end{tabular}
 \end{table}
+
 
 Aus der Tabelle \ref{table:pq_funktion} lässt sich erkennen, dass die Funktion korrekte Rückgabewerte liefert. Bei einer fehlerhaften Eingabe gibt die Funktion ein \si{NaN} (Not a Number) zurück.
 
@@ -33,19 +34,21 @@ Aus der Tabelle \ref{table:pq_funktion} lässt sich erkennen, dass die Funktion 
 Bei der Positionsbestimmung kann es dazu kommen, dass die drei Kreise sich nicht treffen. Dann haben wir zwei Bereiche indem sich der Knoten befindet. Um den korrekten Bereich zu bestimmen, wird die Funktion $determine\_point\_radius()$ benötigt. Liefert diese Funktion ein falsches Ergebnis, führt das dazu, dass die Positionsbestimmung nicht mehr korrekt ist. Der korrekte Bereich kann jedoch dann bestimmt werden, wenn von zwei Punkten die Distanz zu einem Kreismittelpunkt ermittelt wird. Ein Punkt liegt innerhalb des Radius und der andere außerhalb. Der Punkt mit der geringsten Distanz ist der korrekte Punkt und markiert einen Eckpunkt des Bereichs, indem sich der Knoten befindet. Abbildung \ref{img:figure_abstand_zweier_punkte} verdeutlicht das Problem.
 
 \begin{figure}[H]
-	\hspace*{-2.0cm}
-    \subfigure[Positionsbestimmung ohne Schwankung]
-    {
-    	\includegraphics[width=0.6\textwidth]{images/picture_unit_test_calc_position_1.png}
-    }
-    \subfigure[Positionsbestimmung mit Schwankung]
-    {
-    	\includegraphics[width=0.6\textwidth]{images/picture_unit_test_calc_position_2.png}
-    }
-	\caption{Zwei Möglichkeiten der Positiosbestimmung}
+	%\hspace*{-2.0cm}
+	\centering
+	\includegraphics[width=0.9\textwidth]{images/picture_unit_test_calc_position_1.png}
+	\caption{Positionsbestimmung ohne Schwankung}
 	\label{img:figure_abstand_zweier_punkte}
 \end{figure}
 
+\begin{figure}[H]
+	%\hspace*{-2.0cm}
+	\centering
+	\includegraphics[width=0.9\textwidth]{images/picture_unit_test_calc_position_2.png}
+	\caption{Positionsbestimmung mit Schwankung}
+	\label{img:figure_abstand_zweier_punkte}
+\end{figure}
+    
 In der Abbildung \ref{img:figure_abstand_zweier_punkte} ist erkennbar, dass es durch die Schwankung zwei Bereiche gibt. Ein Bereich ist durch die Eckpunkte \si{A}, \si{Z} und \si{D} und ein zweiter durch \si{B}, \si{Z} und \si{D} abgesteckt. Um nun zu bestimmen, ob Punkt \si{A} oder \si{B} den Bereich, ausgegangen von dem grünen Kreis, kennzeichnet, wird der Abstand zum Kreismittelpunkt vom grünen Kreis aus berechnet. Die Funktion wird mit den folgenden zwei Punkten und der Kreisgleichung getestet.
 
 \begin{equation*}

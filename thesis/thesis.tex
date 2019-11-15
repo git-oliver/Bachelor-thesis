@@ -2,7 +2,6 @@
 \usepackage[ngerman]{babel} %silbentrennung
 \usepackage[left=3cm, right=2.5cm, bottom=3cm]{geometry}
 \usepackage[utf8]{inputenc} %unicode
-\usepackage[T1]{fontenc} 
 \usepackage{lmodern}
 \usepackage{amsmath}
 \usepackage{nccmath}
@@ -21,10 +20,10 @@
 \usepackage{verbatim}
 \usepackage{subfigure}
 \usepackage{siunitx}
-\usepackage[scaled]{helvet}
+%\usepackage[scaled]{helvet}
+\usepackage[T1]{fontenc}
 
-
-\sisetup{locale = DE, per-mode=fraction,parse-numbers=false}  
+\sisetup{locale = DE, per-mode=fraction,parse-numbers=false, decimalsymbol=comma}  
 
 \renewcommand\familydefault{\sfdefault} 
 \newcommand{\source}[1]{\caption*{Source: {#1}} }
@@ -46,6 +45,7 @@
 \pagestyle{plain}
 
 \begin{document}
+\normalfont
 
 \renewcommand*{\maketitle}{
 	\begin{titlepage}
@@ -144,9 +144,8 @@
 \input{text/grundlagen}
 \input{text/entwurf}
 \input{text/implementierung}
-%\input{text/umsetzung}
-\input{text/auswertung}
 \input{text/unittests}
+\input{text/auswertung}
 \input{text/probleme}
 \input{text/ausblick}%Ausblick
 \input{text/zusammenfassung}
