@@ -33,7 +33,10 @@ void ISR_microphone_pin(void *arg);
 double calc_distance(uint32_t server_ton_on, uint32_t time_microphone, double omega);
 void init(void);
 void handler(void);
-
+circle* AP1(msgw_t *ptr_msg,circle* ptr_circle);
+circle* AP2(msgw_t *ptr_msg,circle* ptr_circle);
+circle* AP3(msgw_t *ptr_msg,circle* ptr_circle);
+ 
 int main(void)
 {
 	init();
@@ -46,8 +49,9 @@ int main(void)
 
 void handler(void){
 	
-	circle c_A,cB,c_C;
-	
+	circle c_A,c_B,c_C;
+	circle* ptr_circle;
+
 	point p_A = {0,0};
 	point p_B = {4,0};
 	point p_C = {2,2};
@@ -55,7 +59,7 @@ void handler(void){
 	msgw_t msg;
 
 	msgw_t* ptr_msg = &msg;
-	ptr_circle = AP1(ptr_msg);
+	ptr_circle = AP1(ptr_msg,&c_A);
 	if(ptr_circle == NULL){
 		printf("AP1 ist fehlgeschlagen\n");
 	}else{
@@ -63,7 +67,7 @@ void handler(void){
 	}
 
 	ptr_msg = &msg;
-	ptr_circle = AP2(ptr_msg);
+	ptr_circle = AP2(ptr_msg,&c_B);
         if(ptr_circle == NULL){
                 printf("AP2 ist fehlgeschlagen\n");
         }else{
@@ -71,19 +75,21 @@ void handler(void){
         }
 
         ptr_msg = &msg;
-        ptr_circle = AP3(ptr_msg);
+        ptr_circle = AP3(ptr_msg,&c_C);
         if(ptr_circle == NULL){
                 printf("AP3 ist fehlgeschlagen\n");
         }else{
                 c_C = *ptr_circle;
         }
+
+
 	c_A.point = p_A;
         c_B.point = p_B;
         c_C.point = p_C;
 	calc_position(&c_A,&c_B,&c_C);
 }
 
-circle* AP1(msg_t *ptr_msg){
+circle* AP1(msgw_t *ptr_msg,circle* ptr_circle){
 
 	ptr_msg->port = AP1_PORT;
 	circle *C = time_sync_for_AP(ptr_msg,ptr_circle);
@@ -91,12 +97,12 @@ circle* AP1(msg_t *ptr_msg){
 		return NULL;
 	}
         ptr_msg->port = AP1_PORT;
-	double result_cm = measure_distance(ptr_msg, ptr_msg->omega);
+	double result_cm = measure_distance(ptr_msg, ptr_circle->omega);
 
 	if(result_cm == -1){
 		printf("ERROR Server antwortet nicht\n");
 		return NULL;
-	}else if(resutl_cm == -2){
+	}else if(result_cm == -2){
 		printf("ERROR Falsche Zeit wurde übermittelt\n");
 		return NULL;
 	}else{
@@ -104,8 +110,48 @@ circle* AP1(msg_t *ptr_msg){
 		return C;
 	}
 }
+circle* AP2(msgw_t *ptr_msg,circle* ptr_circle){
 
+        ptr_msg->port = AP2_PORT;
+        circle *C = time_sync_for_AP(ptr_msg,ptr_circle);
+        if(C ==NULL){
+                return NULL;
+        }
+        ptr_msg->port = AP2_PORT;
+        double result_cm = measure_distance(ptr_msg, ptr_circle->omega);
 
+        if(result_cm == -1){
+                printf("ERROR Server antwortet nicht\n");
+                return NULL;
+        }else if(result_cm == -2){
+                printf("ERROR Falsche Zeit wurde übermittelt\n");
+                return NULL;
+        }else{
+                C->radius = result_cm;
+                return C;
+        }
+}
+circle* AP3(msgw_t *ptr_msg,circle* ptr_circle){
+
+        ptr_msg->port = AP3_PORT;
+        circle *C = time_sync_for_AP(ptr_msg,ptr_circle);
+        if(C ==NULL){
+                return NULL;
+        }
+        ptr_msg->port = AP3_PORT;
+        double result_cm = measure_distance(ptr_msg, ptr_circle->omega);
+
+        if(result_cm == -1){
+                printf("ERROR Server antwortet nicht\n");
+                return NULL;
+        }else if(result_cm == -2){
+                printf("ERROR Falsche Zeit wurde übermittelt\n");
+                return NULL;
+        }else{
+                C->radius = result_cm;
+                return C;
+        }
+}
 circle* time_sync_for_AP(msgw_t* ptr_msg, circle* C){
 	
 	int port = ptr_msg->port;

@@ -21,7 +21,6 @@ uint32_t time_server, time_client;
 sock_udp_ep_t local = SOCK_IPV6_EP_ANY;
 sock_udp_t sock;
 
-
 void init(void);
 msgw_t* server(msgw_t *msg);
 int client(msgw_t *msg);
@@ -32,39 +31,16 @@ void cmd_zeit_follow_up(msgw_t *msg);
 void cmd_zeit_delay_req(msgw_t *msg);
 void cmd_zeit_delay_resp(msgw_t *msg);
 void cmd_read_t1_t2_t4(msgw_t *msg);
-
 void cmd_nop(msgw_t *msg);
 void cmd_messung(msgw_t *msg);
 void cmd_unknown(void);
 
-
-void ISR_trigger(void *arg);
-
 int main(void)
 {
-	xtimer_sleep(1);
-	init();
-	printf("Los gehts\n");
-	xtimer_sleep(5);
-	gpio_set(GPIO_PIN(0,5));
-        xtimer_usleep(40000);
-        gpio_clear(GPIO_PIN(0,5));
-	printf("Fertig\n");
-	while(1){}
-
-
-/*	gpio_init(GPIO_PIN(1,23),GPIO_IN);
-        gpio_init_int(GPIO_PIN(1,23),GPIO_IN,GPIO_RISING,&ISR_trigger,NULL);
-	gpio_irq_enable(GPIO_PIN(1,23));
-*/
-while(1){
-	gpio_toggle(GPIO_PIN(0, 5));
-	xtimer_sleep(1);
-}
-
 	msgw_t msg;
 	msgw_t* ptr_msg = &msg;
 	
+	init();
 	while(1){
 		ptr_msg = server(ptr_msg);
 		if(ptr_msg != NULL){
@@ -76,23 +52,15 @@ while(1){
 	return 0;
 }
 
-void ISR_trigger(void *arg){
-
-	gpio_set(GPIO_PIN(0,5));
-	xtimer_usleep(40000);
-	gpio_clear(GPIO_PIN(0,5));
-	(void)arg;
-}
 void init(void){
 
-	gpio_init(GPIO_PIN(0,5),GPIO_OUT);
-	gpio_clear(GPIO_PIN(0,5));
+	gpio_init(GPIO_PIN(0,18),GPIO_OUT);
+	gpio_clear(GPIO_PIN(0,18));
 
         local.port = ACCESSPOINT_PORT;
 	if(sock_udp_create(&sock, &local, NULL, 0) < 0) {
 		printf("Error creating UDP sock\n");
 	}
-//	printf("init fertig\n");
 }
 
 int client(msgw_t *msg){
@@ -261,15 +229,12 @@ void cmd_messung(msgw_t *msg){
 	while(1){
 		if(xtimer_now_usec() >= data){
 
-			gpio_toggle(GPIO_PIN(0,5));
-			printf("Sind jetzt fertig\n");
-/*			gpio_set(GPIO_PIN(0, 5));
+			gpio_set(GPIO_PIN(0,18));
 			xtimer_usleep(40000);
-			gpio_clear(GPIO_PIN(0,5));
+			gpio_clear(GPIO_PIN(0,18));
 			data = xtimer_now_usec() - 40000;
 			printf("Lautsprecher wurde an gemacht\n");
 			printf("Uhrzeit ca. nach dem feuern: %ld\n",data);
-*/
 			break;
 		}
 	}
@@ -277,54 +242,4 @@ void cmd_messung(msgw_t *msg){
 void cmd_unknown(void){
 
 	printf("CMD unknown angekommen\n");
-//	printf("tue nichts\n");
 }
-
-/*
-//Ist das alte
-void cmd_zeit_sync(void){
-	uint32_t t1,t2,t4;
-	int returnval = 0;
-	(void)returnval;
-
-	printf("Okay es soll jetzt mit der synchronisation losgehen\n");
-	answer_pong();
-
-//	printf("Wir warten darauf das jetzt SYNC t0 kommt\n");
-	server();//SYNC MSG
-	t1 = time_server;
-	printf("Haben die SYNC MSG erhalten und antworten mit ACK (PONG)\n");
-	answer_pong();
-
-	printf("Warten jetzt auf die FOLLOW_UP MSG\n");
-	server();//FOLLOW UP MSG
-	printf("FOLLOW UP MSG angekommen\n");
-	answer_pong();	
-
-	printf("Sende delay req\n");
-	client(0);//DELAY REQ
-        t2 = time_client;
-	returnval = wait_for_pong();
-	printf("returnval DELAY REQ = %d\n",returnval);
-
-	printf("Warte auf DELAY_RESP\n");
-	server();
-	t4 = time_server;
-	answer_pong();
-
-	printf("sende jetzt t1, 2, t4 zurück\n");
-	client(t1);
-	returnval = wait_for_pong();
-	printf("returnval t1 senden = %d\n", returnval);
-
-	client(t2);
-        returnval = wait_for_pong();
-	printf("returnval t2 senden = %d\n", returnval);
-
-	client(t4);
-        returnval = wait_for_pong();
-	printf("returnval t4 senden = %d\n", returnval);
-	
-	printf("\nSind komplett fertig mit senden\n");
-}
-*/
