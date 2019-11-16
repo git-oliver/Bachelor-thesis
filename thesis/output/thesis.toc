@@ -5,7 +5,7 @@
 \contentsline {subsection}{\numberline {2.1}Verwendete Hardware}{2}
 \contentsline {subsubsection}{\nonumberline Controller}{2}
 \contentsline {subsubsection}{\nonumberline Sensoren}{2}
-\contentsline {paragraph}{\nonumberline Ultraschallsensor}{3}
+\contentsline {paragraph}{\nonumberline Ultraschallsensor}{2}
 \contentsline {paragraph}{\nonumberline Sound Detector}{4}
 \contentsline {paragraph}{\nonumberline \SI {433}{\mega \hertz } Funk Transmitter-Receiver}{5}
 \contentsline {paragraph}{\nonumberline Lautsprecher}{7}
@@ -15,7 +15,7 @@
 \contentsline {subsection}{\numberline {2.4}User Datagram Protocol -- UDP}{8}
 \contentsline {subsection}{\numberline {2.5}Netzwerk-Socket}{9}
 \contentsline {subsection}{\numberline {2.6}Indoor/Outdoor Positionsbestimmung}{9}
-\contentsline {subsection}{\numberline {2.7}Zeitsynchronisation}{9}
+\contentsline {subsection}{\numberline {2.7}Zeitsynchronisation}{10}
 \contentsline {subsection}{\numberline {2.8}Mathematischer Hintergrund -- Positionsbestimmung}{11}
 \contentsline {section}{\numberline {3}Entwurf}{15}
 \contentsline {subsection}{\numberline {3.1}Hardware}{15}

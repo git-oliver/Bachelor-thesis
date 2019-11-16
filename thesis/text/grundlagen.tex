@@ -16,7 +16,6 @@ Für die Lauftzeitmessung können verschiedene Sensoren verwendet werden. Im fol
 
 %als alternative subsubsubsection
 \paragraph{Ultraschallsensor}\mbox{}\\
-Für die Positionsbestimmung ist der Ultraschallsensor \ultraschall \platz (Abbildung \ref{img:ultraschallsensor}) zum Einsatz gekommen \cite{src_HC_SR04}. 
 
 \begin{figure}[!ht]
         \centering
@@ -25,9 +24,9 @@ Für die Positionsbestimmung ist der Ultraschallsensor \ultraschall \platz (Abbi
         \label{img:ultraschallsensor}
 \end{figure}
 
-Ich habe mich aus folgenden Gründen für den \ultraschall \platz Sensor entschieden: weite Verbreitung im Arduino/ Raspberry-Pi-Bereich, kompakte Bauweise, geringe Anschaffungskosten und einfache Ansteuerung.
+Für die Positionsbestimmung ist der Ultraschallsensor \ultraschall \platz (Abbildung \ref{img:ultraschallsensor}) zum Einsatz gekommen \cite{src_HC_SR04}. Ich habe mich aus folgenden Gründen für den \ultraschall \platz Sensor entschieden: weite Verbreitung im Arduino/ Raspberry-Pi-Bereich, kompakte Bauweise, geringe Anschaffungskosten und einfache Ansteuerung.
 \\
-Ultraschallsensoren werden verwendet, um Distanzen zu einem Gegenstand zu ermittlen. Dabei wird ein Ultraschallsignal ausgesendet, welches von dem Gegenstand zurückreflektiert und wieder empfangen wird. Über die Zeitdifferenz zwischen Aussenden und Empfangen des Ultraschallsignals kann die Distanz berechnet werden. Aus der Abbildung \ref{img:ultraschall_prinzip} wird das Prinzip deutlich. 
+Ultraschallsensoren werden verwendet, um Distanzen zu einem Gegenstand zu ermittlen. Dabei wird ein Ultraschallsignal ausgesendet, welches von dem Gegenstand zurückreflektiert und wieder empfangen wird. Über die Zeitdifferenz zwischen Aussenden und Empfangen des Ultraschallsignals kann die Distanz berechnet werden. Aus der Abbildung \ref{img:ultraschall_prinzip} wird das Prinzip deutlich. Der \ultraschall \platz  hat eine Reichweite von \SI{3}{\centi \metre} bis \SI{400}{\centi \metre}. Der Vorteil von diesem Ultraschallsensor ist, dass es ohne weitere Sensoren auskommt. Allerdings weißt der Ultraschallsensor einige Nachteile auf, weswegen er von einem leistungsfähigeren Schallmikrofon (\microphone) abgelöst worden ist. Ultraschallsensoren funktionieren nur, wenn sie direkten Sichtkontakt zum Objekt haben. Dies ist nicht immer gegeben. Des weiteren könnnen nur Objekte, die in dem Sendekegel des Ultraschallsensors liegen, detektiert werden. Der Sendekegel für den \ultraschall \platz liegt bei \SI{15}{\degreeCelsius}. Aufgrund dieser Nachteile habe ich mich in der Endanwendung gegen diesen Sensor entschiedenen, denn die Positionsbestimmung wird dadurch stark beeinträchtigt.
 
 \begin{figure}[H]
         \centering
@@ -37,10 +36,7 @@ Ultraschallsensoren werden verwendet, um Distanzen zu einem Gegenstand zu ermitt
         \label{img:ultraschall_prinzip}
 \end{figure}
 
-Der \ultraschall \platz  hat eine Reichweite von \SI{3}{\centi \metre} bis \SI{400}{\centi \metre}. Der Vorteil von diesem Ultraschallsensor ist, dass es ohne weitere Sensoren auskommt. Allerdings weißt der Ultraschallsensor einige Nachteile auf, weswegen er von einem leistungsfähigeren Schallmikrofon (\microphone) abgelöst worden ist. Ultraschallsensoren funktionieren nur, wenn sie direkten Sichtkontakt zum Objekt haben. Dies ist nicht immer gegeben. Des weiteren könnnen nur Objekte, die in dem Sendekegel des Ultraschallsensors liegen, detektiert werden. Der Sendekegel für den \ultraschall \platz liegt bei \SI{15}{\degreeCelsius}. Aufgrund dieser Nachteile habe ich mich in der Endanwendung gegen diesen Sensor entschiedenen, denn die Positionsbestimmung wird dadurch stark beeinträchtigt.
-
 \paragraph{Sound Detector}\mbox{}\\
-Abbildung \ref{img:sound} zeigt den \microphone .
 
 \begin{figure}[H]
         \centering
@@ -48,8 +44,7 @@ Abbildung \ref{img:sound} zeigt den \microphone .
         \caption{Sparkfun Sound Detector}
         \label{img:sound}
 \end{figure}
-
-Der Sensor kann hörbaren Schall detektieren. Darüber hinaus kann die Empfindlichkeit durch das Einlöten eines Widerstandes erhöht oder verringert werden. Der Vorteil gegenüber dem Ultraschallsensor ist, dass der Schall sich kugelförmig ausbreitet. Somit muss der Sensor nicht auf eine Richtung ausgerichtet werden. Allerdings stellen Hindernisse für einen hörbaren Schall ein Problem da. Deswegen sollten keine oder nur wenige Hindernisse auf der Ebene vorhanden sein. Die Reichweite kann über eine Amplitudenveränderung des Tongebers verändert werden. Für die Ansteuerung des \microphone \platz kann der digitale Ausgang \si{GATE} verwendet werden. Es gibt noch weitere Ausgänge, allerdings werden diese nicht verwendet \cite{src_SOUND_DETECTOR}. Sobald ein Signal die eingestellte Schallschwelle überschreitet, wird der \si{GATE}-Ausgang des Sound Detectors auf \si{HIGH} gesetzt. Wird die Schallschwelle unterschritten, fällt der \si{GATE}-Ausgang zurück auf \si{LOW}. Abbildung \ref{img:gate_ausgang} zeigt ein Überschreiten des Schallpegels (Pegelwechsel).
+Abbildung \ref{img:sound} zeigt den \microphone. Der Sensor kann hörbaren Schall detektieren. Darüber hinaus kann die Empfindlichkeit durch das Einlöten eines Widerstandes erhöht oder verringert werden. Der Vorteil gegenüber dem Ultraschallsensor ist, dass der Schall sich kugelförmig ausbreitet. Somit muss der Sensor nicht auf eine Richtung ausgerichtet werden. Allerdings stellen Hindernisse für einen hörbaren Schall ein Problem da. Deswegen sollten keine oder nur wenige Hindernisse auf der Ebene vorhanden sein. Die Reichweite kann über eine Amplitudenveränderung des Tongebers verändert werden. Für die Ansteuerung des \microphone \platz kann der digitale Ausgang \si{GATE} verwendet werden. Es gibt noch weitere Ausgänge, allerdings werden diese nicht verwendet \cite{src_SOUND_DETECTOR}. Sobald ein Signal die eingestellte Schallschwelle überschreitet, wird der \si{GATE}-Ausgang des Sound Detectors auf \si{HIGH} gesetzt. Wird die Schallschwelle unterschritten, fällt der \si{GATE}-Ausgang zurück auf \si{LOW}. Abbildung \ref{img:gate_ausgang} zeigt ein Überschreiten des Schallpegels (Pegelwechsel).
  
 \begin{figure}[H]
         \centering
@@ -156,18 +151,6 @@ Für eine Laufzeitmessung ist es wichtig, dass Sender und Empfänger die gleiche
 Zuerst wird bei PTP die Laufzeitverzögerung ermittelt. Danach kommt es zur eigentlichen Synchronisation der Zeit. Für die Laufzeitverzögerung sendet zuerst der Master eine \si{SYNC}-Nachricht mit seinem Zeitstempel $t_{0}$ an den Slave. Aufgrund der Verarbeitungszeit, der Laufzeitverzögerung und der Zugriffszeit, ist der Zeitstempel $t_{0}$ nicht präzise. Mit einer \si{FOLLOW\_UP}-Nachricht werden diese Probleme gemildert. Dabei enthält die \si{FOLLOW\_UP}-Nachricht den Zeitstempel $t_{0}$. Nach der \si{FOLLOW\_UP}-Nachricht weiß der Slave wie groß die Laufzeitverzögerung ist. Die \si{FOLLOW\_UP}-Nachricht kann auch weggelassen werden, dafür muss allerdings der Master den Zeitstempel $t_{0}$ weit genug in der Zukunft bestimmen, sodass die Vorverarbeitung der \si{SYNC}-Nachricht abgeschlossen werden kann. Dann ist der Zeitpunkt des Aussenden der \si{SYNC}-Nachricht exakt gleich mit den Zeitstempel $t_{0}$. Diese Arbeit verwendet dies allerdings nicht. Die \si{FOLLOW\_UP}-Nachricht vom wird mit dem Zeitstempel $t_{0}$ versehen und von Master ausgesendet. Somit ist nun die Laufzeitverzögerung bekannt.
 Um nun den Offset zu bestimmen, sendet der Slave eine \si{DELAY\_REQ}-Nachricht - ohne Inhalt. Dabei wird der Zeitstempel $t_{2}$ beim Absenden des Slave festgehalten. Der Master empfängt die \si{DELAY\_REQ}-Nachricht und speichert den seinen Zeitstempel in der Variable $t_{3}$. Dann wird mit einer \si{DELAY\_RESP}-Nachricht mit dem Inhalt des Zeitstempels $t_{3}$ geantwortet. Der Slave empfängt die Nachricht und speichert bei Empfang in $t_{4}$ seinen Zeitstempel. Nun kann mit den folgenden zwei Formeln (\ref{eq:formel_ptp}) die Zeitdifferenz berechnet werden. Dabei entspricht $\tau_{prop}$ die Laufzeitverzögerung und Omega (\si{\ohm}) ist der Zeitunterschied zwischen Master und Slave \cite{src_PTP}.
 
-
-//hier steht etwas über die genauigkeit drin
-https://cdn.selinc.com/assets/Literature/Publications/Technical%20Papers/6650_UnderstandingApplying_SA_20140206_Web3.pdf?v=20151209-080654
-
-
-
-
-
-
-
-
-
 \begin{equation}\label{eq:formel_ptp}
 \begin{split}
 \tau_{prop} = \frac{t_{1} - t_{0} + t_{3} - t_{2}}{2}
@@ -184,8 +167,6 @@ https://cdn.selinc.com/assets/Literature/Publications/Technical%20Papers/6650_Un
         \source{https://www.ibr.cs.tu-bs.de/oa/vonzengen\_ICIT2017.pdf}
         \label{img:ptp}
 \end{figure}
-
-
 
 \subsection{Mathematischer Hintergrund -- Positionsbestimmung}
 
