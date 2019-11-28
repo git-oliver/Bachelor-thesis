@@ -1,23 +1,23 @@
 \select@language {ngerman}
-\contentsline {figure}{\numberline {1}{\ignorespaces Vorderseite des SAM R21 Xplained Pro Evaluation KitBoard\relax }}{2}
-\contentsline {figure}{\numberline {2}{\ignorespaces Vorderseite des HC-SR04 Sensor\relax }}{3}
-\contentsline {figure}{\numberline {3}{\ignorespaces Funktionsweise von Ultraschallsensoren\relax }}{4}
-\contentsline {figure}{\numberline {4}{\ignorespaces Sparkfun Sound Detector\relax }}{4}
-\contentsline {figure}{\numberline {5}{\ignorespaces Pegelwechsel des \si {GATE}--Ausgang\relax }}{5}
-\contentsline {figure}{\numberline {6}{\ignorespaces \SI {433}{\mega \hertz } Funk Transmitter-Receiver\relax }}{6}
-\contentsline {figure}{\numberline {7}{\ignorespaces Ansteuerung des Lautsprechers\relax }}{7}
-\contentsline {figure}{\numberline {8}{\ignorespaces Vergleich von RIOT mit drei anderen Betriebssystemen\relax }}{8}
-\contentsline {figure}{\numberline {9}{\ignorespaces Nachrichtenaustausch in PTP\relax }}{11}
-\contentsline {figure}{\numberline {10}{\ignorespaces Prinzip der Positionsbestimmung\relax }}{12}
-\contentsline {figure}{\numberline {11}{\ignorespaces Bereich indem sich der Zielknoten befinden muss\relax }}{13}
-\contentsline {figure}{\numberline {12}{\ignorespaces Versuchsaufbau, unterteilt in Module\relax }}{15}
-\contentsline {figure}{\numberline {13}{\ignorespaces Verdrahtungsplan Master\relax }}{16}
-\contentsline {figure}{\numberline {14}{\ignorespaces Verdrahtungsplan Slave\relax }}{16}
-\contentsline {figure}{\numberline {15}{\ignorespaces Versuchsaufbau als Blockschaltbild\relax }}{17}
-\contentsline {figure}{\numberline {16}{\ignorespaces Versuchsaufbau\relax }}{17}
-\contentsline {figure}{\numberline {17}{\ignorespaces Verz\IeC {\"o}gerung der Schallausbreitung\relax }}{18}
-\contentsline {figure}{\numberline {18}{\ignorespaces Messwerte von $t_{prop}$ bei hundert Messungen\relax }}{27}
-\contentsline {figure}{\numberline {19}{\ignorespaces \si {DATA}-Pin des \SI {433}{\mega \hertz } Funk Transmitter-Receiver Empf\IeC {\"a}nger\relax }}{28}
-\contentsline {figure}{\numberline {20}{\ignorespaces Programmablaufplan der Software\relax }}{30}
-\contentsline {figure}{\numberline {21}{\ignorespaces Positionsbestimmung ohne Schwankung\relax }}{32}
-\contentsline {figure}{\numberline {22}{\ignorespaces Positionsbestimmung mit Schwankung\relax }}{32}
+\contentsline {figure}{\numberline {1}{\ignorespaces Vorderseite des SAM R21 Xplained Pro Evaluation KitBoard\relax }}{2}{figure.caption.7}
+\contentsline {figure}{\numberline {2}{\ignorespaces Vorderseite des HC-SR04 Sensor\relax }}{3}{figure.caption.10}
+\contentsline {figure}{\numberline {3}{\ignorespaces Funktionsweise von Ultraschallsensoren\relax }}{4}{figure.caption.11}
+\contentsline {figure}{\numberline {4}{\ignorespaces Sparkfun Sound Detector\relax }}{4}{figure.caption.13}
+\contentsline {figure}{\numberline {5}{\ignorespaces Pegelwechsel des \si {GATE}--Ausgang\relax }}{5}{figure.caption.14}
+\contentsline {figure}{\numberline {6}{\ignorespaces \SI {433}{\mega \hertz } Funk Transmitter-Receiver\relax }}{6}{figure.caption.16}
+\contentsline {figure}{\numberline {7}{\ignorespaces Ansteuerung des Lautsprechers\relax }}{7}{figure.caption.18}
+\contentsline {figure}{\numberline {8}{\ignorespaces Vergleich von RIOT mit drei anderen Betriebssystemen\relax }}{8}{figure.caption.20}
+\contentsline {figure}{\numberline {9}{\ignorespaces Nachrichtenaustausch in PTP\relax }}{11}{figure.caption.21}
+\contentsline {figure}{\numberline {10}{\ignorespaces Prinzip der Positionsbestimmung\relax }}{12}{figure.caption.22}
+\contentsline {figure}{\numberline {11}{\ignorespaces Bereich indem sich der Zielknoten befinden muss\relax }}{13}{figure.caption.23}
+\contentsline {figure}{\numberline {12}{\ignorespaces Versuchsaufbau, unterteilt in Module\relax }}{15}{figure.caption.24}
+\contentsline {figure}{\numberline {13}{\ignorespaces Verdrahtungsplan Master\relax }}{16}{figure.caption.25}
+\contentsline {figure}{\numberline {14}{\ignorespaces Verdrahtungsplan Slave\relax }}{16}{figure.caption.26}
+\contentsline {figure}{\numberline {15}{\ignorespaces Versuchsaufbau als Blockschaltbild\relax }}{17}{figure.caption.27}
+\contentsline {figure}{\numberline {16}{\ignorespaces Versuchsaufbau\relax }}{17}{figure.caption.28}
+\contentsline {figure}{\numberline {17}{\ignorespaces Verz\IeC {\"o}gerung der Schallausbreitung\relax }}{18}{figure.caption.29}
+\contentsline {figure}{\numberline {18}{\ignorespaces Messwerte von $t_{prop}$ bei hundert Messungen\relax }}{27}{figure.caption.40}
+\contentsline {figure}{\numberline {19}{\ignorespaces \si {DATA}-Pin des \SI {433}{\mega \hertz } Funk Transmitter-Receiver Empf\IeC {\"a}nger\relax }}{28}{figure.caption.41}
+\contentsline {figure}{\numberline {20}{\ignorespaces Programmablaufplan der Software\relax }}{30}{figure.caption.42}
+\contentsline {figure}{\numberline {21}{\ignorespaces Positionsbestimmung ohne Schwankung\relax }}{32}{figure.caption.44}
+\contentsline {figure}{\numberline {22}{\ignorespaces Positionsbestimmung mit Schwankung\relax }}{32}{figure.caption.45}

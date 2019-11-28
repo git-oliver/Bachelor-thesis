@@ -60,10 +60,10 @@ P_{B}: \; (7,0504 \;|\; 2,1899)
 \end{split}
 \end{equation*}
 
-Punkt \si{A} ist der korrekte Punkt, weil sein Abstand zum Kreismittelpunkt kleiner ist als von Punkt \si{B} ($0.9721 < 4.1306$). Daher sollte er von der Funktion zurückgegeben werden. Die Funktion funktioniert wie erwartet fehlerfrei.
+Punkt \si{A} ist der korrekte Punkt, weil sein Abstand zum Kreismittelpunkt kleiner ist als von Punkt \si{B} ($0.9721 < 4.1306$). Daher sollte er von der Funktion zurückgegeben werden. Die Funktion arbeitet wie erwartet fehlerfrei.
 
 \subsection{Positionsbestimmung}
-Zur Bestimmung der Position benötigt die Funktion $calc_position()$ drei Parameter. Diese sind die drei Kreise, die sich in einem Schnittpunkt schneiden oder einen Bereich aufspannen. Für den Fall, dass alle drei Kreise einen gemeinsamen Schnittpunkt haben, gibt die Funktion dreimal die X/Y-Koordinaten zurück. Bei einem Bereich werden die X/Y-Koordinaten der Eckpunkte zurückgegeben. Die Funktion test man mit den folgenden Kreisgleichungen: zuerst wird ein Test unternommen, wobei es ein gemeinsamen Schnittpunkt gibt.
+Zur Bestimmung der Position benötigt die Funktion $calc\_position()$ drei Parameter. Diese sind die drei Kreise, die sich in einem Schnittpunkt schneiden oder einen Bereich aufspannen. Für den Fall, dass alle drei Kreise einen gemeinsamen Schnittpunkt haben, gibt die Funktion dreimal die X/Y-Koordinaten zurück. Bei einem Bereich werden die X/Y-Koordinaten der Eckpunkte von der Funktion zurückgegeben. Die Funktion testet man mit den folgenden Kreisgleichungen: zuerst wird ein Test unternommen, wobei es ein gemeinsamen Schnittpunkt gibt.
 
 \begin{equation*}
 \label{eq:unit_test_positionsbestimmung}
@@ -73,7 +73,7 @@ Zur Bestimmung der Position benötigt die Funktion $calc_position()$ drei Parame
 (x - 4)^{2} + (y - 1,8693)^{2} = 2^{2}
 \end{split}
 \end{equation*}
-Der Schnittpunkt der drei Kreise ist $( 4,8872 \;|\; 3,6618)$. Dies gibt auch die Funktion zurück. Als nächstes wird der Rückgabewert bei keinem gemeinsamen Schittpunkt untersucht.
+Der Schnittpunkt der drei Kreise ist $( 4,8872 \;|\; 3,6618)$. Das Ergebnis gibt auch die Funktion zurück. Als nächstes wird der Rückgabewert bei keinem gemeinsamen Schnittpunkt untersucht.
 
 \begin{equation*}
 \label{eq:unit_test_positionsbestimmung}
@@ -84,7 +84,7 @@ Der Schnittpunkt der drei Kreise ist $( 4,8872 \;|\; 3,6618)$. Dies gibt auch di
 \end{split}
 \end{equation*}
 
-Die obigen drei Kreise haben keinen gemeinsamen Schittpunkt. Die Funktion gibt die folgenden Koordinaten der Eckpunkte zurück.
+Die Funktion gibt die folgenden Koordinaten der Eckpunkte zurück.
 
 \begin{equation*}
 \label{eq:unit_test_positionsbestimmung_2}
@@ -95,7 +95,7 @@ P_{C}: \; (4,2794 \;|\; 3,0196)
 \end{split}
 \end{equation*}
 
-In beiden Fällen ist der Rückgabewert der Funktion korrekt. Somit funktioniert die Funktion wie erwartet.
+In beiden Fällen ist der Rückgabewert der Funktion korrekt. Somit arbeitet die Funktion wie erwartet.
 
 
 

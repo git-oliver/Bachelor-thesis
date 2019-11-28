@@ -20,14 +20,20 @@
 \usepackage{verbatim}
 \usepackage{subfigure}
 \usepackage{siunitx}
+\usepackage{hyperref}
+
+
 %\usepackage[scaled]{helvet}
 \usepackage[T1]{fontenc}
 
+%\renewcommand{\sffamily}
+
+\renewcommand\familydefault{\sfdefault} 
+
+
+
 \sisetup{locale = DE, per-mode=fraction,parse-numbers=false, decimalsymbol=comma}
 
-\renewcommand{\sffamily}
-
-%\renewcommand\familydefault{\sfdefault} 
 \newcommand{\source}[1]{\caption*{Source: {#1}} }
 \renewcommand{\bibsection}{}
 \newcommand{\RM}[1]{\MakeUppercase{\romannumeral #1{.}}}

@@ -1,9 +1,9 @@
 \newpage
 \section{Implementierung}
-Dieses Kapitel widmet sich der der konkreten Implementierung.
+Dieses Kapitel widmet sich der konkreten Implementierung.
 
 \subsection{\microphone}
-Bevor eine Messung mit dem Board durchgeführt wird, ist zuerst ein Plausibilitätscheck durchgeführt worden. Dabei überprüft man, ob die beiden \microphone \platz Mikrofone korrekte Ergebnisse liefern. Der Aufbau ist durch das folgende Blockschaltbild \ref{img:blockschaltbild_plausibilitaetscheck} abgebildet. Abbildung \ref{img:picture_plausibilitaetscheck} zeigt den Aufbau im Laborraum.
+Bevor eine Messung mit dem Board durchgeführt worden ist, wurde zuerst ein Plausibilitätscheck vorgenommen. Dabei überprüft man, ob die beiden \microphone \platz Mikrofone korrekte Ergebnisse liefern. Der Aufbau ist durch das folgende Blockschaltbild \ref{img:blockschaltbild_plausibilitaetscheck} abgebildet. Abbildung \ref{img:picture_plausibilitaetscheck} zeigt den Aufbau im Laborraum.
 
 \begin{figure}[H]
         \centering
@@ -20,7 +20,7 @@ Bevor eine Messung mit dem Board durchgeführt wird, ist zuerst ein Plausibilit�
         \label{img:picture_plausibilitaetscheck}
 \end{figure}
 
-Die beiden Mikrofone sind an einem Oszilloskop angeschlossen. Es werden die \si{AUDIO}- und \si{GATE}-Ausgänge untersucht. Wenn die Schallquelle einen Ton aussendet (durch Klatschen oder ähnliches), passiert er zuerst das Mikrofon A und dann mit einer Verzögerung Mikrofon B. Mithilfe des bekannten Abstandes der beiden Mikrofone wird untersucht, ob das Ergebnis auf dem Oszilloskop mit dem Abstand der Mikrofone übereinstimmt. In Abbildung \ref{img:plausibilitaetscheck_oszi} sind vier verschiedene Signale abgebildet. Dabei entspricht Signal \textit{gelb} dem \si{GATE}-Ausgang von Mikrofon A und \textit{grün} dem \si{AUDIO}-Ausgang. Signal \textit{violett} und \textit{blau} entsprechen dem \si{GATE}- und \si{AUDIO}-Ausgang von dem zweiten Mikrofon.
+Die beiden Mikrofone sind an einem Oszilloskop angeschlossen. Es werden die \si{AUDIO}- und \si{GATE}-Ausgänge untersucht. Wenn die Schallquelle einen Ton aussendet (durch Klatschen oder ähnliches), passiert er zuerst das Mikrofon A und dann mit einer Verzögerung Mikrofon B. Der Abstand der beiden Mikrofone wurde daraufhin mit dem Oszilloskop überprüft. In Abbildung \ref{img:plausibilitaetscheck_oszi} sind vier verschiedene Signale abgebildet. Dabei entspricht Signal \textit{gelb} dem \si{GATE}-Ausgang von Mikrofon A und \textit{grün} dem \si{AUDIO}-Ausgang. Signal \textit{violett} und \textit{blau} entsprechen dem \si{GATE}- und \si{AUDIO}-Ausgang von Mikrofon B.
 
 \begin{figure}[H]
         \centering
@@ -30,7 +30,7 @@ Die beiden Mikrofone sind an einem Oszilloskop angeschlossen. Es werden die \si{
         \label{img:plausibilitaetscheck_oszi}
 \end{figure}
 
-Es ist deutlich erkennbar, dass eine Verzögerung vorhanden ist. Die beiden \si{GATE}-Ausgänge liegen ungefähr \SI{2863}{\micro \second} auseinander. Mit einer Ausbreitungsgeschwindigkeit von \SI{0,034}{\centi\metre\per\micro\second} entspricht das ungefähr \SI{97,342}{\centi\metre}. Der gemessene Abstand ist \SI{100}{\centi\metre}. Diese Auswertung zeigt, dass die Verzögerung nur minimal von dem gemessenen Abstand abweicht. Es folgen weitere Messungen, bei dem anstatt eines Klatschen der verwendetete Tongeber verwendet wird. Dabei sitzt der Lautsprecher direkt neben einem der beiden Mikrofone. Das zweite Mikrofon sitzt \SI{1}{\metre}, \SI{2}{\metre} und \SI{3}{\metre} entfernt. Es folgen drei Tabellen (\ref{tab:plausibilitaetscheck_1m} - \ref{tab:plausibilitaetscheck_3m}) mit den Messwerten (Arithmetisches Mittel).
+Es ist deutlich erkennbar, dass eine Verzögerung vorhanden ist. Die beiden \si{GATE}-Ausgänge liegen ungefähr \SI{2863}{\micro \second} auseinander. Mit einer Ausbreitungsgeschwindigkeit von \SI{0,034}{\centi\metre\per\micro\second} entspricht das ungefähr \SI{97,342}{\centi\metre}. Der gemessene Abstand ist \SI{100}{\centi\metre}. Diese Auswertung zeigt, dass die Verzögerung nur minimal von dem gemessenen Abstand abweicht. Es folgen weitere Messungen, bei dem anstatt eines Klatschen der verwendetete Tongeber genommen wird. Dabei sitzt der Lautsprecher direkt neben einem der beiden Mikrofone. Das zweite Mikrofon wird in Abständen von \SI{1}{\metre}, \SI{2}{\metre} und \SI{3}{\metre} aufgestellt. Es folgen drei Tabellen (\ref{tab:plausibilitaetscheck_1m} - \ref{tab:plausibilitaetscheck_3m}) mit den Messwerten (Arithmetisches Mittel).
 
 
 \begin{table}[H]
@@ -103,10 +103,10 @@ Es ist deutlich erkennbar, dass eine Verzögerung vorhanden ist. Die beiden \si{
 \end{table}
 
 
-Aus den obigen Tabellen ist zu erkennen, dass Mikrofon \si{1} mindestens \SI{439,30}{\mu\s} braucht, um den Ton wahrzunehmen. Allerdings steht das Mikrofon \si{1} direkt neben dem Tongeber. Durch Latenzen beim Mikrofon ist dieser Messwert nicht null. Allerdings nimmt die Latenz mit der Entfernung ab, woraus keine konstante Abweichung entnommen werden kann. Weitherhin ist zu erkennen, dass es eine deutliche Abweichung gibt, obwohl der Versuch mit Klatschen als Tongeber ein brauchbares Ergebnis produzierte. Dieses Messergebnis zeigt, dass der Lautsprecher und das Mikrofon zusammen keine brauchbaren Messergebnisse erzielen, da die Abweichungen irregulär ansteigen.
+Aus den obigen Tabellen ist zu erkennen, dass Mikrofon \si{1} mindestens \SI{439,30}{\mu\s} benötigt, um den Ton wahrzunehmen. Allerdings steht das Mikrofon \si{1} direkt neben dem Tongeber. Durch Latenzen beim Mikrofon ist dieser Messwert nicht null. Allerdings nimmt die Latenz mit der Entfernung ab, woraus keine konstante Abweichung entnommen werden kann. Weiterhin ist zu erkennen, dass es eine deutliche Abweichung gibt, obwohl der Versuch mit Klatschen als Tongeber ein brauchbares Ergebnis produzierte. Dieses Messergebnis zeigt, dass der Lautsprecher und das Mikrofon zusammen keine brauchbaren Messergebnisse erzielen, da die Abweichungen irregulär ansteigen.
 
 \subsection{Modul A}
-Das Modul A untersucht die Verzögerung des Masters vom Detektieren eines Mikrofons und des Aufrufs der Interruptroutine. Das Mikrofon liefert bei Erkennen eines Tons einen Pegelwechsel von \si{LOW} - \si{HIGH}. In der Interruptroutine des Masters wird ein Pin auf \si{HIGH} gesetzt. Dabei besitzt der Slave den Lautsprecher. Es wird ein \si{PIEP}-Ton erzeugt. Master und Slave agieren unabhängig voneinander. Das Oszilloskop wurde an dem \si{GATE}-Ausgang des Mikrofons angehängt und an dem Pin, der in der Interruptroutine auf \si{HIGH} gesetzt worden ist. Darüber hinaus ist die Schallquelle dreimal versetzt worden, um Abweichungen abhängig von der Distanz vornehmen zu können. Es folgt eine Tabelle (\ref{tab:modul_A}) mit den Messwerten. Die Messwerte wurden von dem Oszilloskop abgelesen.
+Das Modul A untersucht die Verzögerung des Masters vom Detektieren eines Mikrofons zu dem Aufruf der Interruptroutine. Das Mikrofon liefert bei Erkennen eines Tons einen Pegelwechsel von \si{LOW} - \si{HIGH}. In der Interruptroutine des Masters wird ein Pin auf \si{HIGH} gesetzt. Dabei besitzt der Slave den Lautsprecher. Es wird ein \si{PIEP}-Ton erzeugt. Master und Slave agieren unabhängig voneinander. Das Oszilloskop wurde an dem \si{GATE}-Ausgang des Mikrofons sowie an dem Pin angehängt, der in der Interruptroutine auf \si{HIGH} gesetzt worden ist. Darüber hinaus ist die Schallquelle dreimal versetzt worden, um Abweichungen abhängig von der Distanz vornehmen zu können. Es folgt eine Tabelle (\ref{tab:modul_A}) mit den Messwerten. Die Messwerte wurden von dem Oszilloskop abgelesen.
 
 \begin{table}[H]
 \centering
@@ -132,10 +132,10 @@ Das Modul A untersucht die Verzögerung des Masters vom Detektieren eines Mikrof
 \end{table}
 
 
-Die resultierenden Durchschnittswerte weichen nur minimal voneinander ab. Somit hat die Distanz zwischen der Schallquelle und dem Mikrofon keinen Einfluss auf die Interruptzeit. Da die Interruptzeit nur minimal abweicht, kann diese Verzögerung weggerechnet werden.
+Die resultierenden Durchschnittswerte (arithmetisches Mittel) weichen nur minimal voneinander ab. Somit hat die Distanz zwischen der Schallquelle und dem Mikrofon keinen Einfluss auf die Interruptzeit. Da die Interruptzeit nur minimal abweicht, kann diese Verzögerung weggerechnet werden.
 
 \subsection{Modul B}
-Dieses Modul untersucht die Abweichungen vom Aussenden eines \si{HIGH}-Signals des Masters bis zum Durchschalten des Mosfets beim Slave. Der Slave nimmt das \si{HIGH}-Signal vom Master durch eine Interruptroutine entgegen und setzt den \si{GATE}-Pin des Mosfets sofort auf \si{HIGH}. Der Master ist per Kabel mit dem Slave verbunden. Auch hier wird die Kabellänge verändert. Für dieses Modul wird kein Lautsprecher und kein Mikrofon benötigt.
+Dieses Modul untersucht die Abweichungen vom Aussenden eines \si{HIGH}-Signals des Masters bis zum Durchschalten des Mosfets beim Slave. Der Slave nimmt das \si{HIGH}-Signal vom Master durch eine Interruptroutine entgegen und setzt den \si{GATE}-Pin des Mosfets sofort auf \si{HIGH}. Der Master ist per Kabel mit dem Slave verbunden. Für dieses Modul wird kein Lautsprecher und kein Mikrofon benötigt.
 \\
 Es wird angenommen, dass die Interruptzeit nicht von der Kabellänge zwischen Master und Slave abhängig ist. Die Messwerte für eine Kabellänge von \SI{5}{\m} und einer direkten Verbindung sind wie folgt:
 
@@ -163,10 +163,10 @@ Es wird angenommen, dass die Interruptzeit nicht von der Kabellänge zwischen Ma
 \end{table}
 
 
-Auch hier zeigt sich, das die Interruptzeit nicht von der Kabellänge abhängig ist. Weiterhin ist die Interruptzeit des Slaves nahezu konstant -- dadurch kann auch diese Verzögerung weggerechnet werden. 
+Hier zeigt sich, das die Interruptzeit nicht von der Kabellänge abhängig ist. Weiterhin ist die Interruptzeit des Slaves nahezu konstant -- dadurch kann auch diese Verzögerung weggerechnet werden. 
 
 \subsection{Modul C}
-Hierbei soll die Anstiegszeit des N-Mosfet ermittelt werden. Die Anstoiegszeit liegt laut dem Datenblatt bei \SI{40}{\nano\s}. Das verwendete Oszilloskop schafft es nicht, die Angabe zu überprüfen, da die Zeitauflösung nicht genau genug ist. Die Anstiegszeit verursacht eine Abweichung von $\si{0,000034}[\si{\centi\m\per\nano\s}] \cdot \si{40} [\si{\nano\s}] = \si{0,00136} [\si{\centi\m}]$. Diese Abweichung ist zu gering, um Einfluss auf das Endergebnis auszuüben, da sie erst ab der dritten Nachkommastelle Einfluss ausübt. Aufgrund dessen wird diese Abweichung vernachlässigt.
+Das Modul C soll die Anstiegszeit des N-Mosfet ermitteln. Die Anstiegszeit liegt laut dem Datenblatt bei \SI{40}{\nano\s}. Das verwendete Oszilloskop schafft es nicht, die Angabe zu überprüfen, da die Zeitauflösung nicht genau genug ist. Die Anstiegszeit verursacht eine Abweichung von $\si{0,000034}[\si{\centi\m\per\nano\s}] \cdot \si{40} [\si{\nano\s}] = \si{0,00136} [\si{\centi\m}]$. Diese Abweichung ist zu gering, um Einfluss auf das Endergebnis auszuüben, da sie erst ab der dritten Nachkommastelle Einfluss ausübt. Aufgrund dessen wird diese Abweichung vernachlässigt.
 
 \subsection{Modul D}
 \label{sec:modul_D}
@@ -242,7 +242,7 @@ Dieses Modul untersucht die Abweichungen vom Lautsprecher und dem Mikrofon. Dabe
 \end{table}
 
 
-Aus den Messwerten geht hervor, dass mit steigender Distanz der Fehler größer wird. Der Fehler steigt nicht linear an. Da kein Muster erkennbar ist, kann diese Abweichung nicht verrechnet werden. Da bei den vorherigen Modulen ein konstanter Fehler zu erkennen war, und dieses Modul ihn nicht aufweist, muss die Abweichung des Endergebnisses zwischen dem Lautsprecher und dem Mikrofon liegen. Eine solche Abweichung macht die Positionsbestimmung im Zentimeterbereich unmöglich. Die Ergebnisse aus Modul A lassen sich bei diesen Messungen bestätigen. Dadurch verfestigt sich der Verdacht, dass der Fehler beim Mikrofon oder beim Lautsprecher und dem Raum dazwischen liegen muss. Eine Vermutung für diesen größer werdenden Fehler ist, dass der Schall durch die Gegenstände im Raum abgelenkt wird und deswegen später beim Mikrofon ankommt. Weiterhin kann vielleicht durch eine Änderung der Tonfrequenz ein genaueres Ergebnis mit weniger Fehlern produziert werden. 
+Aus den Messwerten geht hervor, dass mit steigender Distanz der Fehler größer wird. Der Fehler steigt nicht linear an. Da kein Muster erkennbar ist, kann diese Abweichung nicht verrechnet werden. Da bei den vorherigen Modulen (A-C) ein konstanter Fehler zu erkennen war, und das Modul D ihn nicht aufweist, muss die Abweichung des Endergebnisses zwischen dem Lautsprecher und dem Mikrofon liegen. Eine Abweichung, wie in Modul D macht die Positionsbestimmung im Zentimeterbereich unmöglich. Die Ergebnisse aus Modul A lassen sich bei diesen Messungen bestätigen. Dadurch verfestigt sich der Verdacht, dass der Fehler beim Mikrofon oder beim Lautsprecher und dem Raum dazwischen liegen muss. Eine Vermutung für diesen größer werdenden Fehler ist, dass der Schall durch die Gegenstände im Raum abgelenkt wird und deswegen später beim Mikrofon ankommt. Weiterhin kann vielleicht durch eine Änderung der Tonfrequenz ein genaueres Ergebnis mit weniger Fehlern produziert werden. 
 
 \subsection{Systemzeit}
 Das RIOT OS stellt die Funktion $getSystemTime()$ zur Verfügung. Als Rückgabewert wird ein \si{32Bit} \si{unsigned} \si{int} zurückgegeben. Die Analyse soll verdeutlichen, wie lange ein Funktionsaufruf dauert, um die Systemzeit auszulesen. Dabei wird vor dem Aufruf ein GPIO-Pin gesetzt und anschließend wieder zurückgesetzt. Die Differenz entspricht dabei ungefähr dem Systemaufruf. Es folgt Tabelle \ref{table:modul_E1} mit den Messwerten.
@@ -270,7 +270,7 @@ Das RIOT OS stellt die Funktion $getSystemTime()$ zur Verfügung. Als Rückgabew
 \end{table}
 
 
-Aus den Messwerten erkennt man deutlich, dass der Aufruf nahezu konstant ist. Auch diese Abweichung kann im Endergebnis ausgeglichen werden. Bei diesem Aufruf werden verschiedene Funktionen aufgerufen. Eine Vermutung warum dieser Funktionsaufruf \SI{7,21}{\mu\s} andauert, ist dass der Timer-Wert in Ticks zurückgegeben wird und danach in \si{\mu}-Sekunden umgewandelt. Die Umwandlung von Ticks in \si{\mu}-Sekunden zusammen mit dem Aufruf verschiedener Funktionen sind für die \SI{7,21}{\mu\s} verantwortlich. Der Durchschnittswert ist ein Maximalwert des Aufrufes, denn der Durchschnittswert beinhaltet das Setzen und Löschen des GPIOs. Die Messwerte für das Setzen und Löschen des GPIO werden durch Tabelle \ref{table:modul_E2} verdeutlicht.
+Aus den Messwerten erkennt man deutlich, dass der Aufruf nahezu konstant ist. Auch diese Abweichung kann im Endergebnis ausgeglichen werden. Bei diesem Aufruf werden verschiedene Funktionen aufgerufen. Eine Vermutung, warum dieser Funktionsaufruf \SI{7,21}{\mu\s} andauert, ist, dass der Timer-Wert in Ticks zurückgegeben und danach in \si{\mu}-Sekunden umgewandelt wird. Die Umwandlung von Ticks in \si{\mu}-Sekunden, zusammen mit dem Aufruf verschiedener Funktionen, sind für die \SI{7,21}{\mu\s} verantwortlich. Der Durchschnittswert ist ein Maximalwert des Aufrufes, denn der Durchschnittswert beinhaltet das Setzen und Löschen des GPIOs. Die Messwerte für das Setzen und Löschen des GPIO werden durch Tabelle \ref{table:modul_E2} verdeutlicht.
 
 \begin{table}[H]
 \centering
@@ -294,11 +294,11 @@ Aus den Messwerten erkennt man deutlich, dass der Aufruf nahezu konstant ist. Au
 \end{tabular}
 \end{table}
 
-Aus dem Durchschnittswert ergibt sich eine Abweichung von $0,014178 \; cm$. Dieser ist zu gering, um auf die Messwerte der Funktion $getSystemTime()$ Einfluss zu nehmen. Somit können die Messwerte aus Tabelle \ref{table:modul_E2} ohne Fehler betrachtet werden.
+Aus dem Durchschnittswert ergibt sich eine Abweichung von $0,014178 \; cm$. Der Durchschnittswert ist zu gering, um auf die Messwerte der Funktion $getSystemTime()$ Einfluss zu nehmen. Somit können die Messwerte aus Tabelle \ref{table:modul_E2} ohne Fehler betrachtet werden.
 
 
 \subsection{Zeitsynchronisation}
-Bei den bisherigen Messungen war der Master mit Hilfe eines Kabels mit dem Slave verbunden. In der Endanwendung jedoch ist der Master drahtlos mit dem Slave verbunden. Bevor die Zeitsynchronisation in die Software eingefügt werden kann, wird geprüft, welche Genauigkeit die Zeitsynchronisation erreicht. Dabei baut man zwei \board \platz nebeneinander auf. Insgesamt werden hundert Zeitsynchronisation (PTP) nacheinander durchgeführt. Danach bereitet und wertet man die Ergebnisse graphisch auf und wertet sich aus. Es wird nur auf die Variable $t_{prop}$ (Propagation Delay) eingegangen, da diese die Laufzeitverzögerung zwischen Master und Slave entspricht. Die Abbildung \ref{img:zeit_sync_t_prop_figure} zeigt die Laufzeitverzögerung bei \si{100} Messungen. Da die Messwerte sich im Millisekundenbereich bewegen, bedeutet dies für die Zeitsynchronisation falsche Ergebnisse. PTP verlangt für Zeitsynchronisation gleiche Laufzeitverzögerungen. Da diese im Millisekundenbereich schwanken, ist es zu erheblichen Abweichungen bei der Synchronisation gekommen. Neben der Laufzeitverzögerung spielt noch das Hinzufügen der Systemzeit in das Paket eine Rolle. Je später die Systemzeit in das UDP-Paket eingefügt wird, desto weniger Fehler gibt es bei der Zeitsynchronisation. Bei PTP muss die Systemzeit genau dem Aussenden entsprechen; deswegen ist die Systemzeit so spät wie möglich zum Paket hinzuzufügen. Passiert dies nicht, geht Genauigkeit verloren, weil das Zusammenbauen des UDP-Pakets Zeit kostet. Eine Vermutung für die Abweichungen bei der Laufzeitverzögerung ist, dass die Funktion $udp\_receive\_packet()$ durch Polling abgefragt wird. Somit gehen Pakete verloren und werden nur zu einem bestimmten Zeitpunkt entgegengenommen. RIOT bietet keine Interruptroutine für das Empfangen von Paketen an. Somit können Pakete verloren gehen, welches sich kritisch auf die Zeitsynchronisation auswirkt. Weiterhin ist eine kleine Abweichung von Master und Slave nicht zu verhindern. Da jeder Frequenzgeber schwingt, kommt nicht jeder Taktpegel exakt genau an. Der Jitter gibt an, um wieviele Nanosekunden der Frequenzgeber abweichen kann. Dieser ist beim Master und Slave minimal unterschiedlich. 
+Bei den bisherigen Messungen war der Master mit Hilfe eines Kabels mit dem Slave verbunden. In der Endanwendung jedoch ist der Master drahtlos mit dem Slave verbunden worden. Bevor die Zeitsynchronisation in die Software eingefügt werden kann, wird geprüft, welche Genauigkeit die Zeitsynchronisation erreicht. Dabei baut man zwei \board \platz nebeneinander auf. Insgesamt werden hundert Zeitsynchronisationen (PTP) nacheinander durchgeführt. Danach bereitet man die Ergebnisse graphisch auf und wertet sie aus. Es wird nur auf die Variable $t_{prop}$ (Propagation Delay) eingegangen, da diese die Laufzeitverzögerung zwischen Master und Slave entspricht. Die Abbildung \ref{img:zeit_sync_t_prop_figure} zeigt die Laufzeitverzögerung bei \si{100} Messungen. Da die Messwerte sich im Millisekundenbereich bewegen, führt dies für die Zeitsynchronisation zu falschen Ergebnissen. PTP verlangt für Zeitsynchronisation gleiche Laufzeitverzögerungen. Da diese im Millisekundenbereich schwanken, ist es zu erheblichen Abweichungen bei der Synchronisation gekommen. Neben der Laufzeitverzögerung spielt noch das Hinzufügen der Systemzeit in das Paket eine Rolle. Je später die Systemzeit in das UDP-Paket eingefügt wird, desto weniger Fehler gibt es bei der Zeitsynchronisation. Bei PTP muss die Systemzeit genau dem Aussenden entsprechen; deswegen ist die Systemzeit so spät wie möglich zum Paket hinzuzufügen. Passiert dies nicht, geht Genauigkeit verloren, weil das Zusammenbauen des UDP-Pakets Zeit kostet. Eine Vermutung für die Abweichungen bei der Laufzeitverzögerung ist, dass die Funktion $udp\_receive\_packet()$ durch Polling abgefragt wird. Somit gehen Pakete verloren und werden nur zu einem bestimmten Zeitpunkt entgegengenommen. RIOT bietet keine Interruptroutine für das Empfangen von Paketen an. Somit können Pakete verloren gehen, welches sich kritisch auf die Zeitsynchronisation auswirkt. Weiterhin ist eine kleine Abweichung von Master und Slave nicht zu verhindern. Da jeder Frequenzgeber schwingt, kommt nicht jeder Taktpegel exakt genau an. Der Jitter gibt an, um wieviele Nanosekunden der Frequenzgeber abweichen kann. Dieser ist beim Master und Slave minimal unterschiedlich. 
 
 \begin{figure}[H]
         \centering
@@ -310,7 +310,7 @@ Bei den bisherigen Messungen war der Master mit Hilfe eines Kabels mit dem Slave
 
 
 \subsection{\funkempfaenger}
-Um die Abweichung der Zeitsynchronisation aufzufangen, wird der \funkempfaenger \platz für das Startsignal einer Messung verwendet. Dafür muss allerdings der Empfänger ein eindeutiges Signal erhalten. Dies ist ein \si{LOW}-Signal. Da eine solche Abweichung für eine zentimetergenaue Positionsbestimmung nicht vertretbar ist, wird für den Start der Messung ein \funkempfaenger \platz verwendet. Für den Testaufbau wurde der Empfänger an das Oszilloskop angeschlossen. Der \si{DATA}-Eingang des Senders wurde mit dem \board \platz verbunden. Das Board produziert eine \SI{1}{\hertz} Frequenz auf dem verbunden Pin. Das Oszilloskop sollte nun diese Frequenz wiederspiegeln. Das Messergebnis ist in Abbildung \ref{img:ausgang_sender_pin} dargestellt. Es ist zu erkennen, dass das Mikrofon ein Rauschen erkennt. Dies belegen die vielen kurzen \si{LOW}-Pegel. Als vom Sender ein \si{LOW}-Pegel übertragen wurde, konnte nicht eindeutig bestimmt werden, ob das Signal angekommen war oder durch das Rauschen unterging. Die Pegelwechsel A-E belegen, dass sich kein Pegelwechsel am Ausgang eindeutig vom Rauschen abhebt. Somit kann diese Variante nicht als Startsignal verwendet werden. Der Funkempfänger scheidet damit aus.
+Um die Abweichung der Zeitsynchronisation aufzufangen, wird der \funkempfaenger \platz für das Startsignal einer Messung verwendet. Dafür muss allerdings der Empfänger ein eindeutiges Signal erhalten. Dies ist ein \si{LOW}-Signal. Da eine solche Abweichung für eine zentimetergenaue Positionsbestimmung nicht vertretbar ist, wird für den Start der Messung ein \funkempfaenger \platz verwendet. Für den Testaufbau wurde der Empfänger an das Oszilloskop angeschlossen. Der \si{DATA}-Eingang des Senders wurde mit dem \board \platz verbunden. Das Board produziert eine \SI{1}{\hertz} Frequenz auf dem verbunden Pin. Das Oszilloskop sollte nun diese Frequenz wiederspiegeln. Das Messergebnis ist in Abbildung \ref{img:ausgang_sender_pin} dargestellt. Das Mikrofon erkennt nur ein Rauschen. Dies bestätigen auch die vielen kurzen \si{LOW}-Pegel. Als vom Sender ein \si{LOW}-Pegel übertragen wurde, konnte nicht eindeutig bestimmt werden, ob das Signal angekommen war oder durch das Rauschen unterging. Die Pegelwechsel A-E belegen, dass sich kein Pegelwechsel am Ausgang eindeutig vom Rauschen abhebt. Somit kann diese Variante nicht als Startsignal verwendet werden. Der Funkempfänger scheidet damit aus.
 
 \begin{figure}[H]
         \centering
@@ -321,7 +321,7 @@ Um die Abweichung der Zeitsynchronisation aufzufangen, wird der \funkempfaenger 
 \end{figure}
 
 \subsection{Software}
-Für die Positionsbestimmung verhält sich die Software nach dem Programmablaufplan - siehe Abbildung \ref{img:PAP}. Zuerst wird der Zeitunterschied ausgeglichen, der zwischen dem Master und dem Slave besteht. Dafür wird das bereits beschriebene PTP Protokoll verwendet. Erst nachdem die Zeitsynchronisation erfolgreich ist, werden Messungen vorgenommen. Dabei spricht der Master einzeln die Slaves an. Der Master gibt zu einem bestimmten Zeitpunkt vor, wann der entsprechende Slave den Lautsprecher für \SI{40000}{\mu\s} einschaltet. Über das Mikrofon beim Master wird der Ton empfangen und sofort die Systemzeit bestimmt. Über die Differenz vom Aussenden und Empfangen kann die Distanz berechnet werden. Dieses Vorgehen wird für alle drei Slaves wiederholt. Zusammen mit den Koordinaten der Slaves ergeben sich auf einer Ebene drei Kreise, die sich schneiden. Der Schnittpunkt der Kreise ist foglich die Position des Masters. Dabei ist zu beachten, dass der Master sich während der drei Messungen nicht bewegen darf - sonst werden die Ergebnisse verfälscht. Mit den drei Distanzen wird die Position bestimmt. Die Funktion für die Positionsbestimmung wurde von Github (pepebecker/circle-intersection) entnommen \cite{src_GITHUB_CODE}. Wird die Software nicht abgebrochen, wiederholt sich die Messung für alle Slaves. Somit kann sich der Master auf der Ebene bewegen und bekommt seine Postion angezeigt. Es muss beachtet werden, dass durch den Jitter des Frequenzgebers die Systemzeit der Slaves mit der Zeit divergiert, d.h, wartet man entsprechend lange, ist die Systemzeit der Slaves nicht mehr übereinstimmend mit dem Master. Deswegen muss regelmäßig eine Zeitsynchronisation erfolgen. Da diese Arbeit unter Laborbedinungen durchgeführt wird, gibt es nur eine Zeitsynchronisation.
+Für die Positionsbestimmung verhält sich die Software nach dem Programmablaufplan - siehe Abbildung \ref{img:PAP}. Zuerst wird der Zeitunterschied ausgeglichen, der zwischen dem Master und dem Slave besteht. Dafür wird das bereits beschriebene PTP Protokoll verwendet. Erst nachdem die Zeitsynchronisation erfolgreich ist, werden Messungen vorgenommen. Dabei spricht der Master einzeln die Slaves an. Der Master gibt zu einem bestimmten Zeitpunkt vor, wann der entsprechende Slave den Lautsprecher für \SI{40000}{\mu\s} einschaltet. Über das Mikrofon beim Master wird der Ton empfangen und sofort die Systemzeit bestimmt. Über die Differenz vom Aussenden und Empfangen kann die Distanz berechnet werden. Dieses Vorgehen wird für alle drei Slaves wiederholt. Zusammen mit den Koordinaten der Slaves ergeben sich auf einer Ebene drei Kreise, die sich schneiden. Der Schnittpunkt der Kreise ist foglich die Position des Masters. Dabei ist zu beachten, dass der Master sich während der drei Messungen nicht bewegen darf - sonst werden die Ergebnisse verfälscht. Mit den drei Distanzen wird die Position bestimmt. Die Funktion für die Positionsbestimmung wurde von Github (pepebecker/circle-intersection) entnommen \cite{src_GITHUB_CODE}. Wird die Software nicht abgebrochen, wiederholt sich die Messung für alle Slaves. Somit kann sich der Master auf der Ebene bewegen und bekommt seine Postion angezeigt. Es muss berücksichtigt werden, dass durch den Jitter des Frequenzgebers die Systemzeit der Slaves mit der Zeit divergiert, d.h, wartet man entsprechend lange, ist die Systemzeit der Slaves nicht mehr übereinstimmend mit dem Master. Deswegen muss regelmäßig eine Zeitsynchronisation erfolgen.
 
 \begin{figure}[H]
         \centering
@@ -329,3 +329,29 @@ Für die Positionsbestimmung verhält sich die Software nach dem Programmablaufp
         \caption{Programmablaufplan der Software}
         \label{img:PAP}
 \end{figure}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
