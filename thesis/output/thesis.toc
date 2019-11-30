@@ -44,7 +44,7 @@
 \contentsline {section}{\numberline {7}Probleme}{36}{section.0.7}
 \contentsline {subsection}{\numberline {7.1}Kommunikation Master -- Slave}{36}{subsection.0.7.1}
 \contentsline {subsection}{\numberline {7.2}Genauigkeit -- Zeitsynchronisation}{36}{subsection.0.7.2}
-\contentsline {subsection}{\numberline {7.3}Messgenauigkeit}{36}{subsection.0.7.3}
+\contentsline {subsection}{\numberline {7.3}Genauigkeit -- Messungen}{36}{subsection.0.7.3}
 \contentsline {section}{\numberline {8}Ausblick}{37}{section.0.8}
 \contentsline {paragraph}{\nonumberline Kommunikation}{37}{section*.46}
 \contentsline {paragraph}{\nonumberline Zeitsynchronisation}{37}{section*.47}
