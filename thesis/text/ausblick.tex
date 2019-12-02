@@ -1,13 +1,13 @@
 \newpage
 
 \section{Ausblick}
-Die Software kann in verschiedenen Module einteilt werden. Damit ist es möglich, die Software zu erweitern, ohne die anderen Module zu verändern. Im folgenden werden Verbesserungsvorschläge für die einzelnen Module vorgestellt.
+Die Software kann in verschiedene Module eingeteilt werden. Damit ist es möglich, die Software zu erweitern, ohne die anderen Module zu verändern. Im folgenden werden Verbesserungsvorschläge für die einzelnen Module vorgestellt.
 
 \paragraph{Kommunikation}\mbox{}\\
-Für die Kommunikation zwischen Master und Slave könnte anstatt des UDP-Protokoll das TCP-Protokoll verwendet werden. Dadurch wird eine fehlerbehaftete Kommunikation verbessert, weil TCP mit ACKs arbeitet und zuerst ein Verbindungsaufbau erfolgt. Darüber hinaus könnte die Identifikation der Knoten im Netzwerk mit einer IP-Adresse erfolgen, anstatt auf Portnummern, wie es aktuell der Fall ist.
+Für die Kommunikation zwischen Master und Slave könnte anstatt des UDP-Protokolls das TCP-Protokoll verwendet werden. Dadurch wird eine fehlerbehaftete Kommunikation verbessert, weil TCP mit ACKs arbeitet und zuerst ein Verbindungsaufbau erfolgt. Darüber hinaus könnte die Identifikation der Knoten im Netzwerk mit einer IP-Adresse erfolgen, anstatt auf Portnummern, wie es aktuell der Fall ist.
 
 \paragraph{Zeitsynchronisation}\mbox{}\\
-Damit eine Uhrensynchronisation im Nanosekundenbereich erreicht wird, muss die aktuelle Uhrzeit kurz vor dem Aussenden in das Datenpaket eingefügt werden. Dies sollte unabhängig vom System geschehen. Dafür muss die Systemzeit von der Firmware des Funkmoduls verwaltet werden. Wird die Systemzeit allerdings vom Betriebssystem verwaltet, gibt es immer eine Verzögerung zwischen dem Funktionsaufruf $getSystemTime()$ und dem Aussenden des Pakets. Um diese Verzögerungszeit zu elemenieren, sollte bei jedem Aussenden des Paketes die aktuelle Systemzeit angehängt werden.
+Damit eine Uhrensynchronisation im Nanosekundenbereich erreicht wird, muss die aktuelle Uhrzeit kurz vor dem Aussenden in das Datenpaket eingefügt werden. Dies sollte unabhängig vom System geschehen. Dafür muss die Systemzeit von der Firmware des Funkmoduls verwaltet werden. Wird die Systemzeit allerdings vom Betriebssystem verwaltet, gibt es immer eine Verzögerung zwischen dem Funktionsaufruf $getSystemTime()$ und dem Aussenden des Pakets. Um diese Verzögerungszeit zu eliminieren, sollte bei jedem Aussenden des Paketes die aktuelle Systemzeit angehängt werden.
 
 \paragraph{Übertragungsmedium}\mbox{}\\
 Für zukünftige Anwendungen könnte man neben dem Schall auch Radiosignale verwenden. Sie haben den Vorteil, dass das menschliche Gehör diese Frequenzen nicht wahrnimmt. Des weiteren breiten sich Radiosignale mit Lichtgeschwindigkeit aus.
