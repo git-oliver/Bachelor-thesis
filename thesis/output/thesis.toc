@@ -57,5 +57,5 @@
 \contentsline {section}{Eidesstattliche Erkl\IeC {\"a}rung}{40}{section.0.9}
 \contentsline {section}{Literaturverzeichnis}{41}{section*.53}
 \contentsline {section}{\numberline {10}Anhang}{43}{section.0.10}
-\contentsline {section}{\numberline {1}Mathematische Herleitung}{43}{section.Alph0.1}
-\contentsline {section}{\numberline {2}Steuercodes}{45}{section.Alph0.2}
+\contentsline {subsection}{\numberline {10.1}Mathematische Herleitung}{43}{subsection.0.10.1}
+\contentsline {subsection}{\numberline {10.2}Steuercodes}{45}{subsection.0.10.2}

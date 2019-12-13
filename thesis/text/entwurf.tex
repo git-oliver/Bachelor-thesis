@@ -1,19 +1,19 @@
 \newpage
 \section{Entwurf}
-Dieses Kapitel befasst sich mit der Struktur der Implementierung. Damit wird die Herangehensweise beschrieben und es wird erläutert, wieso bestimmte Entscheidungen getroffen worden sind.
+Dieses Kapitel befasst sich mit der Struktur der Implementierung. Damit wird die Herangehensweise beschrieben und es wird erläutert, wieso bestimmte Entscheidungen getroffen wurden.
 
 \subsection{Hardware}
-Um die Hardwarekosten bei einer Skalierung für die Positionsbestimmung niedrig zu halten, wurde der \microphone \platz auf dem Master-Knoten verbaut und dementsprechend die Lautsprecher auf dem Slave-Knoten. Diese Variante hat allerdings den Nachteil, dass nur ein Slave abgefragt werden kann. Somit braucht es bei drei Slaves mindestens drei Schallmessungen, gegenüber einer Messung. Die verwendetete Variante hat jedoch den Vorteil, dass der Master entscheidet, mit welchem Slave eine Messung vorgenommen wird. Weiterhin ist der Softwareaufwand für eine Wiederholung der Messung aufgrund von Fehlern geringer.
+Um die Hardwarekosten bei einer Skalierung für die Positionsbestimmung niedrig zu halten, wurde der \microphone \platz auf dem Master-Knoten verbaut und dementsprechend die Lautsprecher auf dem Slave-Knoten. Diese Variante hat allerdings den Nachteil, dass nur ein Slave abgefragt werden kann. Somit braucht es bei drei Slaves mindestens drei Schallmessungen gegenüber einer Messung. Die verwendete Variante hat jedoch den Vorteil, dass der Master entscheidet, mit welchem Slave eine Messung vorgenommen wird. Weiterhin ist der Softwareaufwand für eine Wiederholung der Messung aufgrund von Fehlern geringer.
 
 \subsection{Struktur}
-Zuerst wird der \microphone \platz dahingehend untersucht, ob er überhaupt schnell genug für die Positionsbestimmung ist. Danach wird ein Versuchsaufbau nach dem folgenden Blockschaltbild \ref{img:kommunikation_module}, eingerichtet. Das Blockschaltbild teilt den Versuchsaufbau in verschiedene Module auf -- damit lassen sich Abweichungen besser zuordnen.
+Zuerst wird der \microphone \platz dahingehend untersucht, ob er überhaupt schnell genug für die Positionsbestimmung ist. Danach wird ein Versuchsaufbau nach dem folgenden Blockschaltbild \ref{img:kommunikation_module} eingerichtet. Das Blockschaltbild teilt den Versuchsaufbau in verschiedene Module auf -- damit lassen sich Abweichungen besser zuordnen.
 
 \begin{figure}[H]
-	\centering
-	\hspace*{-2.6cm}
-	\includegraphics[width=1.3\textwidth]{images/Kommunikation_Module.png}
-	\caption{Versuchsaufbau, unterteilt in Module}
-	\label{img:kommunikation_module}
+\centering
+\hspace*{-2.6cm}
+\includegraphics[width=1.3\textwidth]{images/Kommunikation_Module.png}
+\caption{Versuchsaufbau, unterteilt in Module}
+\label{img:kommunikation_module}
 \end{figure}
 
 %newpage einfügen
