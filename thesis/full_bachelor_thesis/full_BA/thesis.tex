@@ -33,7 +33,11 @@
 \newcommand{\source}[1]{\caption*{Source: {#1}} }
 \renewcommand{\bibsection}{}
 \newcommand{\RM}[1]{\MakeUppercase{\romannumeral #1{.}}}
-\newcommand{\command}{I'm a command declared in thesis.tex}
+\newcommand{\board}{SAM R21 Xplained Pro Evaluation Kit}
+\newcommand{\ultraschall}{HC-SR04}
+\newcommand{\microphone}{SparkFun Sound Detector}
+\newcommand{\platz}{ }
+\newcommand{\funkempfaenger}{\SI{433}{\mega \hertz} Funk Transmitter-Receiver}
 \usepackage[figurename=Abbildung]{caption}
 
 \def\theequation{\thesection.\arabic{equation}} %nummerierung der Formeln
@@ -109,6 +113,12 @@
 	\acro{FPU}{Floating Point Unit}
 	\acro{RISC}{Reduced Instruction Set Computer}
 	\acro{ARM}{Advanced RISC Machine}
+	\acro{$I^2C$}{Inter-Integrated Circuit}
+	\acro{SPI}{Serial Peripheral Interface}
+	\acro{GPIO}{General-Purpose Input/Output}
+	\acro{MAC}{Media-Access-Control}
+	\acro{IPv4}{Internet Protocol Version 4}
+	\acro{UART}{Universal Asynchronous Receiver Transmitter}
 	\acro{UDP}{User Datagram Protocol}
 	\acro{TCP}{Transmission Control Protocol}
 \end{acronym}
@@ -121,7 +131,7 @@
 \fancyhf{} %alle Kopf- und Fußzeilenfelder bereinigen
 \fancyhead[L]{\rightmark} %Kopfzeile links
 \fancyhead[C]{} %zentrierte Kopfzeile
-\fancyhead[R]{\today} %Kopfzeile rechts
+\fancyhead[R]{17. Dezember 2019}%\today} %Kopfzeile rechts
 \renewcommand{\headrulewidth}{0.4pt} %obere Trennlinie
 \fancyfoot[C]{\thepage} %Seitennummer
 %\renewcommand{\footrulewidth}{0.4pt} %untere Trennlinie
@@ -134,8 +144,18 @@
 
 \shorthandoff{"}
 
-\input{text/introduction}
-
+\input{text/einleitung}
+\input{text/grundlagen}
+\input{text/entwurf}
+\input{text/implementierung}
+\input{text/unittests}
+\input{text/auswertung}
+\input{text/probleme}
+\input{text/ausblick}%Ausblick
+\input{text/zusammenfassung}
+\input{text/eidesstattliche_erklaerung}
+\input{text/quellen}
+\input{text/anhang}
 
 \shorthandon{"}
 
