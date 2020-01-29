@@ -37,7 +37,7 @@ There are some germans comments, so this is a good start for learning a new lang
 ~$  cd thesis/
 ~$  make
 ```
-In folder output/ are the created files with the pdf-file. The pdf-file is automatically executed from the Makefile.
+In folder **_output/_** are the created files with the pdf-file. The pdf-file is automatically executed from the Makefile.
 To disable this remove line 2 in the Makefile.
 
 
