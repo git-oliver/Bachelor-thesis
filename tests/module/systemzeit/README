@@ -1,6 +1,0 @@
-#################
-#  Systemzeit   #
-#################
-
-Hier wird die Verzögerung der Funktion "getSystemTime()" ermittelt. Dabei wird vorher ein Pin auf HIGH gesetzt und nach dem Aufruf wieder auf LOW.
-Das Oszi hängt an dem Pin der auf HIGH/LOW gesetzt wird.

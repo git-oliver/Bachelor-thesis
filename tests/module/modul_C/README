@@ -1,6 +1,0 @@
-#################
-#    Modul C	#
-#################
-
-Hier wird die Anstiegszeit des Mosfets ermittelt. Diese liegt laut Datenblatt bei 40ns.
-Da das Oszilloskop diese genaue Zeitauflösung unterstützt wird das Ergebnis vernachlässigt
