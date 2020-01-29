@@ -26,7 +26,8 @@ Note: Linux only; Tested on Ubuntu 16.04 xenial
 ~$  cd bachelor_project/
 ~$  cd thesis/
 ~$  make
-In folder output/ are the created files with the pdf-file. The pdf-file is automatically executed from the Makefile. To disable this remove line 2 in the Makefile.
+In folder output/ are the created files with the pdf-file. The pdf-file is automatically executed from the Makefile.
+To disable this remove line 2 in the Makefile.
 
 
 How to insert text to chapter "Introduction" ?
