@@ -1,0 +1,12 @@
+\newpage
+\section{Probleme}
+Dieser Abschnitt wendet sich den Problemen zu, die erst bei der Durchführung dieser Arbeit aufgetreten sind und vorher nicht abzuschätzen waren.
+
+\subsection{Kommunikation Master -- Slave}
+Der Forschungsansatz der drahtlosen Kommunikation im Rahmen dieser Bachelorarbeit bestand darin, dass Steuerkommandos und Daten immer getrennt gesendet und immer auf 32-Bit aligned werden. Das hat zur Folge, dass Daten immer vom vorherigen Steuercode abhängig sind. Kommt der Steuercode nicht beim Empfänger an, können nachfolgende Daten dem nicht zugeordnet bzw. korrekt interpretiert werden. Die Kommunikation war serialisiert -- die nächsten Daten konnten nur interpretiert werden, wenn die vorherigen Daten fehlerfrei ankamen. Da es häufig zu nicht erklärbaren Verbindungsabbrüchen während der Kommunikation kam, wurde die serialisierte Kommunikationsvariante durch Structs abgelöst. Dabei enthalten die Structs den Steuercode und die dazugehörigen Daten. Somit liegen Steuercodes und Daten zusammen. Sollten nun Daten verloren gehen, können durch den dazugehörigen Steuercode nachfolgende Daten weiterhin interpretiert werden. Die Kombination von Daten und Steuercodes ermöglicht eine variable Kommunikation. Dadurch ist man nicht mehr abhängig von den vorherigen Daten.
+
+\subsection{Genauigkeit -- Zeitsynchronisation}
+Im Rahmen der Zeitsynchronisation kam es immer wieder zu dem Problem, dass die Genauigkeit bei mehrfachen Wiederholungen nicht besser wurde. Dadurch, dass sich die Zeitsynchronisation nicht im \si{\mu}-Sekundenbereich auflöste, konnten auch nur Messungen mit größeren Abweichungen erfolgen. Die Abweichung kam insbesondere durch die Aufrufe $getSystemTime()$ und $udp\_send\_packet()$ zustande. Die Systemzeit wurde vor dem Aussenden vom Programm selbst in das Datenpaket eingefügt und nicht von der Firmware des Funksenders. Weiterhin baute die Funktion $udp\_send\_packet()$ zuerst das UDP-Paket zusammen, welches wiederum Zeit kostete, bis es gesendet werden konnte.
+
+\subsection{Genauigkeit -- Messungen}
+Theoretisch ist nach einer Zeitsynchronisation bekannt, um wie viel Zeit der Master dem Slave hinterher hängt, bzw. voraus ist. Bei den praktischen Distanzmessungen mit dem Slave kam es dabei immer wieder zu großen Distanzschwankungen. Diese haben vermutlich drei Ursachen: eine nicht im \si{\mu}-Sekundenbereich auflösende Zeitsynchronisation, eine Verzögerung der Messinstrumente sowie eine Ablenkung des Schalls vom Aussenden bis zum Empfangen des Mikrofons.

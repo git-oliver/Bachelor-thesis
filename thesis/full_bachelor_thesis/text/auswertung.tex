@@ -1,0 +1,23 @@
+\newpage
+\section{Auswertung}
+
+Nachdem die Implementierung abgeschlossen ist, widmen wir uns in diesem Kapitel der Auswertung der Daten.
+
+\subsection{Hardware}
+Die aufgetretenen Abweichungen entstanden meistens, wenn die Peripherie Daten generiert hatte bzw. angesprochen wurde. Da viele dieser Abweichungen konstant sind, kann ein Offset in das Endergebnis einfließen. Allerdings sind einige Abweichungen nicht erklärbar, was die Bestimmung eines Offset erschwert. Weiterhin zeigt sich, dass die verwendete Hardware nicht optimal auf dieses Problem abgestimmt ist. Dazu zählt der Tongeber und der \microphone . RIOT sieht sich zwar als Echtzeitbetriebssystem, allerdings sind zu viele Schichten zwischen dem laufenden Programm und der Hardware vorhanden. Ein Systemaufruf für die Abfrage der Systemzeit dauert \SI{7,21}{\mu s}. Dies ist zu lange und verfälscht die Systemzeit, die eigentlich \si{\mu}-Sekunden genau sein soll. Des Weiteren zeigt sich, je weniger Komponenten (Peripherie) verwendet werden, umso einfacher ist die Fehlersuche.
+
+\subsection{Messergebnis}
+Die Messergebnisse zeigen, dass eine Positionsbestimmung wie sie durchgeführt wurde, nicht genau genug ist. Die Abweichung, die das Messergebnis hauptsächlich verfälscht, liegt beim Tongeber und dem Mikrofon. Weil kein Muster bei der Abweichung erkennbar ist, kann kein Offset bestimmt werden. Die Verwendung von fehlerbehafteten Bausteinen kann ausgeschlossen werden, da das Oszilloskop für alle verwendeten Mikrofone die gleichen Abweichungen aufzeichnet. Allerdings ist RIOT bei dem Aufruf der Interruptroutinen nahezu konstant.
+
+\subsection{Software}
+Die Software kann eine Positionsbestimmung durchführen; dabei ist sie allerdings auf korrekte Distanzmesswerte angewiesen. Da diese fehlen, kann die Software nur durch Unit-Tests validiert werden. Allerdings zeigt sich, dass die einzelnen Module perfekt zusammen agieren, auch wenn die Distanzmesswerte fehlerbehaftet sind.
+
+\subsection{RIOT}
+Im Verlauf dieser Arbeit hat sich herrausgestellt, dass RIOT eher hinderlich als hilfreich ist. Da zwischen der Hardware und dem ausführbaren Code ein Betriebssystem eingeführt wurde, kommt es zwingend zu weiteren Verzögerungen. Darüber hinaus bietet RIOT nicht die Möglichkeit einer Interruptroutine beim Eintrefen von drahtlosen Nachrichten. Ebenfalls ist das Mitsenden der Systemzeit bei drahtlosen Nachrichten nicht vorhanden. Somit wird wertvolle Zeit verschwendet. Das \board \platz wird von RIOT nur rudimentär unterstüzt. Somit können nicht alle Funktionen des \board \platz verwendet werden.
+
+\subsection{Zeitsynchronisation}
+Die vorhandenen Abweichungen bei der Zeitsynchronisation (siehe Kapitel 4.7) kommen dadurch zustande, dass die Zeitsynchronisation in Software implementiert wurde und kein Hardwarebeschleuniger verwendet wurde. Somit kommt es immer zu einer Verzögerung von mehreren Millisekunden. Mithilfe eines Hardwarebeschleunigers können auch diese Verzögerungen eliminiert werden. Weiterhin zeigt sich, dass diese Arbeit alle Anforderungen für den Einsatz des PTP erfüllt.
+
+\subsection{Mathematischer Hintergrund}
+Die Gleichungen, die für eine Positionsbestimmung eines zwei-dimensionalen Raumes verwendet werden, können auch für \si{N}-Dimensionen erweiterbar. Pro Dimension kommt eine Gleichung und eine Potenz hinzu und diese müssen gleichgesetzt werden.
+

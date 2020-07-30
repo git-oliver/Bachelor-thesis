@@ -1,0 +1,163 @@
+\documentclass[11pt,a4paper,titlepage]{scrreprt}
+\usepackage[ngerman]{babel} %silbentrennung
+\usepackage[left=3cm, right=2.5cm, bottom=3cm]{geometry}
+\usepackage[utf8]{inputenc} %unicode
+\usepackage{lmodern}
+\usepackage{amsmath}
+\usepackage{nccmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{fancyhdr}
+\usepackage{natbib}
+\citestyle{plain}
+\usepackage[onehalfspacing]{setspace}
+\usepackage[format=plain,justification=centering]{caption}
+\usepackage{acronym}
+\usepackage{url}
+\usepackage{enumitem}
+\usepackage{verbatim}
+\usepackage{subfigure}
+\usepackage{siunitx}
+\usepackage{hyperref}
+\usepackage{changepage}
+%\usepackage[scaled]{helvet}
+%\usepackage[T1]{fontenc}
+
+%\renewcommand{\sffamily}
+%renewcommand\familydefault{\sfdefault} 
+
+\sisetup{locale = DE, per-mode=fraction,parse-numbers=false, decimalsymbol=comma}
+
+\newcommand{\source}[1]{\caption*{Source: {#1}} }
+\renewcommand{\bibsection}{}
+\newcommand{\RM}[1]{\MakeUppercase{\romannumeral #1{.}}}
+\newcommand{\board}{SAM R21 Xplained Pro Evaluation Kit}
+\newcommand{\ultraschall}{HC-SR04}
+\newcommand{\microphone}{SparkFun Sound Detector}
+\newcommand{\platz}{ }
+\newcommand{\funkempfaenger}{\SI{433}{\mega \hertz} Funk Transmitter-Receiver}
+\usepackage[figurename=Abbildung]{caption}
+
+\def\theequation{\thesection.\arabic{equation}} %nummerierung der Formeln
+%\renewcommand{\familydefault}{\sfdefault} %serifenlose Schrift als default
+%\renewcommand{\familydefault}{\rmdefault}
+\renewcommand{\labelitemi}{-} %trennzeichen der aufzählung ändern, weiter ebene 
+							%mit labelitemii, labelitemiii und labelitemiv			
+
+\pagestyle{plain}
+
+\begin{document}
+\normalfont
+
+\renewcommand*{\maketitle}{
+	\begin{titlepage}
+		\newgeometry{left=2.5cm,right=2.5cm,top=3.0cm,bottom=3cm}
+		\begin{center}
+			\begin{figure}[h]
+				\begin{minipage}[hbt]{6cm}
+					\flushleft
+					\includegraphics[width=\textwidth]{images/htw_hochschule.png}
+				\end{minipage}
+				\hfill
+			\end{figure}
+			\vfill
+			{\LARGE \bfseries Positionsbestimmung drathloser mobiler eingebetteter Systeme mittels Time Difference of Arrival\par}
+			\vskip 1.5cm
+			{\large \bfseries Abschlussarbeit\par}
+			\vskip 0.5cm
+			{\large zur Erlangung des akademischen Grades\\ \bfseries Bachelor of Engineering}
+			\vskip 0.5cm
+			{\large an der}
+			\vskip 0.5cm
+			{\large Hochschule für Technik und Wirtschaft Berlin\\ Fachbereich 1: Ingenieurwissenschaften - Energie und Information\\ Studiengang Computer Engineering}
+			\vfill
+			\begin{flushleft}
+			
+				\begin{description}[style=multiline,leftmargin=3.5cm]
+					\item [Erstprüfer]	Prof. Dr.-Ing. habil. Carsten Gremzow
+					\item [Zweitprüfer]	Prof. Dr. rer. nat. Sebastian Bauer
+				\end{description}
+								
+				\begin{description}[style=multiline,leftmargin=3.5cm,font=\normalfont]
+					\item []					
+					\item [Eingereicht von:]	Oliver Koepp
+					\item [Matrikelnummer:]		s0559122
+					\item [Abgabe:]				17.12.2019
+				\end{description}
+				
+				
+			\end{flushleft}
+		\end{center}
+		\restoregeometry
+	\end{titlepage}
+}
+
+\maketitle
+
+\newpage
+\pagenumbering{Roman}
+%Inhaltsverzeichnis
+\tableofcontents
+
+\newpage
+%%Abbildungsverzeichnis
+\listoffigures
+\listoftables
+
+\newpage
+\section*{Abkürzungsverzeichnis\\}
+\begin{acronym}[MMCM]
+	\acro{MCU}{Microcontroller Unit}
+	\acro{FPU}{Floating Point Unit}
+	\acro{RISC}{Reduced Instruction Set Computer}
+	\acro{ARM}{Advanced RISC Machine}
+	\acro{$I^2C$}{Inter-Integrated Circuit}
+	\acro{SPI}{Serial Peripheral Interface}
+	\acro{GPIO}{General-Purpose Input/Output}
+	\acro{MAC}{Media-Access-Control}
+	\acro{IPv4}{Internet Protocol Version 4}
+	\acro{UART}{Universal Asynchronous Receiver Transmitter}
+	\acro{UDP}{User Datagram Protocol}
+	\acro{TCP}{Transmission Control Protocol}
+\end{acronym}
+
+\newpage
+
+\setlength{\headheight}{14pt}
+\setlength{\footskip}{40pt}
+\pagestyle{fancy} %eigener Seitenstil
+\fancyhf{} %alle Kopf- und Fußzeilenfelder bereinigen
+\fancyhead[L]{\rightmark} %Kopfzeile links
+\fancyhead[C]{} %zentrierte Kopfzeile
+\fancyhead[R]{17. Dezember 2019}%\today} %Kopfzeile rechts
+\renewcommand{\headrulewidth}{0.4pt} %obere Trennlinie
+\fancyfoot[C]{\thepage} %Seitennummer
+%\renewcommand{\footrulewidth}{0.4pt} %untere Trennlinie
+
+\pagenumbering{arabic}
+\setcounter{page}{1}
+\renewcommand\thesection{\arabic{section}}
+\renewcommand\thefigure{\arabic{figure}}
+\renewcommand\thetable{\arabic{table}}
+
+\shorthandoff{"}
+
+\input{text/einleitung}
+\input{text/grundlagen}
+\input{text/entwurf}
+\input{text/implementierung}
+\input{text/unittests}
+\input{text/auswertung}
+\input{text/probleme}
+\input{text/ausblick}%Ausblick
+\input{text/zusammenfassung}
+\input{text/eidesstattliche_erklaerung}
+\input{text/quellen}
+\input{text/anhang}
+
+\shorthandon{"}
+
+\end{document}
+

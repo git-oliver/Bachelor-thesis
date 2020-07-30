@@ -22,7 +22,7 @@ The project supports
 - images/     --> Contains all used images. Name must be unique
 - output/     --> Contains the created files from Makefile
 - text/       --> Contains the text of your thesis. It is recommend to use for every chapter a new file
-- full_bachelor_thesis/   --> My complete Bachelorthesis. Everthing is free to use so don't be shy to copy stuff and knowledge
+- full_bachelor_thesis/   --> My complete Bachelorthesis with all tex-Files. The pdf of the thesis can be found in **full_bachelor_thesis/output/thesis.pdf**. Everthing is free to use so don't be shy to copy stuff and knowledge
 - Makefile
 
 For some examples and special effects look at full_bachelor_thesis/

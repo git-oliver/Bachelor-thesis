@@ -1,0 +1,126 @@
+\newpage
+%\appendix
+\section{Anhang}
+
+\subsection{Mathematische Herleitung}
+\label{sec:abcdef}
+Diese Arbeit zeigt die Herleitung, nur für einen Punkt aus der Abbildung \ref{img:schwankungen}, denn die Herleitungen der anderen beiden Punkte unterscheiden sich nur in den Variablen $x_{A}$, $y_{A}$ und $r_{A}$.
+Zuerst wird eine Geradengleichung bestimmt, die durch die beiden Schnittpunkte von Kreis $A$ und $B$ gehen.
+
+%\begin{equation}\label{eq:gerade_bestimmen}
+%\begin{split}
+%\RM{1} \quad (x-x_{A})^{2}+(y-y_{A})^{2} &= r_{A}^{2} \\
+%\RM{2} \quad (x-x_{B})^{2}+(y-y_{B})^{2} &= r_{B}^{2} \\
+%\cline{1-2}
+%\RM{1} - \RM{2} \quad
+%x \cdot (2 \cdot x_{B}-2 \cdot x_{A}) + y \cdot (2 \cdot y_{B}-2 \cdot y_{A}) + x_{A}^{2} - x_{B}^{2} + y_{A}^{2} - y_{B}^{2} &= r_{A}^{2} - r_{B}^{2} \\
+%\RM{1} - \RM{2} \quad
+%x \cdot (2 \cdot x_{B} - 2 \cdot x_{A}) + y \cdot (2 \cdot y_{B} - 2 \cdot y_{A}) &= r_{A}^{2} - r_{B}^{2} - x_{A}^{2} + x_{B}^{2} - y_{A}^{2} + y_{B}^{2} \\
+%\RM{1} - \RM{2} \quad y = \frac{ x \cdot (2 \cdot x_{A} - 2 \cdot x_{B}) + r_{A}^{2} - r_{B}^{2} - x_{A}^{2} + x_{B}^{2} - y_{A}^{2} + y_{B}^{2} }{2 \cdot (y_{B} - y_{A})}
+%\end{split}
+%\end{equation}
+
+\noindent
+$
+\RM{1} \hspace{5.7cm} (x-x_{A})^{2}+(y-y_{A})^{2} = r_{A}^{2} \\
+\RM{2} \hspace{5.5cm} (x-x_{B})^{2}+(y-y_{B})^{2} = r_{B}^{2} \\
+\RM{1}-\RM{2} \hspace{0.3cm} x \cdot (2 \cdot x_{B}-2 \cdot x_{A}) + y \cdot (2 \cdot y_{B}-2 \cdot y_{A}) + x_{A}^{2} - x_{B}^{2} + y_{A}^{2} - y_{B}^{2} = r_{A}^{2} - r_{B}^{2}
+$
+\begin{equation}\label{eq:geradengleichung}
+\hspace{1cm} y = \frac{ x \cdot (2 \cdot x_{A} - 2 \cdot x_{B}) + r_{A}^{2} - r_{B}^{2} - x_{A}^{2} + x_{B}^{2} - y_{A}^{2} + y_{B}^{2} }{2 \cdot (y_{B} - y_{A})}
+\end{equation}
+
+Um nun die X-Koordinaten zu bekommen, setzen wir die Gleichung \ref{eq:geradengleichung} in Gleichung $\RM{1}$ ein und lösen nach $x$ auf.
+
+\begin{equation}\label{eq:x_aufloesen}
+\begin{split}
+P = r_{A}^{2} - r_{B}^{2} - x_{A}^{2} + x_{B}^{2} - y_{A}^{2} + y_{B}^{2}
+\\
+(x-x_{A})^{2}+(y-y_{A})^{2}&=r_{A}^{2}\\
+(x-x_{A})^{2} + (\frac{ x \cdot (2 \cdot x_{A} - 2 \cdot x_{B}) + P}{2 \cdot (y_{B} - y_{A})} - y_{A})^{2}&=r_{A}^{2}
+\\
+x^{2}(1+(\frac{x_{B}-x_{A}}{y_{B}-y_{A}})^{2}) + x (\frac{-P \cdot (x_{B} - x_{A})}{(y_{B} - y_{A})^{2}} + \frac{2 \cdot y_{A} \cdot (x_{B}-x_{A})}{y_{B} - y_{A}} - 2 \cdot x_{A}) \\
+= r_{A}^{2} - y_{A}^{2} + \frac{y_{A} \cdot P}{y_{B}-y_{A}} - \frac{P^{2}}{4 \cdot (y_{B}-y_{A})^{2}} - x_{A}^{2}
+\\
+(1+(\frac{x_{B}-x_{A}}{y_{B}-y_{A}})^{2}) &= R
+\\
+(\frac{-P \cdot (x_{B} - x_{A})}{(y_{B} - y_{A})^{2}} + \frac{2 \cdot y_{A} \cdot (x_{B}-x_{A})}{y_{B} - y_{A}} &= S
+\\
+r_{A}^{2} - y_{A}^{2} + \frac{y_{A} \cdot P}{y_{B}-y_{A}} - \frac{P^{2}}{4 \cdot (y_{B}-y_{A})^{2}} - x_{A}^{2} &= T
+\\
+\\
+x^{2} + x \cdot \frac{S - 2 \cdot x_{A}}{R} - \frac{T}{R} = 0
+\end{split}
+\end{equation}
+Zum lösen einer quadratischen Gleichung wird die pq-Formel verwendet.
+\begin{equation}\label{eq:x_aufloesen_pq_formel}
+\begin{split}
+p &= \frac{S - 2 \cdot x_{A}}{R}
+\\
+q &= \frac{T}{R}
+\\
+\\
+x_{1,2} &= -\frac{p}{2} \pm \sqrt{(\frac{p}{2})^{2} -q}
+\\
+x_{1} &= -\frac{p}{2} + \sqrt{(\frac{p}{2})^{2} -q}
+\\
+x_{2} &= -\frac{p}{2} - \sqrt{(\frac{p}{2})^{2} -q}
+\end{split}
+\end{equation}
+
+Nachdem die X-Koordinaten ermittelt worden sind, muss noch die Y-Koordinate für $x_{1}$ und $x_{2}$ bestimmt werden. Dafür werden die X-Koordinaten in die Geradengleichung \ref{eq:geradengleichung} eingesetzt.
+\begin{equation}\label{eq:y_errechnen}
+\begin{split}
+\RM{1} \hspace{5.7cm} (x-x_{A})^{2}+(y-y_{A})^{2} = r_{A}^{2} \\
+\hspace{1cm} y_{1} = \frac{ x_{1} \cdot (2 \cdot x_{A} - 2 \cdot x_{B}) + r_{A}^{2} - r_{B}^{2} - x_{A}^{2} + x_{B}^{2} - y_{A}^{2} + y_{B}^{2} }{2 \cdot (y_{B} - y_{A})}
+\\
+\hspace{1cm} y_{2} = \frac{ x_{2} \cdot (2 \cdot x_{A} - 2 \cdot x_{B}) + r_{A}^{2} - r_{B}^{2} - x_{A}^{2} + x_{B}^{2} - y_{A}^{2} + y_{B}^{2} }{2 \cdot (y_{B} - y_{A})}
+\end{split}
+\end{equation}
+
+Die Schnittpunkte von Kreis $A$ und $B$ sind:
+\begin{equation}\label{eq:schnittpunkte}
+\begin{split}
+(x_{1} | y_{1})
+\\
+(x_{2} | y_{2})
+\end{split}
+\end{equation}
+
+Da nur ein Schnittpunkt auch in Kreis $C$ liegt, muss dieser bestimmt werden, sonst erhalten wir nicht minimalste Fläche, die drei Kreise erzeugen. Um zu prüfen, welcher Schnittpunkt in Kreis $C$ liegt, wird der Abstand vom Mittelpunkt des Kreises $C$ zu den Schnittpunkten aus Gleichung \ref{eq:schnittpunkte} berechnet.
+
+\begin{equation}\label{eq:schnittpunkt_der_im_kreis_liegt}
+\begin{split}
+d_{1} = \sqrt{(x_{C} - x_{1})^2 + (y_{C} - y_{1})^{2}}
+\\
+d_{2} = \sqrt{(x_{C} - x_{2})^2 + (y_{C} - y_{2})^{2}}
+\end{split}
+\end{equation}
+
+Wenn $d_{1} < d_{2}$ ist, dann ist der gesuchte Punkt $(x_{1} | y_{1})$. Falls die Ungleichung $d_{1} > d_{2}$ wahr ist, dann heißt der gesuchte Punkt $(x_{2} | y_{2})$.
+\\
+Dieses mathematische Vorgehen wird für Kreis $A-C$ und $B-C$ wiederholt.
+
+\newpage
+\subsection{Steuercodes}
+Die folgende Tabelle listet alle vorhandenen Steuercodes auf.
+
+\begin{table}[H]
+\label{table:steuercodes}
+\caption{Alle Steuercodes}
+\centering
+\begin{tabular}{ccc}
+\hline
+\multicolumn{1}{|c|}{\textbf{Steurcode}} & \multicolumn{1}{c|}{\textbf{\textit{unsigned int} Wert}} & \multicolumn{1}{c|}{\textbf{Beschreibung}} \\ \hline
+& & \\ \hline
+\multicolumn{1}{|c|}{\si{CODE\_MESSUNG}} & \multicolumn{1}{c|}{\si{65}} & \multicolumn{1}{c|}{Messung durchführen} \\ \hline
+\multicolumn{1}{|c|}{\si{CODE\_NOP}} & \multicolumn{1}{c|}{66} & \multicolumn{1}{c|}{ACK anfordern} \\ \hline
+\multicolumn{1}{|c|}{\si{CODE\_ZEIT\_SYNC}} & \multicolumn{1}{c|}{\si{67}} & \multicolumn{1}{c|}{\si{SYNC-MSG} senden} \\ \hline
+\multicolumn{1}{|c|}{\si{CODE\_ZEIT\_FOLLOW\_UP}} & \multicolumn{1}{c|}{\si{68}} & \multicolumn{1}{c|}{\si{FOLLOW\_UP-MSG} senden} \\ \hline
+\multicolumn{1}{|c|}{\si{CODE\_ZEIT\_DELAY\_REQ}} & \multicolumn{1}{c|}{\si{69}} & \multicolumn{1}{c|}{\si{DELAY\_REQ-MSG} senden} \\ \hline
+\multicolumn{1}{|c|}{\si{CODE\_ZEIT\_DELAY\_RESP}} & \multicolumn{1}{c|}{\si{70}} & \multicolumn{1}{c|}{\si{DELAY\_RESP-MSG} senden} \\ \hline
+\multicolumn{1}{|c|}{\si{CODE\_READ\_T1\_T2\_T4}} & \multicolumn{1}{c|}{\si{71}} & \multicolumn{1}{c|}{Zurücksenden der Werte $t_{1}$, $t_{2}$, $t_{4}$} \\ \hline
+\multicolumn{1}{|c|}{\si{CODE\_SERVER\_RESPONSE}} & \multicolumn{1}{c|}{\si{72}} & \multicolumn{1}{c|}{\si{ACK}} \\ \hline
+
+\end{tabular}
+\end{table}
