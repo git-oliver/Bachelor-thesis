@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2019.11.18)  29 JAN 2020 22:15
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2019.11.18)  30 JUL 2020 22:02
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2730,7 +2730,7 @@ Here is how much of TeX's memory you used:
 public/lm/lmbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb></usr/s
 hare/texmf/fonts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public
 /lm/lmr12.pfb></usr/share/texmf/fonts/type1/public/lm/lmssbx10.pfb>
-Output written on output//thesis.pdf (6 pages, 354332 bytes).
+Output written on output//thesis.pdf (6 pages, 354575 bytes).
 PDF statistics:
  81 PDF objects out of 1000 (max. 8388607)
  63 compressed objects within 1 object stream
